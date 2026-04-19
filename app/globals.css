@@ -53,3 +53,8 @@ html, body {
   background: #00ADF1;
   color: #0A0C10;
 }
+
+.mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
