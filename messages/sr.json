@@ -17,5 +17,25 @@
     "ctaSecondary": "Saznaj više",
     "stats": { "yearsLabel": "Godina istorije", "membersLabel": "Članova", "matchesLabel": "Odigranih utakmica" }
   },
+  "about": {
+    "eyebrow": "O klubu",
+    "title": "Strast na ledu, zajednica van njega",
+    "description": "Osnovan 2014. godine, Cones Belgrade je klub koji stoji iza svakog igrača, bilo da je veteran ili prvi put obuo klizaljke.",
+    "pillars": {
+      "passionTitle": "Strast", "passionText": "Svaki trening, svaka utakmica — bez kompromisa.",
+      "unityTitle": "Tim", "unityText": "Igramo jedni za druge, pre svega ostalog.",
+      "fairTitle": "Fer-plej", "fairText": "Poštujemo protivnika, sudije i igru.",
+      "communityTitle": "Zajednica", "communityText": "Klub koji povezuje generacije hokejaša u Beogradu."
+    }
+  },
+  "gallery": { "eyebrow": "Galerija", "title": "Trenuci sa leda" },
+  "news": { "eyebrow": "Najnovije", "title": "Vesti iz kluba", "cta": "Sve vesti" },
+  "sponsors": { "eyebrow": "Partneri", "title": "Oni veruju u nas" },
+  "cta": {
+    "title": "Spreman za led?",
+    "description": "Pridruži se treninzima — početnici su dobrodošli, a oprema se može iznajmiti.",
+    "primary": "Zakaži probni trening",
+    "secondary": "Pogledaj raspored"
+  },
   "common": { "readMore": "Pročitaj više", "loading": "Učitavanje…" }
 }

@@ -17,5 +17,25 @@
     "ctaSecondary": "Learn more",
     "stats": { "yearsLabel": "Years of history", "membersLabel": "Members", "matchesLabel": "Matches played" }
   },
+  "about": {
+    "eyebrow": "About the club",
+    "title": "Passion on the ice, community off it",
+    "description": "Founded in 2014, Cones Belgrade is a club that stands behind every player — whether a veteran or lacing up skates for the first time.",
+    "pillars": {
+      "passionTitle": "Passion", "passionText": "Every practice, every game — no compromises.",
+      "unityTitle": "Team", "unityText": "We play for each other, above all else.",
+      "fairTitle": "Fair play", "fairText": "We respect opponents, referees, and the game.",
+      "communityTitle": "Community", "communityText": "A club connecting generations of Belgrade hockey."
+    }
+  },
+  "gallery": { "eyebrow": "Gallery", "title": "Moments from the ice" },
+  "news": { "eyebrow": "Latest", "title": "Club news", "cta": "All news" },
+  "sponsors": { "eyebrow": "Partners", "title": "They believe in us" },
+  "cta": {
+    "title": "Ready for the ice?",
+    "description": "Join our practices — beginners welcome, gear can be rented on site.",
+    "primary": "Book a trial practice",
+    "secondary": "See schedule"
+  },
   "common": { "readMore": "Read more", "loading": "Loading…" }
 }
