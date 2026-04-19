@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
@@ -9,6 +10,8 @@ import { newsArticleBySlugQuery, allNewsSlugsQuery } from "@/lib/sanity/queries"
 import { urlFor } from "@/lib/sanity/image";
 import { pickLocale } from "@/lib/sanity/types";
 import { formatDate } from "@/lib/utils/formatDate";
+import { articleMetadata } from "@/lib/seo/metadata";
+import { newsArticleJsonLd } from "@/lib/seo/jsonLd";
 import Badge from "@/components/ui/Badge";
 import PortableBody from "@/components/news/PortableBody";
 
@@ -22,6 +25,26 @@ type Doc = {
   body?: { sr?: unknown[]; en?: unknown[] };
   coverImage?: { asset?: { _ref: string } } | null;
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const doc = await sanityFetch<Doc | null>({
+    query: newsArticleBySlugQuery,
+    params: { slug },
+    tags: [`news:${slug}`, "news"],
+  }).catch(() => null);
+  if (!doc) return {};
+  const title = pickLocale(doc.title, locale);
+  const description = pickLocale(doc.excerpt, locale) ?? undefined;
+  const image = doc.coverImage?.asset
+    ? urlFor(doc.coverImage).width(1200).height(630).fit("crop").url()
+    : undefined;
+  return articleMetadata({ locale, slug, title, description, image, publishedAt: doc.publishedAt });
+}
 
 export async function generateStaticParams() {
   const slugs = await sanityFetch<string[]>({ query: allNewsSlugsQuery, tags: ["news"] }).catch(() => [] as string[]);
@@ -54,6 +77,21 @@ export default async function ArticlePage({
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            newsArticleJsonLd({
+              url: `${process.env.SITE_URL ?? "https://conesbelgrade.rs"}/${locale}/news/${slug}`,
+              headline: title,
+              description: excerpt ?? undefined,
+              image: coverUrl ?? undefined,
+              datePublished: doc.publishedAt,
+              locale,
+            })
+          ),
+        }}
+      />
       <Link href="/news" className="inline-flex items-center gap-2 text-xs font-heading uppercase tracking-[0.25em] text-cones-blue hover:text-cones-orange">
         ← {t("back")}
       </Link>

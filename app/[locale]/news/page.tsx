@@ -1,10 +1,23 @@
-import { setRequestLocale } from "next-intl/server";
+import type { Metadata } from "next";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
+import { rootMetadata } from "@/lib/seo/metadata";
 import { sanityFetch } from "@/lib/sanity/fetch";
 import { newsListQuery } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import NewsPageClient from "@/components/news/NewsPageClient";
 import type { ArticleCardData } from "@/components/news/ArticleCard";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const base = rootMetadata(locale, "/news");
+  const t = await getTranslations({ locale, namespace: "newsPage" });
+  return { ...base, title: t("title"), description: t("description") };
+}
 
 type Doc = {
   _id: string;

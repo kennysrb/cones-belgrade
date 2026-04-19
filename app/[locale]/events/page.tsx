@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
+import { rootMetadata } from "@/lib/seo/metadata";
 import { sanityFetch } from "@/lib/sanity/fetch";
 import { upcomingEventsQuery, pastEventsQuery, practiceScheduleQuery } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
@@ -8,6 +10,17 @@ import EventsTabs from "@/components/events/EventsTabs";
 import RsvpForm from "@/components/events/RsvpForm";
 import type { EventItem } from "@/components/events/EventCard";
 import type { PracticeRow } from "@/components/events/PracticeTable";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const base = rootMetadata(locale, "/events");
+  const t = await getTranslations({ locale, namespace: "events" });
+  return { ...base, title: t("title"), description: t("description") };
+}
 
 type EventDoc = {
   _id: string;

@@ -1,15 +1,26 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { sanityFetch } from "@/lib/sanity/fetch";
 import { siteSettingsQuery, featuredNewsQuery, sponsorsQuery } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import { pickLocale } from "@/lib/sanity/types";
 import type { Locale } from "@/i18n/routing";
+import { rootMetadata } from "@/lib/seo/metadata";
 import Hero, { type HeroStat } from "@/components/home/Hero";
 import About from "@/components/home/About";
 import Gallery from "@/components/home/Gallery";
 import NewsStrip, { type HomeNewsCard } from "@/components/home/NewsStrip";
 import SponsorTicker, { type SponsorItem } from "@/components/home/SponsorTicker";
 import CtaBand from "@/components/home/CtaBand";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return rootMetadata(locale, "/");
+}
 
 type SanityImageRef = { asset?: { _ref: string } } | null | undefined;
 
