@@ -1,0 +1,13 @@
+{
+  "nav": { "home": "Home", "news": "News", "events": "Events", "join": "Join" },
+  "hero": {
+    "eyebrow": "Belgrade's finest hockey club",
+    "titleLine1": "CONES",
+    "titleLine2": "BELGRADE",
+    "lead": "Ice hockey at the heart of Belgrade. Passion, teamwork, and fair play since 2014.",
+    "ctaPrimary": "Join the team",
+    "ctaSecondary": "Learn more",
+    "stats": { "yearsLabel": "Years of history", "membersLabel": "Members", "matchesLabel": "Matches played" }
+  },
+  "common": { "readMore": "Read more", "loading": "Loading…" }
+}

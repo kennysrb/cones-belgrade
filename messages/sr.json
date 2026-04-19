@@ -1,0 +1,13 @@
+{
+  "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "join": "Pridruži se" },
+  "hero": {
+    "eyebrow": "Najbolji hokejaški klub Beograda",
+    "titleLine1": "CONES",
+    "titleLine2": "BELGRADE",
+    "lead": "Hokej na ledu u srcu Beograda. Strast, timski duh i fer-plej od 2014. godine.",
+    "ctaPrimary": "Pridruži se timu",
+    "ctaSecondary": "Saznaj više",
+    "stats": { "yearsLabel": "Godina istorije", "membersLabel": "Članova", "matchesLabel": "Odigranih utakmica" }
+  },
+  "common": { "readMore": "Pročitaj više", "loading": "Učitavanje…" }
+}
