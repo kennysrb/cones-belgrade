@@ -37,5 +37,16 @@
     "primary": "Book a trial practice",
     "secondary": "See schedule"
   },
-  "common": { "readMore": "Read more", "loading": "Loading…" }
+  "common": { "readMore": "Read more", "loading": "Loading…" },
+  "newsPage": {
+    "eyebrow": "News",
+    "title": "Latest from Cones Belgrade",
+    "description": "Matches, tournaments, new jerseys, and stories from the club.",
+    "filters": { "all": "All", "tournament": "Tournaments", "club": "Club", "roster": "Roster", "match": "Matches", "community": "Community" },
+    "empty": "No news yet. Check back soon."
+  },
+  "article": {
+    "back": "All news",
+    "notFound": "Article not found"
+  }
 }

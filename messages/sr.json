@@ -37,5 +37,16 @@
     "primary": "Zakaži probni trening",
     "secondary": "Pogledaj raspored"
   },
-  "common": { "readMore": "Pročitaj više", "loading": "Učitavanje…" }
+  "common": { "readMore": "Pročitaj više", "loading": "Učitavanje…" },
+  "newsPage": {
+    "eyebrow": "Vesti",
+    "title": "Najnovije iz Cones Belgrade",
+    "description": "Utakmice, turniri, novi dresovi i priče iz kluba.",
+    "filters": { "all": "Sve", "tournament": "Turniri", "club": "Klub", "roster": "Ekipa", "match": "Utakmice", "community": "Zajednica" },
+    "empty": "Trenutno nema vesti. Vratite se uskoro."
+  },
+  "article": {
+    "back": "Sve vesti",
+    "notFound": "Članak nije pronađen"
+  }
 }
