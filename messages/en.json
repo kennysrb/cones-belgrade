@@ -48,5 +48,38 @@
   "article": {
     "back": "All news",
     "notFound": "Article not found"
+  },
+  "events": {
+    "eyebrow": "Events",
+    "title": "Club calendar",
+    "description": "Tournaments, friendly matches, open practices, and meetups.",
+    "tabs": { "upcoming": "Upcoming", "schedule": "Practice schedule", "past": "Past" },
+    "empty": "No events to display.",
+    "rsvp": "RSVP",
+    "today": "Today",
+    "days": {
+      "mon": "Monday", "tue": "Tuesday", "wed": "Wednesday", "thu": "Thursday",
+      "fri": "Friday", "sat": "Saturday", "sun": "Sunday"
+    },
+    "table": { "day": "Day", "time": "Time", "venue": "Venue", "level": "Level", "notes": "Notes" },
+    "fees": {
+      "title": "Practice fees",
+      "members": "Members — free",
+      "guests": "Guests — 800 RSD per session",
+      "monthly": "Monthly pass — 3000 RSD"
+    }
+  },
+  "rsvpForm": {
+    "title": "Reserve your spot",
+    "description": "Fill in the form and we'll reply with practice or event details.",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "role": "I am",
+    "roles": { "player": "Player", "beginner": "Beginner", "fan": "Fan", "parent": "Parent" },
+    "message": "Message",
+    "submit": "Send request",
+    "success": "Thanks! We'll be in touch soon.",
+    "error": "Something went wrong. Please try again."
   }
 }

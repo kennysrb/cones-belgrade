@@ -48,5 +48,38 @@
   "article": {
     "back": "Sve vesti",
     "notFound": "Članak nije pronađen"
+  },
+  "events": {
+    "eyebrow": "Događaji",
+    "title": "Kalendar kluba",
+    "description": "Turniri, prijateljske utakmice, otvoreni treninzi i okupljanja.",
+    "tabs": { "upcoming": "Predstojeći", "schedule": "Raspored treninga", "past": "Prošli" },
+    "empty": "Nema događaja za prikaz.",
+    "rsvp": "Prijavi se",
+    "today": "Danas",
+    "days": {
+      "mon": "Ponedeljak", "tue": "Utorak", "wed": "Sreda", "thu": "Četvrtak",
+      "fri": "Petak", "sat": "Subota", "sun": "Nedelja"
+    },
+    "table": { "day": "Dan", "time": "Termin", "venue": "Lokacija", "level": "Nivo", "notes": "Napomene" },
+    "fees": {
+      "title": "Naknade za treninge",
+      "members": "Članovi — besplatno",
+      "guests": "Gosti — 800 RSD po terminu",
+      "monthly": "Mesečna karta — 3000 RSD"
+    }
+  },
+  "rsvpForm": {
+    "title": "Rezerviši mesto",
+    "description": "Popuni formu i javićemo ti se sa detaljima treninga ili događaja.",
+    "name": "Ime i prezime",
+    "email": "Email",
+    "phone": "Telefon",
+    "role": "Ja sam",
+    "roles": { "player": "Igrač", "beginner": "Početnik", "fan": "Navijač", "parent": "Roditelj" },
+    "message": "Poruka",
+    "submit": "Pošalji prijavu",
+    "success": "Hvala! Javićemo se uskoro.",
+    "error": "Nešto je pošlo po zlu. Pokušajte ponovo."
   }
 }
