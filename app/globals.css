@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand colors */
+  --color-cones-blue: #00ADF1;
+  --color-cones-blue-dark: #0091CC;
+  --color-cones-orange: #F7941C;
+  --color-cones-orange-dark: #E07A00;
+  --color-cones-black: #0A0C10;
+
+  /* Surface palette */
+  --color-surface-900: #0A0C10;
+  --color-surface-800: #11141B;
+  --color-surface-700: #171B24;
+  --color-surface-600: #1E2330;
+  --color-surface-500: #272D3D;
+  --color-surface-400: #3A4255;
+  --color-surface-300: #5B6478;
+  --color-surface-200: #8892A6;
+  --color-surface-100: #B8C0CF;
+  --color-surface-50: #E4E8F0;
+
+  /* Font families */
+  --font-family-display: var(--font-display), Impact, sans-serif;
+  --font-family-heading: var(--font-heading), Inter, sans-serif;
+  --font-family-body: var(--font-body), system-ui, sans-serif;
+
+  /* Geist fonts from create-next-app */
+  --font-family-sans: var(--font-geist-sans);
+  --font-family-mono: var(--font-geist-mono);
+
+  /* Sizing tokens */
+  --width-container: 1280px;
+  --spacing-nav: 72px;
+  --radius-pill: 9999px;
+
+  /* Box shadows */
+  --shadow-cones-blue: 0 10px 30px -10px rgba(0, 173, 241, 0.45);
+  --shadow-cones-orange: 0 10px 30px -10px rgba(247, 148, 28, 0.45);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html, body {
+  background: #0A0C10;
+  color: #E4E8F0;
+  -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+::selection {
+  background: #00ADF1;
+  color: #0A0C10;
 }

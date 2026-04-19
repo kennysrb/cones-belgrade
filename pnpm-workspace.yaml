@@ -1,3 +1,5 @@
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
+patchedDependencies:
+  html-encoding-sniffer@6.0.0: patches/html-encoding-sniffer@6.0.0.patch
