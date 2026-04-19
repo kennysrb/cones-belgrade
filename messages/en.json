@@ -1,5 +1,13 @@
 {
   "nav": { "home": "Home", "news": "News", "events": "Events", "join": "Join" },
+  "footer": {
+    "tagline": "Hockey. Team. Belgrade.",
+    "quickLinks": "Quick links",
+    "contact": "Contact",
+    "follow": "Follow us",
+    "rights": "All rights reserved.",
+    "address": "Pionir Ice Park, Čarli Čaplina 39, Belgrade"
+  },
   "hero": {
     "eyebrow": "Belgrade's finest hockey club",
     "titleLine1": "CONES",

@@ -4,6 +4,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { setRequestLocale, getMessages } from "next-intl/server";
 import { display, heading, body } from "@/lib/fonts";
 import { routing, type Locale } from "@/i18n/routing";
+import Nav from "@/components/layout/Nav";
+import Footer from "@/components/layout/Footer";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -28,7 +30,9 @@ export default async function LocaleLayout({
     >
       <body className="bg-cones-black text-surface-50 font-body antialiased min-h-screen">
         <NextIntlClientProvider messages={messages} locale={locale}>
-          {children}
+          <Nav />
+          <main id="main" className="min-h-[calc(100dvh-72px)]">{children}</main>
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

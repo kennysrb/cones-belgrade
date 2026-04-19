@@ -1,5 +1,13 @@
 {
   "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "join": "Pridruži se" },
+  "footer": {
+    "tagline": "Hokej. Tim. Beograd.",
+    "quickLinks": "Brzi linkovi",
+    "contact": "Kontakt",
+    "follow": "Prati nas",
+    "rights": "Sva prava zadržana.",
+    "address": "Ledeni park Pionir, Čarli Čaplina 39, Beograd"
+  },
   "hero": {
     "eyebrow": "Najbolji hokejaški klub Beograda",
     "titleLine1": "CONES",
