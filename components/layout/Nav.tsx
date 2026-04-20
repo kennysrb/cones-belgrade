@@ -18,56 +18,67 @@ export default function Nav() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-surface-700/60 bg-cones-black/80 backdrop-blur-md" style={{ height: "72px" }}>
-      <div className="mx-auto flex h-full max-w-container items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-3">
-          <span aria-hidden className="grid h-10 w-10 place-items-center rounded-full bg-cones-blue text-cones-black font-display text-2xl">
-            C
-          </span>
-          <span className="font-display text-2xl tracking-wide text-surface-50">
-            CONES <span className="text-cones-orange">BELGRADE</span>
-          </span>
-        </Link>
+    <>
+      <header className="sticky top-0 z-50 border-b border-surface-700/60 bg-cones-black/80 backdrop-blur-md" style={{ height: "72px" }}>
+        <div className="mx-auto flex h-full max-w-container items-center justify-between px-6">
+          <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+            <span aria-hidden className="grid h-10 w-10 place-items-center rounded-full bg-cones-blue text-cones-black font-display text-2xl">
+              C
+            </span>
+            <span className="font-display text-2xl tracking-wide text-surface-50">
+              CONES <span className="text-cones-orange">BELGRADE</span>
+            </span>
+          </Link>
 
-        <nav aria-label="Primary" className="hidden md:flex items-center gap-8">
-          {links.map((l) => {
-            const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={cn(
-                  "font-heading text-sm uppercase tracking-[0.25em] transition-colors",
-                  active ? "text-cones-blue" : "text-surface-100 hover:text-cones-blue"
-                )}
-              >
-                {l.label}
-              </Link>
-            );
-          })}
-        </nav>
+          <nav aria-label="Primary" className="hidden md:flex items-center gap-8">
+            {links.map((l) => {
+              const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={cn(
+                    "font-heading text-sm uppercase tracking-[0.25em] transition-colors",
+                    active ? "text-cones-blue" : "text-surface-100 hover:text-cones-blue"
+                  )}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-        <div className="hidden md:flex items-center gap-4">
-          <LocaleSwitcher />
-          <Button href="/events" size="sm" variant="primary">
-            {t("join")}
-          </Button>
+          <div className="hidden md:flex items-center gap-4">
+            <LocaleSwitcher />
+            <Button href="/events" size="sm" variant="primary">
+              {t("join")}
+            </Button>
+          </div>
+
+          {/* Hamburger */}
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="md:hidden flex flex-col justify-center items-center h-10 w-10 gap-[5px] cursor-pointer"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className={cn("block h-0.5 w-6 bg-surface-100 transition-all duration-300 origin-center", open && "translate-y-[7px] rotate-45")} />
+            <span className={cn("block h-0.5 w-6 bg-surface-100 transition-all duration-300", open && "opacity-0")} />
+            <span className={cn("block h-0.5 w-6 bg-surface-100 transition-all duration-300 origin-center", open && "-translate-y-[7px] -rotate-45")} />
+          </button>
         </div>
+      </header>
 
-        <button
-          type="button"
-          aria-label="Menu"
-          aria-expanded={open}
-          className="md:hidden grid h-10 w-10 place-items-center rounded-md border border-surface-600 text-surface-100 cursor-pointer"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className={cn("block h-0.5 w-5 bg-current transition-all", open && "translate-y-1 rotate-45")} />
-          <span className={cn("mt-1 block h-0.5 w-5 bg-current transition-all", open && "-translate-y-1 -rotate-45")} />
-        </button>
-      </div>
-
-      {open && (
-        <div className="md:hidden border-t border-surface-700/60 bg-cones-black px-6 py-4 flex flex-col gap-4">
+      {/* Full-screen mobile menu */}
+      <div
+        className={cn(
+          "fixed inset-0 z-40 md:hidden flex flex-col bg-cones-black transition-all duration-300",
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+        style={{ top: "72px" }}
+      >
+        <nav className="flex flex-col flex-1 justify-center items-center gap-10 px-6">
           {links.map((l) => {
             const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
             return (
@@ -75,8 +86,8 @@ export default function Nav() {
                 key={l.href}
                 href={l.href}
                 className={cn(
-                  "font-heading text-base uppercase tracking-widest transition-colors",
-                  active ? "text-cones-blue" : "text-surface-50"
+                  "font-display text-5xl uppercase tracking-widest transition-colors",
+                  active ? "text-cones-blue" : "text-surface-50 hover:text-cones-blue"
                 )}
                 onClick={() => setOpen(false)}
               >
@@ -84,12 +95,12 @@ export default function Nav() {
               </Link>
             );
           })}
-          <div className="flex items-center justify-between pt-3 border-t border-surface-700/60">
-            <LocaleSwitcher />
-            <Button href="/events" size="sm">{t("join")}</Button>
-          </div>
+        </nav>
+        <div className="flex items-center justify-between px-6 py-8 border-t border-surface-700/60">
+          <LocaleSwitcher />
+          <Button href="/events" size="md" onClick={() => setOpen(false)}>{t("join")}</Button>
         </div>
-      )}
-    </header>
+      </div>
+    </>
   );
 }

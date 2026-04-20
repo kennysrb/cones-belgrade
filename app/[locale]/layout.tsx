@@ -41,7 +41,7 @@ export default async function LocaleLayout({
       lang={locale}
       className={`${display.variable} ${heading.variable} ${body.variable}`}
     >
-      <body className="bg-cones-black text-surface-50 font-body antialiased min-h-screen">
+      <body className="bg-cones-black text-surface-50 font-body antialiased min-h-screen overflow-x-hidden">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-cones-blue focus:text-cones-black focus:px-4 focus:py-2 focus:font-heading"

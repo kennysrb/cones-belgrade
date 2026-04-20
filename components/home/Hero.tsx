@@ -43,14 +43,14 @@ export default function Hero({
             <span className="h-1.5 w-1.5 rounded-full bg-cones-blue animate-pulse" />
             {t("eyebrow")}
           </Badge>
-          <h1 className="font-display leading-[0.88] tracking-tight" style={{ fontSize: "clamp(5rem,14vw,9rem)" }}>
+          <h1 className="font-display leading-[0.88] tracking-tight" style={{ fontSize: "clamp(3.25rem,13vw,9rem)" }}>
             <span className="block text-cones-blue">{t("titleLine1")}</span>
             <span className="block text-cones-orange">{t("titleLine2")}</span>
           </h1>
           <p className="max-w-xl text-lg text-surface-100 leading-relaxed">{t("lead")}</p>
-          <div className="flex flex-wrap gap-4">
-            <Button href="/events" variant="primary" size="lg">{t("ctaPrimary")}</Button>
-            <Button href="/news" variant="outline" size="lg">{t("ctaSecondary")}</Button>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button href="/events" variant="primary" size="lg" className="justify-center">{t("ctaPrimary")}</Button>
+            <Button href="/news" variant="outline" size="lg" className="justify-center">{t("ctaSecondary")}</Button>
           </div>
           {stats.length > 0 && (
             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-surface-700/60 max-w-xl">
