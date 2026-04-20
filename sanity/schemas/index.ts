@@ -6,6 +6,7 @@ import event from "./event";
 import practiceSession from "./practiceSession";
 import sponsor from "./sponsor";
 import siteSettings from "./siteSettings";
+import galleryAlbum from "./galleryAlbum";
 
 export const schemaTypes = [
   localeString,
@@ -16,4 +17,5 @@ export const schemaTypes = [
   practiceSession,
   sponsor,
   siteSettings,
+  galleryAlbum,
 ];

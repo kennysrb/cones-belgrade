@@ -23,7 +23,6 @@ export default defineType({
       ],
       validation: (r) => r.max(3),
     }),
-    defineField({ name: "galleryImages", title: "Gallery", type: "array", of: [{ type: "image" as const, options: { hotspot: true } }] }),
     defineField({ name: "teamPhoto", title: "Team photo", type: "image", options: { hotspot: true } }),
     defineField({ name: "mascotImage", title: "Mascot image", type: "image", options: { hotspot: true } }),
   ],
