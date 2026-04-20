@@ -1,7 +1,7 @@
 "use client";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import LocaleSwitcher from "@/components/layout/LocaleSwitcher";
 import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils/cn";
@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils/cn";
 export default function Nav() {
   const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   const links = [
     { href: "/" as const, label: t("home") },
@@ -29,15 +30,21 @@ export default function Nav() {
         </Link>
 
         <nav aria-label="Primary" className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="font-heading text-sm uppercase tracking-[0.25em] text-surface-100 hover:text-cones-blue transition-colors"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {links.map((l) => {
+            const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={cn(
+                  "font-heading text-sm uppercase tracking-[0.25em] transition-colors",
+                  active ? "text-cones-blue" : "text-surface-100 hover:text-cones-blue"
+                )}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
@@ -61,16 +68,22 @@ export default function Nav() {
 
       {open && (
         <div className="md:hidden border-t border-surface-700/60 bg-cones-black px-6 py-4 flex flex-col gap-4">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="font-heading text-base uppercase tracking-widest text-surface-50"
-              onClick={() => setOpen(false)}
-            >
-              {l.label}
-            </Link>
-          ))}
+          {links.map((l) => {
+            const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={cn(
+                  "font-heading text-base uppercase tracking-widest transition-colors",
+                  active ? "text-cones-blue" : "text-surface-50"
+                )}
+                onClick={() => setOpen(false)}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
           <div className="flex items-center justify-between pt-3 border-t border-surface-700/60">
             <LocaleSwitcher />
             <Button href="/events" size="sm">{t("join")}</Button>
