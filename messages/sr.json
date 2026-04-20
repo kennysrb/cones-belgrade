@@ -69,6 +69,8 @@
       "monthly": "Mesečna karta — 3000 RSD"
     }
   },
+  "notFound": { "title": "Stranica nije pronađena", "description": "Link je možda zastareo. Vrati se na početnu.", "cta": "Nazad na početnu" },
+  "error": { "title": "Nešto nije u redu", "description": "Pokušaj ponovo ili se vrati kasnije.", "cta": "Pokušaj ponovo" },
   "rsvpForm": {
     "title": "Rezerviši mesto",
     "description": "Popuni formu i javićemo ti se sa detaljima treninga ili događaja.",

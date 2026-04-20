@@ -69,6 +69,8 @@
       "monthly": "Monthly pass — 3000 RSD"
     }
   },
+  "notFound": { "title": "Page not found", "description": "The link may be outdated. Go back home.", "cta": "Back to home" },
+  "error": { "title": "Something broke", "description": "Please try again or come back later.", "cta": "Try again" },
   "rsvpForm": {
     "title": "Reserve your spot",
     "description": "Fill in the form and we'll reply with practice or event details.",
