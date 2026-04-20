@@ -50,7 +50,7 @@ export default function NewsStrip({ articles }: { articles: HomeNewsCard[] }) {
                       <Badge tone="orange">{a.category}</Badge>
                       <span className="text-xs text-surface-300">{formatDate(a.publishedAt, locale)}</span>
                     </div>
-                    <h3 className="font-heading text-2xl leading-tight text-surface-50 group-hover:text-cones-blue">{pickLocale(a.title, locale)}</h3>
+                    <h3 className="font-heading text-2xl leading-tight text-surface-50 group-hover:text-cones-blue line-clamp-2">{pickLocale(a.title, locale)}</h3>
                     {a.excerpt && <p className="text-sm text-surface-200 line-clamp-2">{pickLocale(a.excerpt, locale)}</p>}
                   </div>
                 </Link>
