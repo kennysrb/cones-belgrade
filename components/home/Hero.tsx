@@ -19,26 +19,25 @@ export default function Hero({
   return (
     <section className="relative overflow-hidden">
       {/* Background hero image */}
-      <Image
-        src="/images/hero-bg.jpg"
-        alt=""
-        fill
-        priority
-        className="object-cover object-center"
-        style={{ zIndex: -2 }}
-        sizes="100vw"
-      />
-      {/* Dark overlay */}
-      <div aria-hidden className="absolute inset-0 bg-cones-black/65" style={{ zIndex: -1 }} />
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-70"
-        style={{
-          zIndex: -1,
-          background: "radial-gradient(ellipse at top, rgba(0,173,241,0.25) 0%, transparent 55%), radial-gradient(ellipse at bottom right, rgba(247,148,28,0.18) 0%, transparent 60%)",
-        }}
-      />
-      <div className="mx-auto max-w-container px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid gap-10 md:grid-cols-[1.2fr_0.8fr] items-center">
+      <div className="absolute inset-0" style={{ zIndex: 0 }}>
+        <Image
+          src="/images/hero-bg.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div aria-hidden className="absolute inset-0 bg-cones-black/65" />
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-70"
+          style={{
+            background: "radial-gradient(ellipse at top, rgba(0,173,241,0.25) 0%, transparent 55%), radial-gradient(ellipse at bottom right, rgba(247,148,28,0.18) 0%, transparent 60%)",
+          }}
+        />
+      </div>
+      <div className="relative mx-auto max-w-container px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid gap-10 md:grid-cols-[1.2fr_0.8fr] items-center" style={{ zIndex: 1 }}>
         <Reveal className="space-y-8">
           <Badge tone="blue">
             <span className="h-1.5 w-1.5 rounded-full bg-cones-blue animate-pulse" />
