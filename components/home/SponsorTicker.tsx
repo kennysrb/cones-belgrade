@@ -38,7 +38,7 @@ export default function SponsorTicker({ sponsors }: { sponsors: SponsorItem[] })
                 alt={s.name}
                 width={72}
                 height={72}
-                className="h-10 w-10 md:h-16 md:w-16 object-contain opacity-80 hover:opacity-100 transition-opacity"
+                className="h-20 w-20 md:h-16 md:w-16 object-contain opacity-80 hover:opacity-100 transition-opacity"
               />
             ) : null}
             <span className="hidden md:inline font-display text-3xl text-surface-200 hover:text-surface-50 transition-colors whitespace-nowrap">
