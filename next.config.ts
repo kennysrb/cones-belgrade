@@ -4,10 +4,13 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   poweredByHeader: false,
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
+    remotePatterns: [
+        { protocol: "https", hostname: "cdn.sanity.io" },
+        { protocol: "https", hostname: "images.unsplash.com" },
+      ],
     formats: ["image/avif", "image/webp"],
   },
   experimental: {

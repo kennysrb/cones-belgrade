@@ -51,7 +51,7 @@ export default function Nav() {
           type="button"
           aria-label="Menu"
           aria-expanded={open}
-          className="md:hidden grid h-10 w-10 place-items-center rounded-md border border-surface-600 text-surface-100"
+          className="md:hidden grid h-10 w-10 place-items-center rounded-md border border-surface-600 text-surface-100 cursor-pointer"
           onClick={() => setOpen((v) => !v)}
         >
           <span className={cn("block h-0.5 w-5 bg-current transition-all", open && "translate-y-1 rotate-45")} />

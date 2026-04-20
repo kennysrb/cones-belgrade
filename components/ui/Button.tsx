@@ -27,7 +27,7 @@ const sizeClasses: Record<Size, string> = {
 };
 
 const base =
-  "inline-flex items-center justify-center rounded-md font-heading uppercase tracking-wider transition-colors disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center rounded-md font-heading uppercase tracking-wider transition-colors disabled:opacity-50 disabled:pointer-events-none cursor-pointer";
 
 export default function Button({
   variant = "primary",

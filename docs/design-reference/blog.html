@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News — Cones Belgrade</title>
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    /* BLOG LISTING */
+    .blog-hero {
+      padding-top: calc(var(--nav-h) + var(--sp-16));
+      padding-bottom: var(--sp-16);
+      background: var(--s-800);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-hero::before {
+      content: 'NEWS';
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: 18rem;
+      color: rgba(0,173,241,0.04);
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      letter-spacing: -0.05em;
+    }
+
+    .blog-hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--sp-8);
+    }
+
+    .blog-filters {
+      display: flex;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+      margin-top: var(--sp-8);
+    }
+
+    .filter-btn {
+      font-family: var(--font-heading);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: var(--sp-2) var(--sp-4);
+      border-radius: var(--r-full);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: transparent;
+      color: var(--s-300);
+      cursor: pointer;
+      transition: all var(--ease-fast);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--c-blue);
+      border-color: var(--c-blue);
+      color: var(--c-black);
+    }
+
+    /* BLOG GRID */
+    .blog-section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: var(--sp-16) var(--sp-8);
+    }
+
+    .blog-featured {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: var(--sp-6);
+      margin-bottom: var(--sp-6);
+    }
+
+    .blog-card-featured {
+      background: var(--s-800);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--ease-mid);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card-featured:hover {
+      border-color: rgba(0,173,241,0.3);
+      box-shadow: var(--shadow-blue);
+      transform: translateY(-3px);
+    }
+
+    .blog-card-featured .thumb {
+      flex: 0 0 280px;
+      background: var(--s-700);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .blog-card-featured .thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 14px, rgba(255,255,255,0.015) 14px, rgba(255,255,255,0.015) 15px);
+    }
+
+    .ph-text {
+      font-family: monospace;
+      font-size: var(--text-xs);
+      color: var(--s-400);
+      z-index: 1;
+    }
+
+    .blog-card-featured .body {
+      padding: var(--sp-8);
+    }
+
+    .card-tag {
+      display: inline-block;
+      background: rgba(0,173,241,0.12);
+      color: var(--c-blue);
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px var(--sp-3);
+      border-radius: var(--r-full);
+      margin-bottom: var(--sp-3);
+    }
+
+    .card-tag.orange {
+      background: rgba(247,148,28,0.12);
+      color: var(--c-orange);
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--c-white);
+      line-height: 1.25;
+      margin-bottom: var(--sp-3);
+    }
+
+    .card-title-sm {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--c-white);
+      line-height: 1.3;
+      margin-bottom: var(--sp-3);
+    }
+
+    .card-excerpt {
+      font-size: var(--text-sm);
+      color: var(--s-300);
+      line-height: 1.7;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--sp-6);
+      padding-top: var(--sp-4);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .card-date { font-size: var(--text-xs); color: var(--s-400); }
+
+    .card-read {
+      font-family: var(--font-heading);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--c-blue);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .blog-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+    }
+
+    .blog-card-sm {
+      background: var(--s-800);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--ease-mid);
+      display: flex;
+      gap: 0;
+      flex-direction: column;
+    }
+
+    .blog-card-sm:hover {
+      border-color: rgba(247,148,28,0.3);
+      box-shadow: var(--shadow-orange);
+      transform: translateY(-2px);
+    }
+
+    .blog-card-sm .thumb-sm {
+      height: 120px;
+      background: var(--s-700);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .blog-card-sm .thumb-sm::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,0.015) 10px, rgba(255,255,255,0.015) 11px);
+    }
+
+    .blog-card-sm .body-sm { padding: var(--sp-4); }
+
+    /* BLOG GRID ROW */
+    .blog-grid-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-5);
+    }
+
+    .blog-card {
+      background: var(--s-800);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--ease-mid);
+    }
+
+    .blog-card:hover {
+      border-color: rgba(0,173,241,0.25);
+      box-shadow: var(--shadow-blue);
+      transform: translateY(-4px);
+    }
+
+    .blog-card .thumb {
+      height: 180px;
+      background: var(--s-700);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .blog-card .thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(255,255,255,0.015) 12px, rgba(255,255,255,0.015) 13px);
+    }
+
+    .blog-card .body { padding: var(--sp-5); }
+
+    /* ── ARTICLE VIEW ─────────────────────────── */
+    #article-view { display: none; }
+    #listing-view {}
+
+    .article-hero {
+      padding-top: calc(var(--nav-h) + var(--sp-12));
+      padding-bottom: var(--sp-16);
+      background: var(--s-800);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .article-hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 var(--sp-8);
+    }
+
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      font-family: var(--font-heading);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--s-300);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: var(--sp-8);
+      cursor: pointer;
+      transition: color var(--ease-fast);
+    }
+
+    .article-back:hover { color: var(--c-blue); }
+
+    .article-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 1;
+      color: var(--c-white);
+      margin-bottom: var(--sp-6);
+    }
+
+    .article-meta {
+      display: flex;
+      gap: var(--sp-6);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .article-author {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+    }
+
+    .author-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--c-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--c-black);
+    }
+
+    .author-name {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--s-100);
+    }
+
+    .article-date { font-size: var(--text-sm); color: var(--s-300); }
+
+    .article-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: var(--sp-16) var(--sp-8);
+    }
+
+    .article-thumb {
+      width: 100%;
+      aspect-ratio: 16/7;
+      background: var(--s-700);
+      border-radius: var(--r-lg);
+      margin-bottom: var(--sp-12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.015) 20px, rgba(255,255,255,0.015) 21px);
+    }
+
+    .article-content h2 {
+      font-family: var(--font-heading);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--c-white);
+      margin: var(--sp-10) 0 var(--sp-4);
+    }
+
+    .article-content p {
+      color: var(--s-200);
+      line-height: 1.85;
+      margin-bottom: var(--sp-5);
+      font-size: var(--text-lg);
+    }
+
+    .article-content blockquote {
+      border-left: 3px solid var(--c-blue);
+      padding: var(--sp-4) var(--sp-6);
+      background: rgba(0,173,241,0.05);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+      margin: var(--sp-8) 0;
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--c-blue);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      .blog-featured { grid-template-columns: 1fr; }
+      .blog-grid-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav scrolled" id="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="uploads/images.png" alt="Cones Belgrade" />
+      <span class="nav-logo-text">CONES<br><span>BELGRADE</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blog.html" class="active">News</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
+      <li><a href="index.html#sponsors">Sponsors</a></li>
+      <li><a href="events.html" class="nav-cta">Join Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- LISTING VIEW -->
+  <div id="listing-view">
+    <!-- HERO -->
+    <div class="blog-hero">
+      <div class="blog-hero-inner">
+        <div class="section-label">Latest Updates</div>
+        <h1 class="section-title">CONE <span class="accent">CHRONICLES</span></h1>
+        <p style="color:var(--s-300);margin-top:var(--sp-4);max-width:480px;">Game reports, club news, player spotlights and everything happening at Cones Belgrade.</p>
+        <div class="blog-filters" id="filterBar">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="Tournament">Tournament</button>
+          <button class="filter-btn" data-filter="Club News">Club News</button>
+          <button class="filter-btn" data-filter="Roster">Roster</button>
+          <button class="filter-btn" data-filter="Match Report">Match Report</button>
+          <button class="filter-btn" data-filter="Community">Community</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTICLES -->
+    <div class="blog-section" id="blogSection">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+
+  <!-- ARTICLE VIEW -->
+  <div id="article-view">
+    <div class="article-hero">
+      <div class="article-hero-inner">
+        <div class="article-back" id="backBtn">← Back to News</div>
+        <div id="articleTagWrap"></div>
+        <h1 class="article-title" id="articleTitle"></h1>
+        <div class="article-meta">
+          <div class="article-author">
+            <div class="author-avatar" id="authorAvatar"></div>
+            <span class="author-name" id="authorName"></span>
+          </div>
+          <span class="article-date" id="articleDate"></span>
+        </div>
+      </div>
+    </div>
+    <div class="article-body">
+      <div class="article-thumb"><span class="ph-text" id="articleThumbLabel"></span></div>
+      <div class="article-content" id="articleContent"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="uploads/images.png" alt="Cones Belgrade" />
+        <p>Professional amateur ice hockey club based in Belgrade, Serbia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">News</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="mailto:info@conesbelgrade.rs">Email Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Club</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Roster</a></li>
+          <li><a href="#">Sponsors</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Cones Belgrade Hockey Club. All rights reserved.</span>
+      <span>Belgrade, Serbia 🇷🇸</span>
+    </div>
+  </footer>
+
+  <script>
+    const articles = [
+      {
+        slug: 'spring-tournament-2025',
+        tag: 'Tournament',
+        title: 'Spring Cup 2025 — Cones Go All the Way to the Finals',
+        excerpt: 'After a dominant group stage performance, Cones Belgrade secured their spot in the final four of this year\'s Spring Cup amateur tournament.',
+        date: 'Apr 12, 2025',
+        author: 'Marko D.',
+        avatarLetter: 'M',
+        thumbLabel: 'tournament match photo',
+        featured: true,
+        content: `
+          <p>It was a night Belgrade hockey fans won't soon forget. Cones Belgrade, riding a wave of momentum from their impressive group stage run, advanced to the Spring Cup 2025 finals after defeating their fiercest rivals in a gripping semifinal showdown at the Pionir ice rink.</p>
+          <h2>Dominant Group Stage</h2>
+          <p>The Cones entered the tournament riding high after a stellar regular season. Their offensive line, led by some of the team's most experienced players, was firing on all cylinders from game one. The defensive corps showed remarkable organization and discipline, conceding only three goals across all group stage games.</p>
+          <blockquote>"We came in with a plan, and the boys executed it perfectly. I couldn't be more proud." — Head Coach</blockquote>
+          <p>In the quarterfinals, Cones dispatched their opponents 5-2 in what many described as the most complete performance of the tournament. Goaltending was exceptional, and the power play converted at a tournament-best 40% clip.</p>
+          <h2>The Road to the Final</h2>
+          <p>The semifinal was a different story entirely. Facing a well-organized squad that had eliminated the defending champions, Cones had to dig deep. After falling behind 1-0 in the first period, the team rallied in extraordinary fashion, scoring three unanswered goals before holding on for a 3-2 victory that sent the bench into a frenzy.</p>
+          <p>The final is scheduled for the last weekend of April. Cones Belgrade are primed and ready. The city is watching. The ice is waiting.</p>
+        `
+      },
+      {
+        slug: 'new-jerseys-2025',
+        tag: 'Club News',
+        title: 'New Season, New Look — 2025 Jersey Revealed',
+        excerpt: 'The team is proud to unveil the new home and away jerseys for the 2025 season, featuring a sleek redesign that keeps true to our blue and orange roots.',
+        date: 'Mar 28, 2025',
+        author: 'Stefan P.',
+        avatarLetter: 'S',
+        thumbLabel: 'jersey reveal photo',
+        featured: false,
+        content: `
+          <p>Every great team earns its stripes — and this season, Cones Belgrade is wearing theirs proudly. The club today unveiled the highly anticipated 2025 home and away jerseys, and they are everything fans had been hoping for.</p>
+          <h2>Design Philosophy</h2>
+          <p>The new jerseys stay true to the iconic blue and orange color scheme that defines Cones Belgrade's identity. Working with a local Belgrade sportswear designer, the club has created a kit that balances tradition with a contemporary edge.</p>
+          <blockquote>"The jersey needs to feel like armor. When you put it on, you should feel the weight of what it means to be a Cone." — Club Captain</blockquote>
+          <p>The home kit features a crisp white base with bold blue panels and an orange shoulder stripe — a clear nod to the original kits from the club's early years. The away kit flips the palette to a deep navy with white and orange accents.</p>
+          <h2>Where to Get Yours</h2>
+          <p>Fan versions of both jerseys will be available for order starting May 1st. Contact the club via email or social media to place your pre-order. Limited quantities available — don't miss out.</p>
+        `
+      },
+      {
+        slug: 'welcome-new-players',
+        tag: 'Roster',
+        title: 'Welcome to the Cone Zone — Three New Faces Join the Squad',
+        excerpt: 'Cones Belgrade is thrilled to announce the addition of three talented players ahead of the summer preseason practices.',
+        date: 'Mar 5, 2025',
+        author: 'Nikola J.',
+        avatarLetter: 'N',
+        thumbLabel: 'new player intro photo',
+        featured: false,
+        content: `
+          <p>The Cones family just got bigger. Cones Belgrade is proud to welcome three exciting new players to the roster ahead of the upcoming season. After a successful round of tryouts held at the Ledena Dvorana rink, the coaching staff made their picks official.</p>
+          <h2>The New Arrivals</h2>
+          <p>First up is a forward who brings raw speed and an eye for goal from his time with a regional club in Novi Sad. His acceleration on the breakaway is something the team has been missing for years. Expect big things from him in the upcoming season.</p>
+          <p>Joining him is a defenseman with over a decade of amateur experience and a reputation for physical, no-nonsense defending. He's the type of player who makes everyone around him better — exactly what a back line needs.</p>
+          <blockquote>"I've watched Cones from the stands for years. Finally being in that dressing room feels surreal." — New signing</blockquote>
+          <p>Rounding out the trio is a goaltender who was the standout performer at the tryouts, making a series of highlight-reel saves that had the coaches scrambling for their notepads.</p>
+          <h2>Preseason Begins Soon</h2>
+          <p>All three will join the full squad at the first preseason practice on April 28th. Fans are welcome to come out and welcome them to the Cone Zone.</p>
+        `
+      },
+      {
+        slug: 'winter-classic-recap',
+        tag: 'Match Report',
+        title: 'Winter Classic Recap — A Night to Remember Under the Open Sky',
+        excerpt: 'The annual outdoor game lived up to its legendary status. Here\'s a full recap of a magical evening on the ice in the heart of Belgrade.',
+        date: 'Feb 18, 2025',
+        author: 'Dragan V.',
+        avatarLetter: 'D',
+        thumbLabel: 'outdoor game panorama',
+        featured: false,
+        content: `
+          <p>Snow fell softly as the puck dropped for the third annual Cones Belgrade Winter Classic — and it was everything the occasion demanded. Played outdoors on a temporary rink set up at Kalemegdan, the game drew the biggest crowd in club history.</p>
+          <h2>The Game</h2>
+          <p>Cones Belgrade faced off against old rivals FC Ledeni Vukovi in a 60-minute spectacle that went to overtime before the Cones clinched it with a stunning end-to-end goal that sent the packed crowd into delirium.</p>
+          <blockquote>"Scoring that goal with snow on the ice and the fortress behind me — I'll never forget it for the rest of my life." — Matej K., goal scorer</blockquote>
+          <p>The atmosphere was unlike anything typically seen at an amateur hockey game. With live music between periods, the winter market running alongside, and hundreds of fans waving scarves in blue and orange, Kalemegdan felt like a proper arena.</p>
+        `
+      },
+      {
+        slug: 'youth-camp-2025',
+        tag: 'Community',
+        title: 'Cones Belgrade Launch Free Youth Hockey Camp This Summer',
+        excerpt: 'The club is giving back with a free one-week hockey camp for Belgrade kids aged 8–14. Registration opens April 20th.',
+        date: 'Feb 2, 2025',
+        author: 'Ana R.',
+        avatarLetter: 'A',
+        thumbLabel: 'youth hockey camp',
+        featured: false,
+        content: `
+          <p>Cones Belgrade has always been about more than just winning games. This summer, the club is taking its biggest step yet in growing the sport in the city with the launch of a completely free youth hockey camp open to all Belgrade kids aged 8–14.</p>
+          <h2>What's Included</h2>
+          <p>The one-week camp runs from July 14–18 at the Pionir rink and will cover skating fundamentals, puck handling, shooting, team play, and — most importantly — a love for the game. All equipment will be provided by the club, sponsored by our incredible partners.</p>
+          <p>The camp will be led by experienced Cones players and coaches who want to inspire the next generation of Belgrade hockey talent. No previous skating experience is required — just enthusiasm and a willingness to learn.</p>
+          <blockquote>"We want every kid in Belgrade to have the chance to fall in love with hockey the same way we did." — Club President</blockquote>
+          <h2>How to Register</h2>
+          <p>Registration opens April 20th via the club's official social media channels and email list. Places are limited to 40 participants. Register early to avoid disappointment.</p>
+        `
+      },
+      {
+        slug: 'player-spotlight-goalkeeper',
+        tag: 'Roster',
+        title: 'Player Spotlight — Getting to Know the Man Behind the Mask',
+        excerpt: 'We sit down with the club\'s first-choice goaltender for an exclusive interview about his journey, his routine, and what it takes to guard the net for Cones.',
+        date: 'Jan 20, 2025',
+        author: 'Stefan P.',
+        avatarLetter: 'S',
+        thumbLabel: 'goalkeeper portrait',
+        featured: false,
+        content: `
+          <p>Every great team has a backbone, and at Cones Belgrade, that backbone stands between the posts. We caught up with the team's starting goaltender for a candid conversation about his love of the game, his daily rituals, and his ambitions for the club.</p>
+          <h2>"It All Started in a Car Park"</h2>
+          <p>Believe it or not, our keeper first found hockey not on the ice but in his neighborhood car park in Zemun, where he and friends played street hockey on rollerblade skates every Sunday. "We had a broom handle and a tennis ball. That's where I learned to read the shooter."</p>
+          <blockquote>"The ice is different from anything else. There's a silence to it — and then it erupts. That contrast, I live for that."</blockquote>
+          <p>He joined the club four seasons ago and quickly established himself as the most reliable keeper in the squad. His save percentage sits consistently above 91%, and his distribution has helped launch countless counter-attacks.</p>
+          <h2>The Routine</h2>
+          <p>On game days, he's at the rink 90 minutes early. Stretching, visualization, a specific playlist he's had since his first game. "Routine is everything for a keeper. You control what you can, and you let go of what you can't."</p>
+          <p>When asked about his ambitions, his answer was simple: "Win something with this team. That's it. That's everything."</p>
+        `
+      }
+    ];
+
+    let currentFilter = 'all';
+
+    function renderListing() {
+      const filtered = currentFilter === 'all'
+        ? articles
+        : articles.filter(a => a.tag === currentFilter);
+
+      const section = document.getElementById('blogSection');
+      if (filtered.length === 0) {
+        section.innerHTML = `<p style="color:var(--s-300);text-align:center;padding:var(--sp-16) 0;">No articles in this category yet.</p>`;
+        return;
+      }
+
+      const featured = filtered.filter(a => a.featured);
+      const rest = filtered.filter(a => !a.featured);
+
+      let html = '';
+
+      if (featured.length > 0) {
+        html += `<div class="blog-featured">`;
+        // Featured big card
+        featured.forEach(a => {
+          html += `
+            <div class="blog-card-featured" onclick="openArticle('${a.slug}')">
+              <div class="thumb" style="height:280px;"><span class="ph-text">${a.thumbLabel}</span></div>
+              <div class="body">
+                <span class="card-tag">${a.tag}</span>
+                <div class="card-title">${a.title}</div>
+                <div class="card-excerpt">${a.excerpt}</div>
+                <div class="card-meta">
+                  <span class="card-date">${a.date} · ${a.author}</span>
+                  <span class="card-read">Read Article →</span>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        // Sidebar small cards
+        const sidebarItems = rest.slice(0, 2);
+        if (sidebarItems.length > 0) {
+          html += `<div class="blog-sidebar">`;
+          sidebarItems.forEach(a => {
+            html += `
+              <div class="blog-card-sm" onclick="openArticle('${a.slug}')">
+                <div class="thumb-sm"><span class="ph-text">${a.thumbLabel}</span></div>
+                <div class="body-sm">
+                  <span class="card-tag ${a.tag === 'Roster' ? 'orange' : ''}">${a.tag}</span>
+                  <div class="card-title-sm">${a.title}</div>
+                  <div class="card-meta">
+                    <span class="card-date">${a.date}</span>
+                    <span class="card-read">Read →</span>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+          html += `</div>`;
+        }
+
+        html += `</div>`;
+
+        // Remaining grid
+        const gridItems = rest.slice(sidebarItems.length);
+        if (gridItems.length > 0) {
+          html += `<div class="blog-grid-row">`;
+          gridItems.forEach(a => {
+            html += `
+              <div class="blog-card" onclick="openArticle('${a.slug}')">
+                <div class="thumb"><span class="ph-text">${a.thumbLabel}</span></div>
+                <div class="body">
+                  <span class="card-tag ${a.tag === 'Roster' ? 'orange' : ''}">${a.tag}</span>
+                  <div class="card-title-sm">${a.title}</div>
+                  <div class="card-excerpt" style="font-size:var(--text-sm);color:var(--s-300);line-height:1.6;">${a.excerpt}</div>
+                  <div class="card-meta">
+                    <span class="card-date">${a.date}</span>
+                    <span class="card-read">Read →</span>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+          html += `</div>`;
+        }
+      } else {
+        // No featured, just grid
+        html += `<div class="blog-grid-row">`;
+        filtered.forEach(a => {
+          html += `
+            <div class="blog-card" onclick="openArticle('${a.slug}')">
+              <div class="thumb"><span class="ph-text">${a.thumbLabel}</span></div>
+              <div class="body">
+                <span class="card-tag ${a.tag === 'Roster' ? 'orange' : ''}">${a.tag}</span>
+                <div class="card-title-sm">${a.title}</div>
+                <div class="card-excerpt" style="font-size:var(--text-sm);color:var(--s-300);line-height:1.6;">${a.excerpt}</div>
+                <div class="card-meta">
+                  <span class="card-date">${a.date}</span>
+                  <span class="card-read">Read →</span>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        html += `</div>`;
+      }
+
+      section.innerHTML = html;
+    }
+
+    function openArticle(slug) {
+      const a = articles.find(x => x.slug === slug);
+      if (!a) return;
+
+      document.getElementById('articleTagWrap').innerHTML = `<span class="card-tag" style="margin-bottom:var(--sp-4);display:inline-block;">${a.tag}</span>`;
+      document.getElementById('articleTitle').textContent = a.title;
+      document.getElementById('authorAvatar').textContent = a.avatarLetter;
+      document.getElementById('authorName').textContent = a.author;
+      document.getElementById('articleDate').textContent = a.date;
+      document.getElementById('articleThumbLabel').textContent = a.thumbLabel;
+      document.getElementById('articleContent').innerHTML = a.content;
+
+      document.getElementById('listing-view').style.display = 'none';
+      document.getElementById('article-view').style.display = 'block';
+      window.location.hash = slug;
+      window.scrollTo({ top: 0 });
+    }
+
+    function showListing() {
+      document.getElementById('listing-view').style.display = 'block';
+      document.getElementById('article-view').style.display = 'none';
+      window.location.hash = '';
+      window.scrollTo({ top: 0 });
+    }
+
+    document.getElementById('backBtn').addEventListener('click', showListing);
+
+    // Filters
+    document.getElementById('filterBar').addEventListener('click', e => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      renderListing();
+    });
+
+    // Hash routing
+    function handleHash() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        openArticle(hash);
+      } else {
+        showListing();
+      }
+    }
+
+    window.addEventListener('hashchange', handleHash);
+    renderListing();
+    handleHash();
+  </script>
+</body>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cones Belgrade — Professional Amateur Ice Hockey</title>
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    /* ── HERO ─────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('uploads/images.jpeg') center/cover no-repeat;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(10,12,16,0.92) 0%,
+        rgba(10,12,16,0.75) 50%,
+        rgba(10,12,16,0.3) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--sp-8);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: var(--sp-16);
+      width: 100%;
+    }
+
+    .hero-text {}
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-3);
+      background: rgba(0,173,241,0.12);
+      border: 1px solid rgba(0,173,241,0.25);
+      color: var(--c-blue);
+      font-family: var(--font-heading);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: var(--sp-2) var(--sp-4);
+      border-radius: var(--r-full);
+      margin-bottom: var(--sp-6);
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 8px; height: 8px;
+      background: var(--c-blue);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 9vw, 9rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--c-white);
+      margin-bottom: var(--sp-6);
+    }
+
+    .hero-title .line-blue { color: var(--c-blue); display: block; }
+    .hero-title .line-orange { color: var(--c-orange); display: block; }
+
+    .hero-sub {
+      font-size: var(--text-lg);
+      color: var(--s-200);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: var(--sp-8);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--sp-4);
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: var(--sp-8);
+      margin-top: var(--sp-12);
+      padding-top: var(--sp-8);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-item {}
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      color: var(--c-blue);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: var(--text-xs);
+      color: var(--s-300);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .hero-logo {
+      width: 280px;
+      height: auto;
+      filter: drop-shadow(0 0 40px rgba(0,173,241,0.4));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: var(--sp-8);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--sp-2);
+      color: var(--s-300);
+      font-size: var(--text-xs);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--c-blue), transparent);
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { opacity: 0.6; transform: translateX(-50%) translateY(0); }
+      50% { opacity: 1; transform: translateX(-50%) translateY(4px); }
+    }
+
+    /* ── ABOUT ─────────────────────────────── */
+    .about {
+      background: var(--s-800);
+    }
+
+    .about-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-20);
+      align-items: center;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+
+    .about-image {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--r-lg);
+      display: block;
+    }
+
+    .about-image-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: var(--r-lg);
+      background: var(--s-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .about-image-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 24px,
+        rgba(0,173,241,0.03) 24px,
+        rgba(0,173,241,0.03) 25px
+      );
+    }
+
+    .img-placeholder-text {
+      font-family: var(--font-heading);
+      font-size: var(--text-sm);
+      color: var(--s-400);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--c-orange);
+      color: var(--c-black);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      box-shadow: var(--shadow-orange);
+    }
+
+    .about-badge-num {
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+
+    .about-badge-text {
+      font-family: var(--font-heading);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .about-text p {
+      color: var(--s-200);
+      line-height: 1.8;
+      margin-bottom: var(--sp-6);
+    }
+
+    .about-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-4);
+      margin-top: var(--sp-8);
+    }
+
+    .pillar {
+      background: var(--s-700);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--r-md);
+      padding: var(--sp-5);
+      border-left: 3px solid var(--c-blue);
+    }
+
+    .pillar:nth-child(even) { border-left-color: var(--c-orange); }
+
+    .pillar-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--text-base);
+      color: var(--c-white);
+      margin-bottom: var(--sp-1);
+    }
+
+    .pillar-desc {
+      font-size: var(--text-sm);
+      color: var(--s-300);
+    }
+
+    /* ── GALLERY ─────────────────────────────── */
+    .gallery {
+      background: var(--s-900);
+    }
+
+    .gallery-header {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--sp-10);
+    }
+
+    .gallery-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(2, 240px);
+      gap: var(--sp-3);
+    }
+
+    .gallery-item {
+      border-radius: var(--r-md);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
+    .gallery-item:nth-child(2) { grid-column: span 4; }
+    .gallery-item:nth-child(3) { grid-column: span 3; }
+    .gallery-item:nth-child(4) { grid-column: span 3; }
+    .gallery-item:nth-child(5) { grid-column: span 4; }
+
+    .gallery-ph {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: monospace;
+      font-size: var(--text-xs);
+      color: var(--s-400);
+      text-align: center;
+      padding: var(--sp-4);
+      position: relative;
+    }
+
+    .gallery-ph::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 12px,
+        rgba(255,255,255,0.02) 12px,
+        rgba(255,255,255,0.02) 13px
+      );
+    }
+
+    .g1 { background: var(--s-700); }
+    .g2 { background: #0f1520; }
+    .g3 { background: #111827; }
+    .g4 { background: #0c1219; }
+    .g5 { background: #0f1923; }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--ease-slow);
+    }
+
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,173,241,0.15);
+      opacity: 0;
+      transition: opacity var(--ease-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-icon {
+      width: 48px; height: 48px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.4rem;
+    }
+
+    /* ── SPONSORS ─────────────────────────────── */
+    .sponsors-section {
+      background: var(--s-800);
+      padding: var(--sp-20) var(--sp-8);
+    }
+
+    .sponsors-header {
+      max-width: var(--max-w);
+      margin: 0 auto 0;
+      text-align: center;
+      margin-bottom: var(--sp-12);
+    }
+
+    .sponsors-header .section-label {
+      justify-content: center;
+    }
+
+    .sponsors-header .section-label::before { display: none; }
+    .sponsors-header .section-label::after {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--c-orange);
+    }
+
+    .sponsor-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: var(--sp-4) var(--sp-8);
+      white-space: nowrap;
+    }
+
+    .sponsor-logo-ph {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 var(--sp-4);
+      background: var(--s-700);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--r-md);
+      min-width: 120px;
+    }
+
+    .sponsor-name {
+      font-family: var(--font-heading);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--s-300);
+    }
+
+    /* ── LATEST NEWS STRIP ─────────────────────────────── */
+    .news-strip {
+      background: var(--s-900);
+      padding: var(--sp-20) var(--sp-8);
+    }
+
+    .news-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-6);
+      margin-top: var(--sp-10);
+    }
+
+    .news-card {
+      background: var(--s-800);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: all var(--ease-mid);
+      cursor: pointer;
+    }
+
+    .news-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,173,241,0.3);
+      box-shadow: var(--shadow-blue);
+    }
+
+    .news-thumb {
+      width: 100%;
+      height: 200px;
+      background: var(--s-700);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .news-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg, transparent, transparent 14px,
+        rgba(255,255,255,0.015) 14px, rgba(255,255,255,0.015) 15px
+      );
+    }
+
+    .news-thumb-ph {
+      font-family: monospace;
+      font-size: var(--text-xs);
+      color: var(--s-400);
+      z-index: 1;
+    }
+
+    .news-body { padding: var(--sp-6); }
+
+    .news-tag {
+      display: inline-block;
+      background: rgba(0,173,241,0.12);
+      color: var(--c-blue);
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px var(--sp-3);
+      border-radius: var(--r-full);
+      margin-bottom: var(--sp-3);
+    }
+
+    .news-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--c-white);
+      line-height: 1.3;
+      margin-bottom: var(--sp-3);
+    }
+
+    .news-excerpt {
+      font-size: var(--text-sm);
+      color: var(--s-300);
+      line-height: 1.6;
+    }
+
+    .news-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--sp-5);
+      padding-top: var(--sp-4);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .news-date {
+      font-size: var(--text-xs);
+      color: var(--s-400);
+    }
+
+    .news-read {
+      font-family: var(--font-heading);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--c-blue);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── CTA BAND ─────────────────────────────── */
+    .cta-band {
+      background: linear-gradient(135deg, var(--c-blue) 0%, #0085c4 100%);
+      padding: var(--sp-16) var(--sp-8);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-band::before {
+      content: 'CONES';
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: 20rem;
+      color: rgba(0,0,0,0.07);
+      letter-spacing: -0.05em;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .cta-band h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-5xl);
+      color: var(--c-black);
+      line-height: 1;
+      margin-bottom: var(--sp-4);
+    }
+
+    .cta-band p {
+      font-size: var(--text-lg);
+      color: rgba(10,12,16,0.7);
+      margin-bottom: var(--sp-8);
+    }
+
+    @media (max-width: 768px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-logo { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item { grid-column: span 1 !important; grid-row: span 1 !important; }
+      .news-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">
+      <img src="uploads/images.png" alt="Cones Belgrade" />
+      <span class="nav-logo-text">CONES<br><span>BELGRADE</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="blog.html">News</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#sponsors">Sponsors</a></li>
+      <li><a href="events.html" class="nav-cta">Join Us</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-eyebrow">Belgrade's finest hockey club</div>
+        <h1 class="hero-title">
+          CONES
+          <span class="line-blue">BEL</span><span class="line-orange">GRADE</span>
+        </h1>
+        <p class="hero-sub">Professional amateur ice hockey — built on passion, grit, and the love of the game. Belgrade's boldest team on ice.</p>
+        <div class="hero-actions">
+          <a href="events.html" class="btn btn-primary">View Schedule ↗</a>
+          <a href="#about" class="btn btn-outline">Our Story</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">12+</div>
+            <div class="stat-label">Years Active</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">30+</div>
+            <div class="stat-label">Players</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">Belgrade</div>
+            <div class="stat-label">Home City</div>
+          </div>
+        </div>
+      </div>
+      <img src="uploads/images.png" alt="Cones Belgrade Mascot" class="hero-logo" />
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about section" id="about">
+    <div class="about-grid">
+      <div class="about-image-wrap">
+        <div class="about-image-placeholder">
+          <div class="about-image-placeholder::before"></div>
+          <img src="uploads/images.jpeg" alt="Team Photo" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:var(--r-lg);">
+        </div>
+        <div class="about-badge">
+          <span class="about-badge-num">🏒</span>
+          <span class="about-badge-text">Belgrade's Best</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-label">About The Team</div>
+        <h2 class="section-title" style="margin-bottom:var(--sp-6);">WE LIVE FOR <span class="accent">THE ICE</span></h2>
+        <p>Cones Belgrade is more than just a hockey team — it's a community of passionate athletes who believe that the spirit of the game transcends age and professional status. Founded in Belgrade, we've built a culture of excellence, brotherhood, and relentless improvement.</p>
+        <p>Whether you're a seasoned skater or just lacing up for the first time, Cones Belgrade welcomes everyone who bleeds blue and orange. We compete hard, train harder, and celebrate together.</p>
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="pillar-title">Passion First</div>
+            <div class="pillar-desc">Every shift played with full heart</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-title">Team Unity</div>
+            <div class="pillar-desc">Brotherhood on and off the ice</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-title">Fair Play</div>
+            <div class="pillar-desc">Respect for the game and opponents</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-title">Community</div>
+            <div class="pillar-desc">Growing hockey culture in Belgrade</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery section" id="gallery">
+    <div class="gallery-header">
+      <div>
+        <div class="section-label">Action Shots</div>
+        <h2 class="section-title">GAME <span class="accent-o">GALLERY</span></h2>
+      </div>
+      <a href="#gallery" class="btn btn-outline" style="font-size:var(--text-sm);">View All →</a>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="uploads/images.jpeg" alt="Team on ice" style="width:100%;height:100%;object-fit:cover;" />
+        <div class="gallery-overlay"><div class="gallery-icon">+</div></div>
+      </div>
+      <div class="gallery-item g2">
+        <div class="gallery-ph"><span class="gallery-ph">game action shot</span></div>
+        <div class="gallery-overlay"><div class="gallery-icon">+</div></div>
+      </div>
+      <div class="gallery-item g3">
+        <div class="gallery-ph">team celebration</div>
+        <div class="gallery-overlay"><div class="gallery-icon">+</div></div>
+      </div>
+      <div class="gallery-item g4">
+        <div class="gallery-ph">practice drill</div>
+        <div class="gallery-overlay"><div class="gallery-icon">+</div></div>
+      </div>
+      <div class="gallery-item g5">
+        <div class="gallery-ph">locker room</div>
+        <div class="gallery-overlay"><div class="gallery-icon">+</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST NEWS -->
+  <section class="news-strip" id="news">
+    <div style="max-width:var(--max-w);margin:0 auto;">
+      <div class="section-label">Fresh Off The Ice</div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+        <h2 class="section-title">LATEST <span class="accent">NEWS</span></h2>
+        <a href="blog.html" class="btn btn-outline" style="font-size:var(--text-sm);">All Articles →</a>
+      </div>
+    </div>
+    <div class="news-grid">
+      <a href="blog.html#spring-tournament-2025" class="news-card">
+        <div class="news-thumb"><span class="news-thumb-ph">match photo</span></div>
+        <div class="news-body">
+          <span class="news-tag">Tournament</span>
+          <div class="news-title">Spring Cup 2025 — Cones Go All the Way to the Finals</div>
+          <div class="news-excerpt">After a dominant group stage performance, Cones Belgrade secured their spot in the final four of this year's Spring Cup amateur tournament.</div>
+          <div class="news-meta">
+            <span class="news-date">Apr 12, 2025</span>
+            <span class="news-read">Read →</span>
+          </div>
+        </div>
+      </a>
+      <a href="blog.html#new-jerseys-2025" class="news-card">
+        <div class="news-thumb"><span class="news-thumb-ph">jersey reveal photo</span></div>
+        <div class="news-body">
+          <span class="news-tag">Club News</span>
+          <div class="news-title">New Season, New Look — 2025 Jersey Revealed</div>
+          <div class="news-excerpt">The team is proud to unveil the new home and away jerseys for the 2025 season, featuring a sleek redesign that keeps true to our blue and orange roots.</div>
+          <div class="news-meta">
+            <span class="news-date">Mar 28, 2025</span>
+            <span class="news-read">Read →</span>
+          </div>
+        </div>
+      </a>
+      <a href="blog.html#welcome-new-players" class="news-card">
+        <div class="news-thumb"><span class="news-thumb-ph">new player intro</span></div>
+        <div class="news-body">
+          <span class="news-tag">Roster</span>
+          <div class="news-title">Welcome to the Cone Zone — Three New Faces Join the Squad</div>
+          <div class="news-excerpt">Cones Belgrade is thrilled to announce the addition of three talented players ahead of the summer preseason practices.</div>
+          <div class="news-meta">
+            <span class="news-date">Mar 5, 2025</span>
+            <span class="news-read">Read →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- SPONSORS TICKER -->
+  <section class="sponsors-section" id="sponsors">
+    <div class="sponsors-header">
+      <div class="section-label">Proud Partners</div>
+      <h2 class="section-title">OUR <span class="accent-o">SPONSORS</span></h2>
+      <p style="color:var(--s-300);margin-top:var(--sp-4);font-size:var(--text-base);">Cones Belgrade is supported by amazing local and national partners who believe in the power of sport.</p>
+    </div>
+    <div class="ticker-wrap">
+      <div class="ticker-track" id="ticker">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:var(--sp-10);">
+      <p style="color:var(--s-300);font-size:var(--text-sm);margin-bottom:var(--sp-4);">Interested in sponsoring Belgrade's boldest hockey team?</p>
+      <a href="mailto:sponsors@conesbelgrade.rs" class="btn btn-secondary">Become a Sponsor</a>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <h2>READY TO PLAY?</h2>
+    <p>Join the team. Hit the ice. Be a Cone.</p>
+    <a href="events.html" class="btn btn-secondary" style="font-size:var(--text-lg);padding:var(--sp-4) var(--sp-10);">See Practice Schedule</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="uploads/images.png" alt="Cones Belgrade" />
+        <p>Professional amateur ice hockey club based in Belgrade, Serbia. Passion, grit, and the love of the game — since day one.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">News</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Club</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Roster</a></li>
+          <li><a href="#">Coaching Staff</a></li>
+          <li><a href="#">Sponsors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="mailto:info@conesbelgrade.rs">Email Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Cones Belgrade Hockey Club. All rights reserved.</span>
+      <span>Belgrade, Serbia 🇷🇸</span>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Sponsors ticker
+    const sponsors = [
+      'Jelen Pivo', 'Arena Sport', 'Telenor Serbia', 'Beko',
+      'Mercator', 'Delhaize Serbia', 'Raiffeisen Bank', 'NIS Gazprom',
+      'Bambi', 'Frikom', 'MTS Telekom', 'Heineken Serbia'
+    ];
+
+    const track = document.getElementById('ticker');
+    const doubled = [...sponsors, ...sponsors];
+    doubled.forEach(name => {
+      const item = document.createElement('div');
+      item.className = 'sponsor-item';
+      item.innerHTML = `
+        <div class="sponsor-logo-ph">
+          <span class="sponsor-name">${name}</span>
+        </div>
+        <span class="ticker-sep">✦</span>
+      `;
+      track.appendChild(item);
+    });
+
+    // Blog card links
+    document.querySelectorAll('.news-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        const href = card.getAttribute('href');
+        if (href) window.location.href = href;
+      });
+    });
+  </script>
+</body>
+</html>

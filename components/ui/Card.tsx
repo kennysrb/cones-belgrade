@@ -10,7 +10,7 @@ export default function Card({
   return (
     <div
       className={cn(
-        "rounded-xl border border-surface-700 bg-surface-800 transition-all hover:border-cones-blue/40 hover:translate-y-[-2px]",
+        "rounded-xl border border-surface-700 bg-surface-800 transition-all hover:border-cones-blue/40 hover:translate-y-[-2px] cursor-pointer",
         className
       )}
     >

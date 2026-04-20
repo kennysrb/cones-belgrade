@@ -31,7 +31,7 @@ export default function EventsTabs({
             type="button"
             onClick={() => setTab(k)}
             className={cn(
-              "px-5 py-3 font-heading uppercase tracking-[0.2em] text-xs border-b-2 -mb-px transition-colors",
+              "px-5 py-3 font-heading uppercase tracking-[0.2em] text-xs border-b-2 -mb-px transition-colors cursor-pointer",
               tab === k ? "border-cones-blue text-cones-blue" : "border-transparent text-surface-200 hover:text-surface-50"
             )}
           >
@@ -44,7 +44,7 @@ export default function EventsTabs({
         <div className="grid gap-6">
           {upcoming.length === 0
             ? <p className="text-surface-200 py-12 text-center">{t("empty")}</p>
-            : upcoming.map((e) => <EventCard key={e._id} item={e} locale={locale} />)
+            : upcoming.map((e, i) => <EventCard key={e._id} item={e} locale={locale} index={i} />)
           }
         </div>
       )}
@@ -67,7 +67,7 @@ export default function EventsTabs({
         <div className="grid gap-6 md:grid-cols-2">
           {past.length === 0
             ? <p className="text-surface-200 py-12 text-center md:col-span-2">{t("empty")}</p>
-            : past.map((e) => <EventCard key={e._id} item={e} locale={locale} showRsvp={false} />)
+            : past.map((e, i) => <EventCard key={e._id} item={e} locale={locale} showRsvp={false} index={i} />)
           }
         </div>
       )}
