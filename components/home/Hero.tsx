@@ -18,9 +18,9 @@ export default function Hero({
   const t = useTranslations("hero");
   return (
     <section className="relative overflow-hidden">
-      {/* Background hero image */}
+      {/* Background hero image — replace /images/hero-bg.jpg with a real photo */}
       <Image
-        src="/images/hero-bg.jpg"
+        src="https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?auto=format&fit=crop&w=1920&q=80"
         alt=""
         fill
         priority
@@ -62,7 +62,7 @@ export default function Hero({
 
         <Reveal delay={0.15} className="relative aspect-square w-full max-w-md mx-auto">
           <Image
-            src={mascotUrl ?? "/logo.png"}
+            src={mascotUrl ?? "https://images.unsplash.com/photo-1547099882-93ab62c0b459?auto=format&fit=crop&w=800&q=80"}
             alt="Cones Belgrade"
             fill
             priority
