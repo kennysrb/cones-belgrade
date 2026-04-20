@@ -1,16 +1,20 @@
 "use client";
 import { useLocale } from "next-intl";
-import { usePathname } from "@/i18n/navigation";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils/cn";
+import { useTransition } from "react";
 
 export default function LocaleSwitcher({ className }: { className?: string }) {
   const pathname = usePathname();
+  const router = useRouter();
   const current = useLocale();
+  const [, startTransition] = useTransition();
 
-  function hrefForLocale(locale: string) {
-    if (locale === routing.defaultLocale) return pathname;
-    return `/${locale}${pathname === "/" ? "" : pathname}`;
+  function switchLocale(locale: string) {
+    startTransition(() => {
+      router.replace(pathname, { locale });
+    });
   }
 
   return (
@@ -18,17 +22,18 @@ export default function LocaleSwitcher({ className }: { className?: string }) {
       {routing.locales.map((locale) => {
         const active = locale === current;
         return (
-          <a
+          <button
             key={locale}
-            href={hrefForLocale(locale)}
+            type="button"
+            onClick={() => switchLocale(locale)}
             aria-current={active ? "true" : undefined}
             className={cn(
-              "px-2 py-1 uppercase tracking-widest transition-colors",
+              "px-2 py-1 uppercase tracking-widest transition-colors cursor-pointer",
               active ? "text-cones-blue" : "text-surface-200 hover:text-surface-50"
             )}
           >
             {locale}
-          </a>
+          </button>
         );
       })}
     </div>
