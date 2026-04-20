@@ -14,11 +14,11 @@ const LOCAL_GALLERY = [
 ];
 
 const layoutClasses = [
-  "md:col-span-6 md:row-span-2 aspect-square md:aspect-auto",
-  "md:col-span-6 aspect-[4/3]",
-  "md:col-span-3 aspect-square",
-  "md:col-span-3 aspect-square",
-  "md:col-span-6 aspect-[16/9]",
+  "md:col-span-6 md:row-span-2 aspect-[4/3] md:aspect-auto",
+  "md:col-span-6 aspect-[4/3] md:aspect-auto",
+  "md:col-span-3 aspect-[4/3] md:aspect-auto",
+  "md:col-span-3 aspect-[4/3] md:aspect-auto",
+  "md:col-span-6 aspect-[4/3] md:aspect-auto",
 ];
 
 export default function Gallery({ images }: { images: string[] }) {
@@ -30,7 +30,7 @@ export default function Gallery({ images }: { images: string[] }) {
     <section className="py-24 border-t border-surface-700/60">
       <div className="mx-auto max-w-container px-6">
         <SectionHeading eyebrow={t("eyebrow")} title={t("title")} className="mb-12" />
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-3 md:h-[480px]">
           {slots.slice(0, 5).map((url, i) => (
             <Reveal key={i} delay={i * 0.05} className={layoutClasses[i]}>
               <button
