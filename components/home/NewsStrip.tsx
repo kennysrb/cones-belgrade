@@ -33,12 +33,12 @@ export default function NewsStrip({ articles }: { articles: HomeNewsCard[] }) {
             {t("cta")} →
           </Link>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 items-start">
           {articles.map((a, i) => (
             <Reveal key={a._id} delay={i * 0.08}>
               <Card>
-                <Link href={`/news/${a.slug}`}>
-                  <div className="relative aspect-[16/10]">
+                <Link href={`/news/${a.slug}`} className="flex flex-col">
+                  <div className="relative aspect-[16/10] shrink-0">
                     {a.coverImageUrl ? (
                       <Image src={a.coverImageUrl} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                     ) : (
@@ -51,7 +51,7 @@ export default function NewsStrip({ articles }: { articles: HomeNewsCard[] }) {
                       <span className="text-xs text-surface-300">{formatDate(a.publishedAt, locale)}</span>
                     </div>
                     <h3 className="font-heading text-2xl leading-tight text-surface-50 group-hover:text-cones-blue">{pickLocale(a.title, locale)}</h3>
-                    {a.excerpt && <p className="text-sm text-surface-200 line-clamp-3">{pickLocale(a.excerpt, locale)}</p>}
+                    {a.excerpt && <p className="text-sm text-surface-200 line-clamp-2">{pickLocale(a.excerpt, locale)}</p>}
                   </div>
                 </Link>
               </Card>
