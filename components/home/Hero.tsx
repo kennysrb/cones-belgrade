@@ -18,21 +18,23 @@ export default function Hero({
   const t = useTranslations("hero");
   return (
     <section className="relative overflow-hidden">
-      {/* Background hero image — replace /images/hero-bg.jpg with a real photo */}
+      {/* Background hero image */}
       <Image
-        src="https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?auto=format&fit=crop&w=1920&q=80"
+        src="/images/hero-bg.jpg"
         alt=""
         fill
         priority
-        className="object-cover object-center -z-20"
+        className="object-cover object-center"
+        style={{ zIndex: -2 }}
         sizes="100vw"
       />
-      {/* Dark overlay so text stays readable */}
-      <div aria-hidden className="absolute inset-0 -z-10 bg-cones-black/70" />
+      {/* Dark overlay */}
+      <div aria-hidden className="absolute inset-0 bg-cones-black/65" style={{ zIndex: -1 }} />
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 opacity-80"
+        className="absolute inset-0 opacity-70"
         style={{
+          zIndex: -1,
           background: "radial-gradient(ellipse at top, rgba(0,173,241,0.25) 0%, transparent 55%), radial-gradient(ellipse at bottom right, rgba(247,148,28,0.18) 0%, transparent 60%)",
         }}
       />
