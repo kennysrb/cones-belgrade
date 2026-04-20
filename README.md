@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cones Belgrade
 
-## Getting Started
+Production website for Cones Belgrade ice hockey club. Next.js 15 App Router, bilingual (Serbian primary, English), Sanity CMS, Framer Motion, Tailwind CSS.
 
-First, run the development server:
+## Requirements
+- Node 20+
+- pnpm 9+
+- A Sanity project (project id + dataset)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Local setup
+1. `cp .env.local.example .env.local` and fill in Sanity project id + dataset.
+2. `pnpm install`
+3. `pnpm dev` — app at http://localhost:3000
+4. Studio at http://localhost:3000/studio (wire env to deploy schema, then `pnpm sanity deploy` if desired).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Commands
+- `pnpm dev` — dev server
+- `pnpm build` / `pnpm start` — production build + serve
+- `pnpm test` — unit tests (vitest)
+- `pnpm e2e` — Playwright smoke tests (runs build + start)
+- `pnpm lint` — ESLint
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Sanity content types
+- **newsArticle** — news posts with title, slug, cover image, body (PortableText), categories, publishedAt. Localized: `{ sr, en }`.
+- **event** — upcoming/past events with title, date, venue, description, RSVP. Localized.
+- **practiceSession** — recurring practice schedule (day, time, venue, level). Localized.
+- **sponsor** — sponsor name, logo, website, display order.
+- **siteSettings** — global site name, tagline, social links, hero stats.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment variables
+See `.env.local.example`. Required for production:
+- `NEXT_PUBLIC_SANITY_PROJECT_ID` — Sanity project ID
+- `NEXT_PUBLIC_SANITY_DATASET` — Sanity dataset (e.g. `production`)
+- `SITE_URL` — canonical URL (e.g. `https://conesbelgrade.rs`)
+- `SANITY_REVALIDATE_SECRET` — shared secret for ISR webhook
 
-## Learn More
+## ISR revalidation
+When content changes in Sanity, trigger `POST /api/revalidate` with header `x-revalidate-secret: <SANITY_REVALIDATE_SECRET>` and JSON body:
+- `{ "tag": "news" }` — revalidates all news pages
+- `{ "_type": "event" }` — revalidates events
+- `{ "slug": "my-article-slug" }` — revalidates specific article
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy
+Deploy to Vercel (recommended). Set all environment variables in the Vercel dashboard. The app uses Next.js ISR — pages rebuild on-demand after Sanity content updates via the revalidation webhook.
