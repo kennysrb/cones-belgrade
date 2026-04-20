@@ -39,10 +39,7 @@ export default function Hero({
       </div>
       <div className="relative mx-auto max-w-container px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid gap-10 md:grid-cols-[1.2fr_0.8fr] items-center" style={{ zIndex: 1 }}>
         <Reveal className="space-y-8">
-          <Badge tone="blue">
-            <span className="h-1.5 w-1.5 rounded-full bg-cones-blue animate-pulse" />
-            {t("eyebrow")}
-          </Badge>
+          <Badge tone="blue">{t("eyebrow")}</Badge>
           <h1 className="font-display leading-[0.88] tracking-tight" style={{ fontSize: "clamp(3.25rem,13vw,9rem)" }}>
             <span className="block text-cones-blue">{t("titleLine1")}</span>
             <span className="block text-cones-orange">{t("titleLine2")}</span>
@@ -61,7 +58,7 @@ export default function Hero({
           )}
         </Reveal>
 
-        <Reveal delay={0.15} className="relative aspect-square w-full max-w-md mx-auto">
+        <Reveal delay={0.15} className="relative aspect-square w-full max-w-md mx-auto animate-levitate">
           <Image
             src={mascotUrl ?? "/logo.png"}
             alt="Cones Belgrade"
