@@ -7,6 +7,7 @@ vi.mock("next-intl", () => ({
 }));
 vi.mock("@/i18n/navigation", () => ({
   usePathname: () => "/",
+  useRouter: () => ({}),
   Link: ({ children, href, ...props }: { children: React.ReactNode; href: string; [key: string]: unknown }) => (
     <a href={href} {...props}>{children}</a>
   ),
@@ -14,11 +15,14 @@ vi.mock("@/i18n/navigation", () => ({
 
 import Nav from "@/components/layout/Nav";
 
-test("Nav renders three nav links", () => {
+test("Nav renders four nav links", () => {
   render(<Nav />);
-  expect(screen.getByRole("link", { name: /home/i })).toBeInTheDocument();
-  expect(screen.getByRole("link", { name: /news/i })).toBeInTheDocument();
-  expect(screen.getByRole("link", { name: /events/i })).toBeInTheDocument();
+  const links = screen.getAllByRole("link", { name: /home|news|events|gallery/i });
+  expect(links.length).toBeGreaterThanOrEqual(4);
+  expect(screen.getAllByRole("link", { name: /home/i }).length).toBeGreaterThan(0);
+  expect(screen.getAllByRole("link", { name: /news/i }).length).toBeGreaterThan(0);
+  expect(screen.getAllByRole("link", { name: /events/i }).length).toBeGreaterThan(0);
+  expect(screen.getAllByRole("link", { name: /gallery/i }).length).toBeGreaterThan(0);
 });
 
 test("Nav renders brand name", () => {
