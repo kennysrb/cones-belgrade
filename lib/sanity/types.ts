@@ -26,7 +26,7 @@ export type GalleryAlbum = {
   title: LocalizedString;
   slug: string;
   date: string;
-  order: number;
+  order?: number;
   coverImage: SanityImageRef;
   photos?: GalleryPhoto[];
 };

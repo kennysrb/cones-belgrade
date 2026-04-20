@@ -66,7 +66,7 @@ export const galleryAlbumBySlugQuery = groq`
   }
 `;
 
-export const allGallerySlugQuery = groq`
+export const allGallerySlugsQuery = groq`
   *[_type == "galleryAlbum" && defined(slug.current)][].slug.current
 `;
 
