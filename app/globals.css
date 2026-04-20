@@ -68,9 +68,6 @@ html, body {
   animation: ticker-scroll var(--ticker-duration, 40s) linear infinite;
 }
 
-.ticker-track:hover {
-  animation-play-state: paused;
-}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
