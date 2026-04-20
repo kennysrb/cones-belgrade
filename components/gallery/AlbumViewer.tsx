@@ -41,7 +41,21 @@ export default function AlbumViewer({ photos, albumTitle, date, backLabel, backH
     return () => document.removeEventListener("keydown", onKey);
   }, [prev, next]);
 
-  if (photos.length === 0) return null;
+  if (photos.length === 0) {
+    return (
+      <div className="py-8">
+        <div className="mx-auto max-w-container px-6 mb-6">
+          <Link href={backHref} className="font-heading text-xs uppercase tracking-widest text-surface-400 hover:text-cones-blue transition-colors flex items-center gap-1">
+            ← {backLabel}
+          </Link>
+        </div>
+        <div className="mx-auto max-w-container px-6">
+          <h1 className="font-display text-3xl md:text-4xl text-surface-50 mb-4">{albumTitle}</h1>
+          <p className="text-surface-400">No photos in this album yet.</p>
+        </div>
+      </div>
+    );
+  }
 
   const active = photos[activeIndex];
   const formatted = formatDate(date, locale);

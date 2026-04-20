@@ -16,6 +16,11 @@ vi.mock("@/components/ui/SectionHeading", () => ({
 vi.mock("@/components/ui/Lightbox", () => ({
   default: ({ images }: { images: string[] }) => <div data-testid="lightbox" data-count={images.length} />,
 }));
+vi.mock("@/i18n/navigation", () => ({
+  Link: ({ children, href }: { children: React.ReactNode; href: string }) => (
+    <a href={href}>{children}</a>
+  ),
+}));
 
 import Gallery from "@/components/home/Gallery";
 
