@@ -1,6 +1,7 @@
 "use client";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import Image from "next/image";
 import { Link, usePathname } from "@/i18n/navigation";
 import LocaleSwitcher from "@/components/layout/LocaleSwitcher";
 import Button from "@/components/ui/Button";
@@ -22,9 +23,7 @@ export default function Nav() {
       <header className="sticky top-0 z-50 border-b border-surface-700/60 bg-cones-black/80 backdrop-blur-md" style={{ height: "72px" }}>
         <div className="mx-auto flex h-full max-w-container items-center justify-between px-6">
           <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-            <span aria-hidden className="grid h-10 w-10 place-items-center rounded-full bg-cones-blue text-cones-black font-display text-2xl">
-              C
-            </span>
+            <Image src="/logo.png" alt="Cones Belgrade" width={40} height={40} className="h-10 w-10 object-contain" />
             <span className="font-display text-2xl tracking-wide text-surface-50">
               CONES <span className="text-cones-orange">BELGRADE</span>
             </span>
