@@ -1,5 +1,5 @@
 {
-  "nav": { "home": "Home", "news": "News", "events": "Events", "join": "Join" },
+  "nav": { "home": "Home", "news": "News", "events": "Events", "gallery": "Gallery", "join": "Join" },
   "footer": {
     "tagline": "Hockey. Team. Belgrade.",
     "quickLinks": "Quick links",
@@ -29,6 +29,15 @@
     }
   },
   "gallery": { "eyebrow": "Action shots", "title": "Game Gallery", "viewAll": "View all" },
+  "galleryPage": {
+    "eyebrow": "Gallery",
+    "title": "Photo albums",
+    "sortManual": "Manual order",
+    "sortDate": "Newest first",
+    "backToGallery": "Back to gallery",
+    "photos": "photos",
+    "empty": "No albums yet. Check back soon."
+  },
   "news": { "eyebrow": "Latest", "title": "Club news", "cta": "All news" },
   "sponsors": { "eyebrow": "Partners", "title": "They believe in us" },
   "cta": {

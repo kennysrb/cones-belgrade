@@ -1,5 +1,5 @@
 {
-  "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "join": "Pridruži se" },
+  "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "gallery": "Galerija", "join": "Pridruži se" },
   "footer": {
     "tagline": "Hokej. Tim. Beograd.",
     "quickLinks": "Brzi linkovi",
@@ -29,6 +29,15 @@
     }
   },
   "gallery": { "eyebrow": "Akcioni snimci", "title": "Galerija utakmica", "viewAll": "Pogledaj sve" },
+  "galleryPage": {
+    "eyebrow": "Galerija",
+    "title": "Foto albumi",
+    "sortManual": "Ručni redosled",
+    "sortDate": "Najnoviji",
+    "backToGallery": "Nazad na galeriju",
+    "photos": "fotografija",
+    "empty": "Još uvek nema albuma. Vratite se uskoro."
+  },
   "news": { "eyebrow": "Najnovije", "title": "Vesti iz kluba", "cta": "Sve vesti" },
   "sponsors": { "eyebrow": "Partneri", "title": "Oni veruju u nas" },
   "cta": {
