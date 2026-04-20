@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import * as React from "react";
 
 export default function Ticker({
@@ -13,14 +12,13 @@ export default function Ticker({
 }) {
   return (
     <div className={`overflow-hidden ${className ?? ""}`}>
-      <motion.div
-        className="flex gap-16 whitespace-nowrap"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration, ease: "linear", repeat: Infinity }}
+      <div
+        className="flex gap-16 whitespace-nowrap ticker-track"
+        style={{ "--ticker-duration": `${duration}s` } as React.CSSProperties}
       >
         {children}
         {children}
-      </motion.div>
+      </div>
     </div>
   );
 }

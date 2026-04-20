@@ -5,14 +5,18 @@ import Ticker from "@/components/motion/Ticker";
 
 export type SponsorItem = { _id: string; name: string; url?: string; logoUrl: string | null };
 
+const LOCAL_FALLBACK: SponsorItem[] = [
+  { _id: "1", name: "Banca Intesa",    url: undefined, logoUrl: "/images/sponsors/sponsor-1.png" },
+  { _id: "2", name: "Sport Vision",    url: undefined, logoUrl: "/images/sponsors/sponsor-2.png" },
+  { _id: "3", name: "Štark",           url: undefined, logoUrl: "/images/sponsors/sponsor-3.png" },
+  { _id: "4", name: "Jelen Pivo",      url: undefined, logoUrl: null },
+  { _id: "5", name: "Arena Sport",     url: undefined, logoUrl: null },
+  { _id: "6", name: "Telenor Serbia",  url: undefined, logoUrl: null },
+];
+
 export default function SponsorTicker({ sponsors }: { sponsors: SponsorItem[] }) {
   const t = useTranslations("sponsors");
-
-  const items = sponsors.length
-    ? sponsors
-    : ["Jelen Pivo", "Arena Sport", "Telenor Serbia", "Štark", "BWIN", "Adidas"].map((name, i) => ({
-        _id: String(i), name, url: undefined, logoUrl: null,
-      }));
+  const items = sponsors.length ? sponsors : LOCAL_FALLBACK;
 
   return (
     <section className="py-20 border-t border-surface-700/60">
@@ -26,13 +30,20 @@ export default function SponsorTicker({ sponsors }: { sponsors: SponsorItem[] })
             href={s.url ?? "#"}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-4 px-8 py-4 border-x border-surface-700/60"
+            className="flex items-center gap-3 px-10 transition-transform duration-300 hover:scale-110"
           >
             {s.logoUrl ? (
-              <Image src={s.logoUrl} alt={s.name} width={120} height={60} className="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" />
-            ) : (
-              <span className="font-display text-3xl text-surface-100">{s.name}</span>
-            )}
+              <Image
+                src={s.logoUrl}
+                alt={s.name}
+                width={48}
+                height={48}
+                className="h-10 w-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
+              />
+            ) : null}
+            <span className="font-display text-2xl text-surface-200 hover:text-surface-50 transition-colors whitespace-nowrap">
+              {s.name}
+            </span>
           </a>
         ))}
       </Ticker>
