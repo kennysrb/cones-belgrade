@@ -18,6 +18,17 @@ export default function Hero({
   const t = useTranslations("hero");
   return (
     <section className="relative overflow-hidden">
+      {/* Background hero image */}
+      <Image
+        src="/images/hero-bg.jpg"
+        alt=""
+        fill
+        priority
+        className="object-cover object-center -z-20"
+        sizes="100vw"
+      />
+      {/* Dark overlay so text stays readable */}
+      <div aria-hidden className="absolute inset-0 -z-10 bg-cones-black/70" />
       <div
         aria-hidden
         className="absolute inset-0 -z-10 opacity-80"
@@ -50,20 +61,14 @@ export default function Hero({
         </Reveal>
 
         <Reveal delay={0.15} className="relative aspect-square w-full max-w-md mx-auto">
-          {mascotUrl ? (
-            <Image
-              src={mascotUrl}
-              alt="Cones mascot"
-              fill
-              priority
-              className="object-contain"
-              style={{ filter: "drop-shadow(0 20px 60px rgba(0,173,241,0.35))" }}
-            />
-          ) : (
-            <div className="h-full w-full rounded-full bg-gradient-to-br from-cones-blue/30 to-cones-orange/30 grid place-items-center font-display text-9xl text-cones-black">
-              C
-            </div>
-          )}
+          <Image
+            src={mascotUrl ?? "/logo.png"}
+            alt="Cones Belgrade"
+            fill
+            priority
+            className="object-contain"
+            style={{ filter: "drop-shadow(0 20px 60px rgba(0,173,241,0.35))" }}
+          />
         </Reveal>
       </div>
     </section>
