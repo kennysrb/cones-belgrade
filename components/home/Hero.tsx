@@ -28,7 +28,7 @@ export default function Hero({
           className="object-cover object-center"
           sizes="100vw"
         />
-        <div aria-hidden className="absolute inset-0 bg-cones-black/80" />
+        <div aria-hidden className="absolute inset-0 bg-cones-black/90" />
         <div
           aria-hidden
           className="absolute inset-0 opacity-70"
