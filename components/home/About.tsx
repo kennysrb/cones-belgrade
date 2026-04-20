@@ -16,11 +16,13 @@ export default function About({ teamPhotoUrl }: { teamPhotoUrl: string | null })
     <section id="about" className="py-24 border-t border-surface-700/60">
       <div className="mx-auto max-w-container px-6 grid gap-12 md:grid-cols-2 items-center">
         <Reveal className="relative aspect-[4/5] rounded-xl overflow-hidden border border-surface-700">
-          {teamPhotoUrl ? (
-            <Image src={teamPhotoUrl} alt="Team photo" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
-          ) : (
-            <div className="h-full w-full bg-gradient-to-br from-surface-800 to-surface-700" />
-          )}
+          <Image
+            src={teamPhotoUrl ?? "/images/team/team-photo.jpg"}
+            alt="Team photo"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+          />
         </Reveal>
         <Reveal delay={0.1} className="space-y-8">
           <SectionHeading eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
