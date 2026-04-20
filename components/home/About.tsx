@@ -14,27 +14,32 @@ export default function About({ teamPhotoUrl }: { teamPhotoUrl: string | null })
 
   return (
     <section id="about" className="py-24 border-t border-surface-700/60">
-      <div className="mx-auto max-w-container px-6 grid gap-12 md:grid-cols-2 items-center">
-        <Reveal className="relative aspect-[4/5] rounded-xl overflow-hidden border border-surface-700">
+      <div className="mx-auto max-w-container px-6 space-y-12">
+        <Reveal className="relative w-full aspect-[21/9] rounded-xl overflow-hidden border border-surface-700">
           <Image
             src={teamPhotoUrl ?? "/images/team/team-photo.jpg"}
-            alt="Team photo"
+            alt="Cones Belgrade team"
             fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
+            sizes="100vw"
+            className="object-cover object-center"
           />
         </Reveal>
-        <Reveal delay={0.1} className="space-y-8">
-          <SectionHeading eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
-          <ul className="grid grid-cols-2 gap-6">
-            {pillars.map((p) => (
-              <li key={p.title} className="rounded-lg border border-surface-700 bg-surface-800/50 p-5">
-                <p className="font-heading text-sm uppercase tracking-[0.2em] text-cones-blue">{p.title}</p>
-                <p className="mt-2 text-sm text-surface-100 leading-relaxed">{p.text}</p>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+
+        <div className="grid gap-10 md:grid-cols-2 items-start">
+          <Reveal>
+            <SectionHeading eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ul className="grid grid-cols-2 gap-6">
+              {pillars.map((p) => (
+                <li key={p.title} className="rounded-lg border border-surface-700 bg-surface-800/50 p-5">
+                  <p className="font-heading text-sm uppercase tracking-[0.2em] text-cones-blue">{p.title}</p>
+                  <p className="mt-2 text-sm text-surface-100 leading-relaxed">{p.text}</p>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
