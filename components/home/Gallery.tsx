@@ -6,15 +6,20 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/motion/Reveal";
 import Lightbox from "@/components/ui/Lightbox";
 
-const LOCAL_GALLERY = [
-  "/images/gallery/gallery-1.jpg",
-  "/images/gallery/gallery-2.jpg",
-  "/images/gallery/gallery-3.jpg",
-  "/images/gallery/gallery-4.jpg",
-  "/images/gallery/gallery-5.jpg",
+interface AlbumCover {
+  _id: string;
+  slug: string;
+  coverImageUrl: string | null;
+  photos: Array<{ _key: string; imageUrl: string }>;
+}
+
+const LOCAL_COVERS = [
+  { _id: "l1", slug: "", coverImageUrl: "/images/gallery/gallery-1.jpg", photos: [] },
+  { _id: "l2", slug: "", coverImageUrl: "/images/gallery/gallery-2.jpg", photos: [] },
+  { _id: "l3", slug: "", coverImageUrl: "/images/gallery/gallery-3.jpg", photos: [] },
+  { _id: "l4", slug: "", coverImageUrl: "/images/gallery/gallery-4.jpg", photos: [] },
 ];
 
-// 4-image mosaic: big left (row-span-2) + top-right + 2 bottom-right
 const mosaicClasses = [
   "md:col-span-6 md:row-span-2 aspect-[4/3] md:aspect-auto",
   "md:col-span-6 aspect-[4/3] md:aspect-auto",
@@ -22,10 +27,22 @@ const mosaicClasses = [
   "md:col-span-3 aspect-square md:aspect-auto",
 ];
 
-export default function Gallery({ images }: { images: string[] }) {
+interface LightboxState {
+  albumIndex: number;
+  photoIndex: number;
+}
+
+export default function Gallery({ albums }: { albums: AlbumCover[] }) {
   const t = useTranslations("gallery");
-  const slots = images.length ? images : LOCAL_GALLERY;
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const slots = albums.length ? albums.slice(0, 4) : LOCAL_COVERS;
+  const [lightbox, setLightbox] = useState<LightboxState | null>(null);
+
+  const openLightbox = (albumIndex: number) => {
+    setLightbox({ albumIndex, photoIndex: 0 });
+  };
+
+  const activeAlbum = lightbox !== null ? slots[lightbox.albumIndex] : null;
+  const lightboxImages = activeAlbum?.photos.map((p) => p.imageUrl) ?? [];
 
   return (
     <section className="py-24 border-t border-surface-700/60">
@@ -34,7 +51,7 @@ export default function Gallery({ images }: { images: string[] }) {
           <SectionHeading eyebrow={t("eyebrow")} title={t("title")} />
           <button
             type="button"
-            onClick={() => setLightboxIndex(0)}
+            onClick={() => openLightbox(0)}
             className="hidden md:flex items-center gap-2 border border-surface-600 px-5 py-3 font-heading text-xs uppercase tracking-widest text-surface-100 hover:border-cones-blue hover:text-cones-blue transition-colors cursor-pointer rounded-md whitespace-nowrap"
           >
             {t("viewAll")} →
@@ -42,20 +59,22 @@ export default function Gallery({ images }: { images: string[] }) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-3 md:h-[460px]">
-          {slots.slice(0, 4).map((url, i) => (
-            <Reveal key={i} delay={i * 0.06} className={mosaicClasses[i]}>
+          {slots.map((album, i) => (
+            <Reveal key={album._id} delay={i * 0.06} className={mosaicClasses[i]}>
               <button
                 type="button"
-                onClick={() => setLightboxIndex(i)}
+                onClick={() => openLightbox(i)}
                 className="relative w-full h-full overflow-hidden rounded-lg border border-surface-700 group cursor-zoom-in block"
               >
-                <Image
-                  src={url}
-                  alt=""
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                {album.coverImageUrl && (
+                  <Image
+                    src={album.coverImageUrl}
+                    alt={album.slug || "gallery photo"}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300 flex items-center justify-center">
                   <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-3xl select-none">⊕</span>
                 </div>
@@ -64,11 +83,10 @@ export default function Gallery({ images }: { images: string[] }) {
           ))}
         </div>
 
-        {/* Mobile view all */}
         <div className="mt-6 flex md:hidden">
           <button
             type="button"
-            onClick={() => setLightboxIndex(0)}
+            onClick={() => openLightbox(0)}
             className="flex items-center gap-2 border border-surface-600 px-5 py-3 font-heading text-xs uppercase tracking-widest text-surface-100 hover:border-cones-blue hover:text-cones-blue transition-colors cursor-pointer rounded-md"
           >
             {t("viewAll")} →
@@ -76,12 +94,12 @@ export default function Gallery({ images }: { images: string[] }) {
         </div>
       </div>
 
-      {lightboxIndex !== null && (
+      {lightbox !== null && lightboxImages.length > 0 && (
         <Lightbox
-          images={slots}
-          index={lightboxIndex}
-          onClose={() => setLightboxIndex(null)}
-          onNav={setLightboxIndex}
+          images={lightboxImages}
+          index={lightbox.photoIndex}
+          onClose={() => setLightbox(null)}
+          onNav={(idx) => setLightbox((prev) => prev ? { ...prev, photoIndex: idx } : null)}
         />
       )}
     </section>

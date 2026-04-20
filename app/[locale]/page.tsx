@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { sanityFetch } from "@/lib/sanity/fetch";
-import { siteSettingsQuery, featuredNewsQuery, sponsorsQuery } from "@/lib/sanity/queries";
+import { siteSettingsQuery, featuredNewsQuery, sponsorsQuery, latestAlbumCoversQuery } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
-import { pickLocale } from "@/lib/sanity/types";
+import { pickLocale, type SanityImageRef, type GalleryAlbum } from "@/lib/sanity/types";
 import type { Locale } from "@/i18n/routing";
 import { rootMetadata } from "@/lib/seo/metadata";
 import Hero, { type HeroStat } from "@/components/home/Hero";
@@ -22,13 +22,10 @@ export async function generateMetadata({
   return rootMetadata(locale, "/");
 }
 
-type SanityImageRef = { asset?: { _ref: string } } | null | undefined;
-
 type Settings = {
   stats?: Array<{ value: string; label: { sr?: string; en?: string } }>;
   teamPhoto?: SanityImageRef;
   mascotImage?: SanityImageRef;
-  galleryImages?: Array<SanityImageRef>;
 };
 
 type NewsDoc = {
@@ -48,6 +45,10 @@ type SponsorDoc = {
   logo?: SanityImageRef;
 };
 
+type LatestAlbumDoc = GalleryAlbum & {
+  photos?: Array<{ _key: string; image: SanityImageRef }>;
+};
+
 export default async function HomePage({
   params,
 }: {
@@ -64,10 +65,11 @@ export default async function HomePage({
     }
   }
 
-  const [settings, news, sponsors] = await Promise.all([
+  const [settings, news, sponsors, latestAlbums] = await Promise.all([
     safeFetch(() => sanityFetch<Settings | null>({ query: siteSettingsQuery, tags: ["siteSettings"] }), null),
     safeFetch(() => sanityFetch<NewsDoc[]>({ query: featuredNewsQuery, tags: ["news"] }), []),
     safeFetch(() => sanityFetch<SponsorDoc[]>({ query: sponsorsQuery, tags: ["sponsor"] }), []),
+    safeFetch(() => sanityFetch<LatestAlbumDoc[]>({ query: latestAlbumCoversQuery, tags: ["galleryAlbum"] }), []),
   ]);
 
   const stats: HeroStat[] = (settings?.stats ?? []).map((s) => ({
@@ -81,9 +83,19 @@ export default async function HomePage({
   const teamPhotoUrl = settings?.teamPhoto
     ? urlFor(settings.teamPhoto).width(900).height(1125).fit("crop").url()
     : null;
-  const galleryUrls: string[] = (settings?.galleryImages ?? [])
-    .filter((img): img is NonNullable<typeof img> => Boolean(img?.asset))
-    .map((img) => urlFor(img!).width(1200).height(800).fit("crop").url());
+  const galleryAlbums = latestAlbums.map((a) => ({
+    _id: a._id,
+    slug: a.slug,
+    coverImageUrl: a.coverImage?.asset
+      ? urlFor(a.coverImage).width(1200).height(800).fit("crop").url()
+      : null,
+    photos: (a.photos ?? [])
+      .filter((p) => p.image?.asset)
+      .map((p) => ({
+        _key: p._key,
+        imageUrl: urlFor(p.image!).width(1400).height(900).fit("max").url(),
+      })),
+  }));
 
   const newsCards: HomeNewsCard[] = news.map((n) => ({
     _id: n._id,
@@ -110,7 +122,7 @@ export default async function HomePage({
     <>
       <Hero stats={stats} mascotUrl={mascotUrl} />
       <About teamPhotoUrl={teamPhotoUrl} />
-      <Gallery images={galleryUrls} />
+      <Gallery albums={galleryAlbums} />
       <NewsStrip articles={newsCards} />
       <SponsorTicker sponsors={sponsorItems} />
       <CtaBand />
