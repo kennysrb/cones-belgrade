@@ -37,7 +37,7 @@ export default function NewsStrip({ articles }: { articles: HomeNewsCard[] }) {
           {articles.map((a, i) => (
             <Reveal key={a._id} delay={i * 0.08}>
               <Card>
-                <Link href={{ pathname: "/news/[slug]", params: { slug: a.slug } }}>
+                <Link href={`/news/${a.slug}`}>
                   <div className="relative aspect-[16/10]">
                     {a.coverImageUrl ? (
                       <Image src={a.coverImageUrl} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />

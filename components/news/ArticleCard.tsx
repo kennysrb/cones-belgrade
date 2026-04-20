@@ -29,7 +29,7 @@ export default function ArticleCard({
   const fallback = HOCKEY_IMAGES.articles[index % HOCKEY_IMAGES.articles.length];
   return (
     <Card>
-      <Link href={{ pathname: "/news/[slug]", params: { slug: article.slug } }} className="flex flex-col h-full group">
+      <Link href={`/news/${article.slug}`} className="flex flex-col h-full group">
         <div className="relative aspect-[16/10] overflow-hidden rounded-t-xl">
           <Image
             src={article.coverImageUrl ?? fallback}

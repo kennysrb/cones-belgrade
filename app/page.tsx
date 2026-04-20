@@ -1,5 +1,4 @@
-import { redirect } from "@/i18n/navigation";
-
+// Middleware rewrites "/" to the correct locale before this page is ever reached.
 export default function RootPage() {
-  redirect("/");
+  return null;
 }

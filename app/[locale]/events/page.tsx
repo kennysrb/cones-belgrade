@@ -6,6 +6,7 @@ import { sanityFetch } from "@/lib/sanity/fetch";
 import { upcomingEventsQuery, pastEventsQuery, practiceScheduleQuery } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import SectionHeading from "@/components/ui/SectionHeading";
+import PageHero from "@/components/ui/PageHero";
 import EventsTabs from "@/components/events/EventsTabs";
 import RsvpForm from "@/components/events/RsvpForm";
 import type { EventItem } from "@/components/events/EventCard";
@@ -66,6 +67,8 @@ export default async function EventsPage({
   ]);
 
   return (
+    <>
+    <PageHero eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
     <div className="mx-auto max-w-container px-6 py-20">
       <SectionHeading eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
       <div className="mt-12">
@@ -73,5 +76,6 @@ export default async function EventsPage({
       </div>
       <RsvpForm />
     </div>
+    </>
   );
 }

@@ -6,6 +6,7 @@ import { sanityFetch } from "@/lib/sanity/fetch";
 import { newsListQuery } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import NewsPageClient from "@/components/news/NewsPageClient";
+import PageHero from "@/components/ui/PageHero";
 import type { ArticleCardData } from "@/components/news/ArticleCard";
 
 export async function generateMetadata({
@@ -46,5 +47,11 @@ export default async function NewsPage({
     publishedAt: d.publishedAt,
     coverImageUrl: d.coverImage?.asset ? urlFor(d.coverImage).width(800).height(500).fit("crop").url() : null,
   }));
-  return <NewsPageClient articles={articles} />;
+  const t = await getTranslations({ locale, namespace: "newsPage" });
+  return (
+    <>
+      <PageHero eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
+      <NewsPageClient articles={articles} />
+    </>
+  );
 }
