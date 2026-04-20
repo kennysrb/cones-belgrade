@@ -15,7 +15,7 @@ export default defineType({
       name: "slug",
       title: "Slug",
       type: "slug",
-      options: { source: "title.sr", maxLength: 96 },
+      options: { source: (doc: Record<string, unknown>) => ((doc.title as Record<string, string>)?.sr) ?? "", maxLength: 96 },
       validation: (r) => r.required(),
     }),
     defineField({
@@ -44,6 +44,8 @@ export default defineType({
       of: [
         {
           type: "object" as const,
+          name: "photo",
+          title: "Photo",
           fields: [
             defineField({
               name: "image",
