@@ -5,7 +5,13 @@ import { useTranslations } from "next-intl";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/motion/Reveal";
 import Lightbox from "@/components/ui/Lightbox";
-import { HOCKEY_IMAGES } from "@/lib/constants/images";
+const LOCAL_GALLERY = [
+  "/images/gallery/gallery-1.jpg",
+  "/images/gallery/gallery-2.jpg",
+  "/images/gallery/gallery-3.jpg",
+  "/images/gallery/gallery-4.jpg",
+  "/images/gallery/gallery-5.jpg",
+];
 
 const layoutClasses = [
   "md:col-span-6 md:row-span-2 aspect-square md:aspect-auto",
@@ -18,7 +24,7 @@ const layoutClasses = [
 export default function Gallery({ images }: { images: string[] }) {
   const t = useTranslations("gallery");
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
-  const slots = images.length ? images : HOCKEY_IMAGES.gallery;
+  const slots = images.length ? images : LOCAL_GALLERY;
 
   return (
     <section className="py-24 border-t border-surface-700/60">
