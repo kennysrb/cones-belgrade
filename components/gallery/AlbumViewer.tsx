@@ -2,6 +2,8 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
+import { formatDate } from "@/lib/utils/formatDate";
 
 interface Photo {
   _key: string;
@@ -15,9 +17,10 @@ interface AlbumViewerProps {
   date: string;
   backLabel: string;
   backHref: string;
+  locale: Locale;
 }
 
-export default function AlbumViewer({ photos, albumTitle, date, backLabel, backHref }: AlbumViewerProps) {
+export default function AlbumViewer({ photos, albumTitle, date, backLabel, backHref, locale }: AlbumViewerProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const prev = useCallback(
@@ -41,11 +44,7 @@ export default function AlbumViewer({ photos, albumTitle, date, backLabel, backH
   if (photos.length === 0) return null;
 
   const active = photos[activeIndex];
-  const formatted = new Date(date).toLocaleDateString("sr-Latn", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const formatted = formatDate(date, locale);
 
   return (
     <div className="py-8">

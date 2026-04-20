@@ -26,7 +26,7 @@ const albums = [
 
 test("AlbumGrid renders all album titles", () => {
   render(
-    <AlbumGrid albums={albums} locale="sr" sortManualLabel="Manual order" sortDateLabel="Newest first" />
+    <AlbumGrid albums={albums} locale="sr" sortManualLabel="Manual order" sortDateLabel="Newest first" emptyLabel="No albums yet." />
   );
   expect(screen.getByText("Album A")).toBeInTheDocument();
   expect(screen.getByText("Album B")).toBeInTheDocument();
@@ -34,7 +34,7 @@ test("AlbumGrid renders all album titles", () => {
 
 test("AlbumGrid shows sort toggle buttons", () => {
   render(
-    <AlbumGrid albums={albums} locale="sr" sortManualLabel="Manual order" sortDateLabel="Newest first" />
+    <AlbumGrid albums={albums} locale="sr" sortManualLabel="Manual order" sortDateLabel="Newest first" emptyLabel="No albums yet." />
   );
   expect(screen.getByRole("button", { name: /manual order/i })).toBeInTheDocument();
   expect(screen.getByRole("button", { name: /newest first/i })).toBeInTheDocument();
@@ -42,7 +42,7 @@ test("AlbumGrid shows sort toggle buttons", () => {
 
 test("AlbumGrid sorts by date when Newest first clicked", async () => {
   render(
-    <AlbumGrid albums={albums} locale="sr" sortManualLabel="Manual order" sortDateLabel="Newest first" />
+    <AlbumGrid albums={albums} locale="sr" sortManualLabel="Manual order" sortDateLabel="Newest first" emptyLabel="No albums yet." />
   );
   await userEvent.click(screen.getByRole("button", { name: /newest first/i }));
   const links = screen.getAllByRole("link");

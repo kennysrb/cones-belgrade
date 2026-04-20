@@ -9,6 +9,7 @@ vi.mock("@/i18n/navigation", () => ({
     <a href={href}>{children}</a>
   ),
 }));
+vi.mock("@/lib/utils/formatDate", () => ({ formatDate: () => "15. jul 2024." }));
 
 import AlbumViewer from "@/components/gallery/AlbumViewer";
 
@@ -24,6 +25,7 @@ const defaultProps = {
   date: "2024-07-15",
   backLabel: "Back to gallery",
   backHref: "/gallery",
+  locale: "sr" as const,
 };
 
 test("AlbumViewer renders album title", () => {

@@ -17,11 +17,12 @@ interface AlbumGridProps {
   locale: Locale;
   sortManualLabel: string;
   sortDateLabel: string;
+  emptyLabel: string;
 }
 
 type SortMode = "manual" | "date";
 
-export default function AlbumGrid({ albums, locale, sortManualLabel, sortDateLabel }: AlbumGridProps) {
+export default function AlbumGrid({ albums, locale, sortManualLabel, sortDateLabel, emptyLabel }: AlbumGridProps) {
   const [sort, setSort] = useState<SortMode>("manual");
 
   const sorted = [...albums].sort((a, b) => {
@@ -48,7 +49,9 @@ export default function AlbumGrid({ albums, locale, sortManualLabel, sortDateLab
         ))}
       </div>
 
-      {sorted.length > 0 && (
+      {sorted.length === 0 ? (
+        <p className="text-surface-400">{emptyLabel}</p>
+      ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {sorted.map((album) => (
             <AlbumCard
