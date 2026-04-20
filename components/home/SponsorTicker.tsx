@@ -30,18 +30,18 @@ export default function SponsorTicker({ sponsors }: { sponsors: SponsorItem[] })
             href={s.url ?? "#"}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-3 px-10 transition-transform duration-300 hover:scale-110"
+            className="flex items-center gap-4 px-14 transition-transform duration-300 hover:scale-110"
           >
             {s.logoUrl ? (
               <Image
                 src={s.logoUrl}
                 alt={s.name}
-                width={48}
-                height={48}
-                className="h-10 w-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
+                width={72}
+                height={72}
+                className="h-16 w-16 object-contain opacity-80 hover:opacity-100 transition-opacity"
               />
             ) : null}
-            <span className="font-display text-2xl text-surface-200 hover:text-surface-50 transition-colors whitespace-nowrap">
+            <span className="font-display text-3xl text-surface-200 hover:text-surface-50 transition-colors whitespace-nowrap">
               {s.name}
             </span>
           </a>
