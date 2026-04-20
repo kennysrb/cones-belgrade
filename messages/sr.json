@@ -28,7 +28,7 @@
       "communityTitle": "Zajednica", "communityText": "Klub koji povezuje generacije hokejaša u Beogradu."
     }
   },
-  "gallery": { "eyebrow": "Galerija", "title": "Trenuci sa leda" },
+  "gallery": { "eyebrow": "Akcioni snimci", "title": "Galerija utakmica", "viewAll": "Pogledaj sve" },
   "news": { "eyebrow": "Najnovije", "title": "Vesti iz kluba", "cta": "Sve vesti" },
   "sponsors": { "eyebrow": "Partneri", "title": "Oni veruju u nas" },
   "cta": {

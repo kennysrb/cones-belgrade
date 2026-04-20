@@ -28,7 +28,7 @@
       "communityTitle": "Community", "communityText": "A club connecting generations of Belgrade hockey."
     }
   },
-  "gallery": { "eyebrow": "Gallery", "title": "Moments from the ice" },
+  "gallery": { "eyebrow": "Action shots", "title": "Game Gallery", "viewAll": "View all" },
   "news": { "eyebrow": "Latest", "title": "Club news", "cta": "All news" },
   "sponsors": { "eyebrow": "Partners", "title": "They believe in us" },
   "cta": {
