@@ -23,14 +23,14 @@ export default function SponsorTicker({ sponsors }: { sponsors: SponsorItem[] })
       <div className="mx-auto max-w-container px-6 mb-10">
         <SectionHeading eyebrow={t("eyebrow")} title={t("title")} align="center" />
       </div>
-      <Ticker duration={45} className="mask-fade-x">
+      <Ticker duration={30} className="mask-fade-x">
         {items.map((s) => (
           <a
             key={s._id}
             href={s.url ?? "#"}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-4 px-14 transition-transform duration-300 hover:scale-110"
+            className="flex items-center gap-4 px-16 transition-transform duration-300 hover:scale-110"
           >
             {s.logoUrl ? (
               <Image

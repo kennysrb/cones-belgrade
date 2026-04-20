@@ -13,7 +13,7 @@ export default function Ticker({
   return (
     <div className={`overflow-hidden ${className ?? ""}`}>
       <div
-        className="flex gap-16 whitespace-nowrap ticker-track"
+        className="flex whitespace-nowrap ticker-track"
         style={{ "--ticker-duration": `${duration}s` } as React.CSSProperties}
       >
         {children}
