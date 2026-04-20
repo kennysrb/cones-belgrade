@@ -62,7 +62,7 @@ export default function Hero({
 
         <Reveal delay={0.15} className="relative aspect-square w-full max-w-md mx-auto">
           <Image
-            src={mascotUrl ?? "https://images.unsplash.com/photo-1547099882-93ab62c0b459?auto=format&fit=crop&w=800&q=80"}
+            src={mascotUrl ?? "/logo.png"}
             alt="Cones Belgrade"
             fill
             priority
