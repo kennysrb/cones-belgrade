@@ -12,7 +12,10 @@ export function sportsTeamJsonLd(locale: Locale) {
     foundingDate: "2014",
     location: {
       "@type": "Place",
-      name: locale === "sr" ? "Ledeni park Pionir, Beograd" : "Pionir Ice Park, Belgrade",
+      name:
+        locale === "sr"
+          ? "Ledeni park Pionir, Beograd"
+          : "Pionir Ice Park, Belgrade",
       address: {
         "@type": "PostalAddress",
         addressCountry: "RS",
@@ -21,8 +24,8 @@ export function sportsTeamJsonLd(locale: Locale) {
       },
     },
     sameAs: [
-      "https://instagram.com/conesbelgrade",
-      "https://facebook.com/conesbelgrade",
+      "https://instagram.com/cones_belgrade011/",
+      "https://facebook.com/icehockeybelgrade",
     ],
   };
 }
@@ -78,7 +81,9 @@ export function sportsEventJsonLd({
     name,
     startDate,
     endDate,
-    location: locationName ? { "@type": "Place", name: locationName } : undefined,
+    location: locationName
+      ? { "@type": "Place", name: locationName }
+      : undefined,
     url,
   };
 }
