@@ -59,7 +59,7 @@ export default defineType({
           ],
           preview: {
             select: { media: "image", title: "title.sr" },
-            prepare(v: Record<string, unknown>) {
+            prepare(v: Record<string, any>) {
               return { title: (v.title as string) || "(untitled)", media: v.media };
             },
           },
@@ -73,7 +73,7 @@ export default defineType({
   ],
   preview: {
     select: { title: "title.sr", date: "date", media: "coverImage" },
-    prepare(v: { title?: string; date?: string; media: unknown }) {
+    prepare(v: { title?: string; date?: string; media: any }) {
       return { title: v.title || "(untitled)", subtitle: v.date?.slice(0, 10), media: v.media };
     },
   },
