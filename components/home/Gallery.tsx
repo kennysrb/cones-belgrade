@@ -28,21 +28,12 @@ const mosaicClasses = [
   "md:col-span-3 aspect-square md:aspect-auto",
 ];
 
-interface LightboxState {
-  albumIndex: number;
-  photoIndex: number;
-}
-
 export default function Gallery({ albums }: { albums: AlbumCover[] }) {
   const t = useTranslations("gallery");
   const slots = albums.length ? albums.slice(0, 4) : LOCAL_COVERS;
-  const [lightbox, setLightbox] = useState<LightboxState | null>(null);
+  const [lightboxAlbumIndex, setLightboxAlbumIndex] = useState<number | null>(null);
 
-  const openLightbox = (albumIndex: number) => {
-    setLightbox({ albumIndex, photoIndex: 0 });
-  };
-
-  const activeAlbum = lightbox !== null ? slots[lightbox.albumIndex] : null;
+  const activeAlbum = lightboxAlbumIndex !== null ? slots[lightboxAlbumIndex] : null;
   const lightboxImages = activeAlbum?.photos.map((p) => p.imageUrl) ?? [];
 
   return (
@@ -63,7 +54,7 @@ export default function Gallery({ albums }: { albums: AlbumCover[] }) {
             <Reveal key={album._id} delay={i * 0.06} className={mosaicClasses[i]}>
               <button
                 type="button"
-                onClick={() => openLightbox(i)}
+                onClick={() => setLightboxAlbumIndex(i)}
                 className="relative w-full h-full overflow-hidden rounded-lg border border-surface-700 group cursor-zoom-in block"
               >
                 {album.coverImageUrl && (
@@ -93,12 +84,10 @@ export default function Gallery({ albums }: { albums: AlbumCover[] }) {
         </div>
       </div>
 
-      {lightbox !== null && lightboxImages.length > 0 && (
+      {lightboxAlbumIndex !== null && lightboxImages.length > 0 && (
         <Lightbox
           images={lightboxImages}
-          index={lightbox.photoIndex}
-          onClose={() => setLightbox(null)}
-          onNav={(idx) => setLightbox((prev) => prev ? { ...prev, photoIndex: idx } : null)}
+          onClose={() => setLightboxAlbumIndex(null)}
         />
       )}
     </section>

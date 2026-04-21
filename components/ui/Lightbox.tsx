@@ -1,17 +1,18 @@
 "use client";
-import { useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 interface LightboxProps {
   images: string[];
-  index: number;
+  initialIndex?: number;
   onClose: () => void;
-  onNav: (index: number) => void;
 }
 
-export default function Lightbox({ images, index, onClose, onNav }: LightboxProps) {
-  const prev = useCallback(() => onNav((index - 1 + images.length) % images.length), [index, images.length, onNav]);
-  const next = useCallback(() => onNav((index + 1) % images.length), [index, images.length, onNav]);
+export default function Lightbox({ images, initialIndex = 0, onClose }: LightboxProps) {
+  const [index, setIndex] = useState(initialIndex);
+
+  const prev = useCallback(() => setIndex((i) => (i - 1 + images.length) % images.length), [images.length]);
+  const next = useCallback(() => setIndex((i) => (i + 1) % images.length), [images.length]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -32,7 +33,6 @@ export default function Lightbox({ images, index, onClose, onNav }: LightboxProp
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
       onClick={onClose}
     >
-      {/* Prev */}
       <button
         onClick={(e) => { e.stopPropagation(); prev(); }}
         aria-label="Previous"
@@ -41,7 +41,6 @@ export default function Lightbox({ images, index, onClose, onNav }: LightboxProp
         ←
       </button>
 
-      {/* Image */}
       <div
         className="relative w-full h-full max-w-5xl max-h-[88vh] mx-20"
         onClick={(e) => e.stopPropagation()}
@@ -49,7 +48,6 @@ export default function Lightbox({ images, index, onClose, onNav }: LightboxProp
         <Image src={images[index]} alt="" fill className="object-contain" sizes="100vw" />
       </div>
 
-      {/* Next */}
       <button
         onClick={(e) => { e.stopPropagation(); next(); }}
         aria-label="Next"
@@ -58,7 +56,6 @@ export default function Lightbox({ images, index, onClose, onNav }: LightboxProp
         →
       </button>
 
-      {/* Close */}
       <button
         onClick={onClose}
         aria-label="Close"
@@ -67,7 +64,6 @@ export default function Lightbox({ images, index, onClose, onNav }: LightboxProp
         ✕
       </button>
 
-      {/* Counter */}
       <span className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-surface-300 font-heading tracking-widest">
         {index + 1} / {images.length}
       </span>
