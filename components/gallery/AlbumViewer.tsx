@@ -18,9 +18,12 @@ interface AlbumViewerProps {
   backLabel: string;
   backHref: string;
   locale: Locale;
+  emptyLabel: string;
+  prevPhotoLabel: string;
+  nextPhotoLabel: string;
 }
 
-export default function AlbumViewer({ photos, albumTitle, date, backLabel, backHref, locale }: AlbumViewerProps) {
+export default function AlbumViewer({ photos, albumTitle, date, backLabel, backHref, locale, emptyLabel, prevPhotoLabel, nextPhotoLabel }: AlbumViewerProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const prev = useCallback(
@@ -51,7 +54,7 @@ export default function AlbumViewer({ photos, albumTitle, date, backLabel, backH
         </div>
         <div className="mx-auto max-w-container px-6">
           <h1 className="font-display text-3xl md:text-4xl text-surface-50 mb-4">{albumTitle}</h1>
-          <p className="text-surface-400">No photos in this album yet.</p>
+          <p className="text-surface-400">{emptyLabel}</p>
         </div>
       </div>
     );
@@ -94,7 +97,7 @@ export default function AlbumViewer({ photos, albumTitle, date, backLabel, backH
             <button
               type="button"
               onClick={prev}
-              aria-label="Previous photo"
+              aria-label={prevPhotoLabel}
               className="absolute left-4 top-1/2 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full bg-surface-800/80 text-surface-50 hover:bg-cones-blue hover:text-cones-black transition-colors cursor-pointer z-10"
             >
               ←
@@ -102,7 +105,7 @@ export default function AlbumViewer({ photos, albumTitle, date, backLabel, backH
             <button
               type="button"
               onClick={next}
-              aria-label="Next photo"
+              aria-label={nextPhotoLabel}
               className="absolute right-4 top-1/2 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full bg-surface-800/80 text-surface-50 hover:bg-cones-blue hover:text-cones-black transition-colors cursor-pointer z-10"
             >
               →

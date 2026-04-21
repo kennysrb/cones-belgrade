@@ -30,6 +30,7 @@ const mosaicClasses = [
 
 export default function Gallery({ albums }: { albums: AlbumCover[] }) {
   const t = useTranslations("gallery");
+  const tCommon = useTranslations("common");
   const slots = albums.length ? albums.slice(0, 4) : LOCAL_COVERS;
   const [lightboxAlbumIndex, setLightboxAlbumIndex] = useState<number | null>(null);
 
@@ -88,6 +89,9 @@ export default function Gallery({ albums }: { albums: AlbumCover[] }) {
         <Lightbox
           images={lightboxImages}
           onClose={() => setLightboxAlbumIndex(null)}
+          prevLabel={tCommon("previous")}
+          nextLabel={tCommon("next")}
+          closeLabel={tCommon("close")}
         />
       )}
     </section>

@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { SOCIAL_LINKS } from "@/lib/constants/social";
 
 export default function Footer() {
   const tNav = useTranslations("nav");
@@ -52,32 +53,17 @@ export default function Footer() {
           </p>
           <ul className="space-y-2 text-sm">
             <li>
-              <a
-                className="hover:text-cones-blue"
-                href="https://instagram.com/cones_belgrade011/"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="hover:text-cones-blue" href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer">
                 Instagram
               </a>
             </li>
             <li>
-              <a
-                className="hover:text-cones-blue"
-                href="hhttps://facebook.com/icehockeybelgrade"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="hover:text-cones-blue" href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer">
                 Facebook
               </a>
             </li>
             <li>
-              <a
-                className="hover:text-cones-blue"
-                href="https://youtube.com/@conesbelgrade"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="hover:text-cones-blue" href={SOCIAL_LINKS.youtube} target="_blank" rel="noreferrer">
                 YouTube
               </a>
             </li>

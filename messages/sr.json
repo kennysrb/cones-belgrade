@@ -1,5 +1,5 @@
 {
-  "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "gallery": "Galerija", "join": "Pridruži se" },
+  "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "gallery": "Galerija", "join": "Pridruži se", "openMenu": "Otvori meni", "closeMenu": "Zatvori meni" },
   "footer": {
     "tagline": "Hokej. Tim. Beograd.",
     "quickLinks": "Brzi linkovi",
@@ -41,7 +41,10 @@
     "tabPhotos": "Foto albumi",
     "tabVideos": "Video zapisi",
     "sectionVideos": "YouTube video zapisi",
-    "sectionPhotos": "Foto albumi"
+    "sectionPhotos": "Foto albumi",
+    "emptyAlbum": "Još nema fotografija u ovom albumu.",
+    "prevPhoto": "Prethodna fotografija",
+    "nextPhoto": "Sledeća fotografija"
   },
   "news": { "eyebrow": "Najnovije", "title": "Vesti iz kluba", "cta": "Sve vesti" },
   "sponsors": { "eyebrow": "Partneri", "title": "Oni veruju u nas" },
@@ -51,7 +54,7 @@
     "primary": "Zakaži probni trening",
     "secondary": "Pogledaj raspored"
   },
-  "common": { "readMore": "Pročitaj više", "loading": "Učitavanje…" },
+  "common": { "readMore": "Pročitaj više", "loading": "Učitavanje…", "previous": "Prethodno", "next": "Sledeće", "close": "Zatvori" },
   "newsPage": {
     "eyebrow": "Vesti",
     "title": "Najnovije iz Cones Belgrade",

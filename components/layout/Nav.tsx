@@ -58,7 +58,7 @@ export default function Nav() {
           {/* Hamburger */}
           <button
             type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t("closeMenu") : t("openMenu")}
             aria-expanded={open}
             className="md:hidden flex flex-col justify-center items-center h-10 w-10 gap-[5px] cursor-pointer"
             onClick={() => setOpen((v) => !v)}

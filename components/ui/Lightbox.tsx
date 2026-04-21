@@ -5,9 +5,12 @@ interface LightboxProps {
   images: string[];
   initialIndex?: number;
   onClose: () => void;
+  prevLabel?: string;
+  nextLabel?: string;
+  closeLabel?: string;
 }
 
-export default function Lightbox({ images, initialIndex = 0, onClose }: LightboxProps) {
+export default function Lightbox({ images, initialIndex = 0, onClose, prevLabel = "Previous", nextLabel = "Next", closeLabel = "Close" }: LightboxProps) {
   const [index, setIndex] = useState(initialIndex);
 
   const prev = useCallback(() => setIndex((i) => (i - 1 + images.length) % images.length), [images.length]);
@@ -34,7 +37,7 @@ export default function Lightbox({ images, initialIndex = 0, onClose }: Lightbox
     >
       <button
         onClick={(e) => { e.stopPropagation(); prev(); }}
-        aria-label="Previous"
+        aria-label={prevLabel}
         className="absolute left-4 top-1/2 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full bg-surface-800/80 text-surface-50 hover:bg-cones-blue hover:text-cones-black transition-colors cursor-pointer z-10"
       >
         ←
@@ -58,7 +61,7 @@ export default function Lightbox({ images, initialIndex = 0, onClose }: Lightbox
 
       <button
         onClick={(e) => { e.stopPropagation(); next(); }}
-        aria-label="Next"
+        aria-label={nextLabel}
         className="absolute right-4 top-1/2 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full bg-surface-800/80 text-surface-50 hover:bg-cones-blue hover:text-cones-black transition-colors cursor-pointer z-10"
       >
         →
@@ -66,7 +69,7 @@ export default function Lightbox({ images, initialIndex = 0, onClose }: Lightbox
 
       <button
         onClick={onClose}
-        aria-label="Close"
+        aria-label={closeLabel}
         className="absolute top-4 right-4 grid h-10 w-10 place-items-center rounded-full bg-surface-800/80 text-surface-50 hover:bg-surface-700 transition-colors cursor-pointer z-10"
       >
         ✕

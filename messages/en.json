@@ -1,5 +1,5 @@
 {
-  "nav": { "home": "Home", "news": "News", "events": "Events", "gallery": "Gallery", "join": "Join" },
+  "nav": { "home": "Home", "news": "News", "events": "Events", "gallery": "Gallery", "join": "Join", "openMenu": "Open menu", "closeMenu": "Close menu" },
   "footer": {
     "tagline": "Hockey. Team. Belgrade.",
     "quickLinks": "Quick links",
@@ -41,7 +41,10 @@
     "tabPhotos": "Photo Albums",
     "tabVideos": "Videos",
     "sectionVideos": "YouTube Videos",
-    "sectionPhotos": "Photo Albums"
+    "sectionPhotos": "Photo Albums",
+    "emptyAlbum": "No photos in this album yet.",
+    "prevPhoto": "Previous photo",
+    "nextPhoto": "Next photo"
   },
   "news": { "eyebrow": "Latest", "title": "Club news", "cta": "All news" },
   "sponsors": { "eyebrow": "Partners", "title": "They believe in us" },
@@ -51,7 +54,7 @@
     "primary": "Book a trial practice",
     "secondary": "See schedule"
   },
-  "common": { "readMore": "Read more", "loading": "Loading…" },
+  "common": { "readMore": "Read more", "loading": "Loading…", "previous": "Previous", "next": "Next", "close": "Close" },
   "newsPage": {
     "eyebrow": "News",
     "title": "Latest from Cones Belgrade",

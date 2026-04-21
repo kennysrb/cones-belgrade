@@ -65,7 +65,7 @@ export default async function AlbumPage({
     .filter((p) => p.image?.asset)
     .map((p) => ({
       _key: p._key,
-      imageUrl: urlFor(p.image!).width(1400).height(900).fit("max").url(),
+      imageUrl: urlFor(p.image!).width(2000).fit("max").auto("format").url(),
       title: pickLocale(p.title, locale),
     }));
 
@@ -77,6 +77,9 @@ export default async function AlbumPage({
       locale={locale}
       backLabel={t("backToGallery")}
       backHref="/gallery"
+      emptyLabel={t("emptyAlbum")}
+      prevPhotoLabel={t("prevPhoto")}
+      nextPhotoLabel={t("nextPhoto")}
     />
   );
 }
