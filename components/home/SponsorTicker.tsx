@@ -19,47 +19,30 @@ const TIER_WEIGHT: Record<string, number> = {
 };
 
 function buildWeightedList(items: SponsorItem[]): SponsorItem[] {
-  // Expand each sponsor according to its tier weight
-  const expanded = items.flatMap((s) => {
-    const weight = TIER_WEIGHT[s.tier ?? "partner"] ?? 1;
-    return Array.from({ length: weight }, (_, i) => ({
+  // Sort by tier weight descending so highest-tier sponsors lead each "wave"
+  const sorted = [...items].sort(
+    (a, b) => (TIER_WEIGHT[b.tier ?? "partner"] ?? 1) - (TIER_WEIGHT[a.tier ?? "partner"] ?? 1)
+  );
+
+  // Build per-sponsor copy arrays
+  const copies = sorted.map((s) => {
+    const w = TIER_WEIGHT[s.tier ?? "partner"] ?? 1;
+    return Array.from({ length: w }, (_, i) => ({
       ...s,
-      _id: i === 0 ? s._id : `${s._id}-${i}`,
+      _id: i === 0 ? s._id : `${s._id}_${i}`,
     }));
   });
 
-  // Interleave using a round-robin bucket sort by tier so same sponsors
-  // don't cluster together
-  const buckets: Record<string, SponsorItem[]> = { platinum: [], gold: [], silver: [], partner: [] };
-  for (const s of items) {
-    const t = s.tier ?? "partner";
-    const weight = TIER_WEIGHT[t] ?? 1;
-    for (let i = 0; i < weight; i++) {
-      buckets[t].push({ ...s, _id: i === 0 ? s._id : `${s._id}-copy${i}` });
-    }
-  }
-
-  // Merge buckets in alternating fashion so high-tier sponsors are spread out
+  // Interleave column-by-column: one copy from each sponsor per "wave",
+  // so sponsors with more copies appear more often but stay spread out.
+  // e.g. [P1,P2,G1,S1,Pa1, P1_1,P2_1,G1_1, P1_2,P2_2,G1_2, P1_3,P2_3]
+  const maxWaves = Math.max(...copies.map((c) => c.length));
   const result: SponsorItem[] = [];
-  const tiers = ["platinum", "gold", "silver", "partner"];
-  const pointers = { platinum: 0, gold: 0, silver: 0, partner: 0 };
-  const totalSlots = expanded.length;
-
-  while (result.length < totalSlots) {
-    let added = false;
-    for (const tier of tiers) {
-      const bucket = buckets[tier];
-      const ptr = pointers[tier as keyof typeof pointers];
-      if (ptr < bucket.length) {
-        result.push(bucket[ptr]);
-        pointers[tier as keyof typeof pointers]++;
-        added = true;
-        break;
-      }
+  for (let wave = 0; wave < maxWaves; wave++) {
+    for (const sponsorCopies of copies) {
+      if (wave < sponsorCopies.length) result.push(sponsorCopies[wave]);
     }
-    if (!added) break;
   }
-
   return result;
 }
 
@@ -82,7 +65,7 @@ export default function SponsorTicker({ sponsors }: { sponsors: SponsorItem[] })
       <div className="mx-auto max-w-container px-6 mb-10">
         <SectionHeading eyebrow={t("eyebrow")} title={t("title")} align="center" />
       </div>
-      <Ticker duration={30} className="mask-fade-x">
+      <Ticker duration={55} className="mask-fade-x">
         {items.map((s) => (
           <a
             key={s._id}
