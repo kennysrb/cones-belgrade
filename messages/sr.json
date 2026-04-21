@@ -36,7 +36,12 @@
     "sortDate": "Najnoviji",
     "backToGallery": "Nazad na galeriju",
     "photos": "fotografija",
-    "empty": "Još uvek nema albuma. Vratite se uskoro."
+    "empty": "Još uvek nema albuma. Vratite se uskoro.",
+    "tabAll": "Sve",
+    "tabPhotos": "Foto albumi",
+    "tabVideos": "Video zapisi",
+    "sectionVideos": "YouTube video zapisi",
+    "sectionPhotos": "Foto albumi"
   },
   "news": { "eyebrow": "Najnovije", "title": "Vesti iz kluba", "cta": "Sve vesti" },
   "sponsors": { "eyebrow": "Partneri", "title": "Oni veruju u nas" },

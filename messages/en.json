@@ -36,7 +36,12 @@
     "sortDate": "Newest first",
     "backToGallery": "Back to gallery",
     "photos": "photos",
-    "empty": "No albums yet. Check back soon."
+    "empty": "No albums yet. Check back soon.",
+    "tabAll": "All",
+    "tabPhotos": "Photo Albums",
+    "tabVideos": "Videos",
+    "sectionVideos": "YouTube Videos",
+    "sectionPhotos": "Photo Albums"
   },
   "news": { "eyebrow": "Latest", "title": "Club news", "cta": "All news" },
   "sponsors": { "eyebrow": "Partners", "title": "They believe in us" },

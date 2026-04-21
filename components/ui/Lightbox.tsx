@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
 
 interface LightboxProps {
   images: string[];
@@ -30,7 +29,7 @@ export default function Lightbox({ images, initialIndex = 0, onClose }: Lightbox
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm overflow-hidden"
       onClick={onClose}
     >
       <button
@@ -41,12 +40,21 @@ export default function Lightbox({ images, initialIndex = 0, onClose }: Lightbox
         ←
       </button>
 
-      <div
-        className="relative w-full h-full max-w-5xl max-h-[88vh] mx-20"
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        key={images[index]}
+        src={images[index]}
+        alt=""
         onClick={(e) => e.stopPropagation()}
-      >
-        <Image src={images[index]} alt="" fill className="object-contain" sizes="100vw" />
-      </div>
+        style={{
+          maxWidth: "calc(100vw - 120px)",
+          maxHeight: "calc(100vh - 80px)",
+          width: "auto",
+          height: "auto",
+          display: "block",
+          borderRadius: "6px",
+        }}
+      />
 
       <button
         onClick={(e) => { e.stopPropagation(); next(); }}

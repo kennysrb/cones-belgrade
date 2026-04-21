@@ -93,7 +93,7 @@ export default async function HomePage({
       .filter((p) => p.image?.asset)
       .map((p) => ({
         _key: p._key,
-        imageUrl: urlFor(p.image!).width(1400).height(900).fit("max").url(),
+        imageUrl: urlFor(p.image!).width(2000).fit("max").auto("format").url(),
       })),
   }));
 

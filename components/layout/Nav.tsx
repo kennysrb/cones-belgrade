@@ -86,7 +86,7 @@ export default function Nav() {
                 key={l.href}
                 href={l.href}
                 className={cn(
-                  "font-display text-5xl uppercase tracking-widest transition-colors",
+                  "font-display text-2xl uppercase tracking-widest transition-colors",
                   active ? "text-cones-blue" : "text-surface-50 hover:text-cones-blue"
                 )}
                 onClick={() => setOpen(false)}

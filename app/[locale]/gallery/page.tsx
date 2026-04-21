@@ -8,7 +8,7 @@ import { pickLocale } from "@/lib/sanity/types";
 import type { GalleryAlbum } from "@/lib/sanity/types";
 import type { Locale } from "@/i18n/routing";
 import SectionHeading from "@/components/ui/SectionHeading";
-import AlbumGrid from "@/components/gallery/AlbumGrid";
+import GalleryTabs from "@/components/gallery/GalleryTabs";
 
 export async function generateMetadata({
   params,
@@ -57,7 +57,7 @@ export default async function GalleryPage({
         <div className="mb-12">
           <SectionHeading eyebrow={t("eyebrow")} title={t("title")} />
         </div>
-        <AlbumGrid
+        <GalleryTabs
           albums={gridAlbums}
           locale={locale}
           sortManualLabel={t("sortManual")}
