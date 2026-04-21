@@ -43,6 +43,7 @@ type SponsorDoc = {
   name: string;
   url?: string;
   logo?: SanityImageRef;
+  tier?: "platinum" | "gold" | "silver" | "partner" | null;
 };
 
 type LatestAlbumDoc = GalleryAlbum & {
@@ -113,6 +114,7 @@ export default async function HomePage({
     _id: s._id,
     name: s.name,
     url: s.url,
+    tier: s.tier,
     logoUrl: s.logo?.asset
       ? urlFor(s.logo).width(240).height(120).fit("max").url()
       : null,
