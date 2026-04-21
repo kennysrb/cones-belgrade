@@ -59,7 +59,7 @@ export default defineType({
           ],
           preview: {
             select: { media: "image", title: "title.sr" },
-            prepare(v: { media: unknown; title?: string }) {
+            prepare(v: Record<string, unknown>) {
               return { title: v.title || "(untitled)", media: v.media };
             },
           },
