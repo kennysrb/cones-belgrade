@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
-import { rootMetadata } from "@/lib/seo/metadata";
+import { rootMetadata, SITE_URL } from "@/lib/seo/metadata";
+import { newsListJsonLd } from "@/lib/seo/jsonLd";
 import { sanityFetch } from "@/lib/sanity/fetch";
 import { newsListQuery } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
@@ -48,8 +49,13 @@ export default async function NewsPage({
     coverImageUrl: d.coverImage?.asset ? urlFor(d.coverImage).width(800).height(500).fit("crop").url() : null,
   }));
   const t = await getTranslations({ locale, namespace: "newsPage" });
+  const pageUrl = `${SITE_URL}${locale === "sr" ? "" : `/${locale}`}/news`;
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(newsListJsonLd({ url: pageUrl, locale })) }}
+      />
       <PageHero eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
       <NewsPageClient articles={articles} />
     </>

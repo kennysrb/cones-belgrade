@@ -7,6 +7,7 @@ import { urlFor } from "@/lib/sanity/image";
 import { pickLocale } from "@/lib/sanity/types";
 import type { GalleryAlbum } from "@/lib/sanity/types";
 import type { Locale } from "@/i18n/routing";
+import { rootMetadata } from "@/lib/seo/metadata";
 import SectionHeading from "@/components/ui/SectionHeading";
 import GalleryTabs from "@/components/gallery/GalleryTabs";
 
@@ -17,7 +18,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "galleryPage" });
-  return { title: t("title") };
+  const base = rootMetadata(locale, "/gallery");
+  return { ...base, title: t("title") };
 }
 
 export default async function GalleryPage({

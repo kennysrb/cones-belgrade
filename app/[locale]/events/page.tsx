@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
-import { rootMetadata } from "@/lib/seo/metadata";
+import { rootMetadata, SITE_URL } from "@/lib/seo/metadata";
+import { eventsPageJsonLd } from "@/lib/seo/jsonLd";
 import { sanityFetch } from "@/lib/sanity/fetch";
 import { upcomingEventsQuery, pastEventsQuery, practiceScheduleQuery } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
@@ -66,16 +67,21 @@ export default async function EventsPage({
     sanityFetch<PracticeRow[]>({ query: practiceScheduleQuery, tags: ["practice"] }).catch(() => [] as PracticeRow[]),
   ]);
 
+  const pageUrl = `${SITE_URL}${locale === "sr" ? "" : `/${locale}`}/events`;
   return (
     <>
-    <PageHero eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
-    <div className="mx-auto max-w-container px-6 py-20">
-      <SectionHeading eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
-      <div className="mt-12">
-        <EventsTabs upcoming={upcoming.map(toItem)} past={past.map(toItem)} schedule={schedule} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventsPageJsonLd({ url: pageUrl, locale })) }}
+      />
+      <PageHero eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
+      <div className="mx-auto max-w-container px-6 py-20">
+        <SectionHeading eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
+        <div className="mt-12">
+          <EventsTabs upcoming={upcoming.map(toItem)} past={past.map(toItem)} schedule={schedule} />
+        </div>
+        <RsvpForm />
       </div>
-      <RsvpForm />
-    </div>
     </>
   );
 }

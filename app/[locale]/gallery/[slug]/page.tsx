@@ -9,6 +9,7 @@ import { pickLocale } from "@/lib/sanity/types";
 import type { GalleryAlbum } from "@/lib/sanity/types";
 import type { Locale } from "@/i18n/routing";
 import { routing } from "@/i18n/routing";
+import { SITE_URL, ogLocale, alternatesForPath } from "@/lib/seo/metadata";
 import AlbumViewer from "@/components/gallery/AlbumViewer";
 
 export async function generateStaticParams() {
@@ -32,7 +33,22 @@ export async function generateMetadata({
       tags: ["galleryAlbum"],
     });
     if (!album) return {};
-    return { title: pickLocale(album.title, locale) };
+    const title = pickLocale(album.title, locale);
+    const coverImageUrl = album.coverImage?.asset
+      ? urlFor(album.coverImage).width(1200).height(630).fit("crop").url()
+      : undefined;
+    return {
+      title,
+      alternates: alternatesForPath(`/gallery/${slug}`, locale),
+      openGraph: {
+        title,
+        url: `${SITE_URL}${locale === routing.defaultLocale ? "" : `/${locale}`}/gallery/${slug}`,
+        locale: ogLocale(locale),
+        images: coverImageUrl
+          ? [{ url: coverImageUrl, width: 1200, height: 630 }]
+          : [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630 }],
+      },
+    };
   } catch {
     return {};
   }

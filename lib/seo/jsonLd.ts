@@ -87,3 +87,42 @@ export function sportsEventJsonLd({
     url,
   };
 }
+
+export function newsListJsonLd({ url, locale }: { url: string; locale: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: locale === "sr" ? "Vesti — Cones Belgrade" : "News — Cones Belgrade",
+    url,
+    inLanguage: locale === "sr" ? "sr-Latn" : "en",
+    publisher: {
+      "@type": "Organization",
+      name: "Cones Belgrade",
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
+    },
+  };
+}
+
+export function eventsPageJsonLd({ url, locale }: { url: string; locale: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "EventSeries",
+    name: locale === "sr" ? "Kalendar kluba — Cones Belgrade" : "Club Calendar — Cones Belgrade",
+    url,
+    organizer: {
+      "@type": "SportsTeam",
+      name: "Cones Belgrade",
+      url: SITE_URL,
+    },
+    location: {
+      "@type": "Place",
+      name: locale === "sr" ? "Ledeni park Pionir, Beograd" : "Pionir Ice Park, Belgrade",
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "RS",
+        addressLocality: "Belgrade",
+        streetAddress: "Čarli Čaplina 39",
+      },
+    },
+  };
+}

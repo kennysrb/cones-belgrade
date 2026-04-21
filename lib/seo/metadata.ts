@@ -4,7 +4,19 @@ import { routing } from "@/i18n/routing";
 
 export const SITE_URL = process.env.SITE_URL || "https://conesbelgrade.rs";
 
-const DEFAULTS = {
+function localeSegment(locale: string): string {
+  return locale === routing.defaultLocale ? "" : `/${locale}`;
+}
+
+export function ogLocale(locale: string): string {
+  const map: Record<string, string> = {
+    sr: "sr_RS",
+    en: "en_US",
+  };
+  return map[locale] ?? "en_US";
+}
+
+const DEFAULTS: Record<Locale, { title: string; description: string }> = {
   sr: {
     title: "Cones Belgrade — Hokejaški klub Beograd",
     description:
@@ -15,32 +27,38 @@ const DEFAULTS = {
     description:
       "Cones Belgrade is an amateur ice hockey club from Belgrade, Serbia. Practices, tournaments, matches, and community since 2014.",
   },
-} as const;
+};
 
-function alternatesForPath(path = "/"): Metadata["alternates"] {
+/**
+ * Canonical points to the current-locale URL. x-default points to default locale (prefix-less).
+ */
+export function alternatesForPath(path: string, locale: string): Metadata["alternates"] {
+  const p = path === "/" ? "" : path;
   const languages = Object.fromEntries(
-    routing.locales.map((l) => [l, `${SITE_URL}${l === routing.defaultLocale ? "" : `/${l}`}${path}`])
+    routing.locales.map((l) => [l, `${SITE_URL}${localeSegment(l)}${p}`])
   );
   return {
-    canonical: `${SITE_URL}${path}`,
-    languages: { ...languages, "x-default": `${SITE_URL}${path}` },
+    canonical: `${SITE_URL}${localeSegment(locale)}${p}`,
+    languages: { ...languages, "x-default": `${SITE_URL}${p}` },
   };
 }
 
 export function rootMetadata(locale: Locale, path = "/"): Metadata {
   const d = DEFAULTS[locale];
+  const p = path === "/" ? "" : path;
   return {
     metadataBase: new URL(SITE_URL),
     title: { default: d.title, template: "%s · Cones Belgrade" },
     description: d.description,
-    alternates: alternatesForPath(path),
+    alternates: alternatesForPath(path, locale),
     openGraph: {
       type: "website",
-      locale: locale === "sr" ? "sr_RS" : "en_US",
+      locale: ogLocale(locale),
       siteName: "Cones Belgrade",
       title: d.title,
       description: d.description,
-      url: `${SITE_URL}${locale === "sr" ? "" : `/${locale}`}${path}`,
+      url: `${SITE_URL}${localeSegment(locale)}${p}`,
+      images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630, alt: "Cones Belgrade" }],
     },
     twitter: { card: "summary_large_image", title: d.title, description: d.description },
     icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
@@ -66,15 +84,17 @@ export function articleMetadata({
   return {
     title,
     description,
-    alternates: alternatesForPath(path),
+    alternates: alternatesForPath(path, locale),
     openGraph: {
       type: "article",
-      locale: locale === "sr" ? "sr_RS" : "en_US",
+      locale: ogLocale(locale),
       title,
       description,
       publishedTime: publishedAt,
-      url: `${SITE_URL}${locale === "sr" ? "" : `/${locale}`}${path}`,
-      images: image ? [{ url: image, width: 1200, height: 630 }] : undefined,
+      url: `${SITE_URL}${localeSegment(locale)}${path}`,
+      images: image
+        ? [{ url: image, width: 1200, height: 630 }]
+        : [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630 }],
     },
     twitter: { card: "summary_large_image", title, description, images: image ? [image] : undefined },
   };
