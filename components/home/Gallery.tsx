@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/motion/Reveal";
 import Lightbox from "@/components/ui/Lightbox";
@@ -49,13 +50,12 @@ export default function Gallery({ albums }: { albums: AlbumCover[] }) {
       <div className="mx-auto max-w-container px-6">
         <div className="flex items-end justify-between mb-12">
           <SectionHeading eyebrow={t("eyebrow")} title={t("title")} />
-          <button
-            type="button"
-            onClick={() => openLightbox(0)}
+          <Link
+            href="/gallery"
             className="hidden md:flex items-center gap-2 border border-surface-600 px-5 py-3 font-heading text-xs uppercase tracking-widest text-surface-100 hover:border-cones-blue hover:text-cones-blue transition-colors cursor-pointer rounded-md whitespace-nowrap"
           >
             {t("viewAll")} →
-          </button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-3 md:h-[460px]">
@@ -84,13 +84,12 @@ export default function Gallery({ albums }: { albums: AlbumCover[] }) {
         </div>
 
         <div className="mt-6 flex md:hidden">
-          <button
-            type="button"
-            onClick={() => openLightbox(0)}
+          <Link
+            href="/gallery"
             className="flex items-center gap-2 border border-surface-600 px-5 py-3 font-heading text-xs uppercase tracking-widest text-surface-100 hover:border-cones-blue hover:text-cones-blue transition-colors cursor-pointer rounded-md"
           >
             {t("viewAll")} →
-          </button>
+          </Link>
         </div>
       </div>
 

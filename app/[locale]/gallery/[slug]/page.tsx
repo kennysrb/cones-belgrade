@@ -8,18 +8,15 @@ import { urlFor } from "@/lib/sanity/image";
 import { pickLocale } from "@/lib/sanity/types";
 import type { GalleryAlbum } from "@/lib/sanity/types";
 import type { Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
 import AlbumViewer from "@/components/gallery/AlbumViewer";
 
 export async function generateStaticParams() {
-  try {
-    const slugs = await sanityFetch<string[]>({
-      query: allGallerySlugsQuery,
-      tags: ["galleryAlbum"],
-    });
-    return slugs.map((slug) => ({ slug }));
-  } catch {
-    return [];
-  }
+  const slugs = await sanityFetch<string[]>({
+    query: allGallerySlugsQuery,
+    tags: ["galleryAlbum"],
+  }).catch(() => [] as string[]);
+  return routing.locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
 }
 
 export async function generateMetadata({
