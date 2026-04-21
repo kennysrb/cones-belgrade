@@ -73,6 +73,7 @@
     "tabs": { "upcoming": "Predstojeći", "schedule": "Raspored treninga", "past": "Prošli" },
     "empty": "Nema događaja za prikaz.",
     "rsvp": "Prijavi se",
+    "viewSchedule": "Pogledaj raspored",
     "today": "Danas",
     "days": {
       "mon": "Ponedeljak", "tue": "Utorak", "wed": "Sreda", "thu": "Četvrtak",

@@ -41,7 +41,7 @@ export default function EventsTabs({
       </div>
 
       {tab === "upcoming" && (
-        <div className="grid gap-6">
+        <div className="grid gap-6 max-w-3xl">
           {upcoming.length === 0
             ? <p className="text-surface-200 py-12 text-center">{t("empty")}</p>
             : upcoming.map((e, i) => <EventCard key={e._id} item={e} locale={locale} index={i} />)

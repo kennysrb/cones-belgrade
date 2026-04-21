@@ -73,6 +73,7 @@
     "tabs": { "upcoming": "Upcoming", "schedule": "Practice schedule", "past": "Past" },
     "empty": "No events to display.",
     "rsvp": "RSVP",
+    "viewSchedule": "View schedule",
     "today": "Today",
     "days": {
       "mon": "Monday", "tue": "Tuesday", "wed": "Wednesday", "thu": "Thursday",

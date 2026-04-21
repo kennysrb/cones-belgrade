@@ -25,6 +25,7 @@ export default defineType({
     defineField({ name: "city", title: "City", type: "string", initialValue: "Belgrade" }),
     defineField({ name: "description", title: "Description", type: "localeText" }),
     defineField({ name: "image", title: "Image", type: "image", options: { hotspot: true } }),
+    defineField({ name: "scheduleImage", title: "Schedule image", type: "image", options: { hotspot: false } }),
     defineField({ name: "rsvpUrl", title: "RSVP URL", type: "url" }),
     defineField({ name: "isFeatured", title: "Featured", type: "boolean", initialValue: false }),
   ],

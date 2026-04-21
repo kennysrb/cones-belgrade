@@ -35,6 +35,7 @@ type EventDoc = {
   description?: { sr?: string; en?: string } | null;
   rsvpUrl?: string | null;
   image?: { asset?: { _ref: string } } | null;
+  scheduleImage?: { asset?: { _ref: string } } | null;
 };
 
 function toItem(d: EventDoc): EventItem {
@@ -49,6 +50,7 @@ function toItem(d: EventDoc): EventItem {
     description: d.description,
     rsvpUrl: d.rsvpUrl,
     imageUrl: d.image?.asset ? urlFor(d.image).width(900).height(600).fit("crop").url() : null,
+    scheduleImageUrl: d.scheduleImage?.asset ? urlFor(d.scheduleImage).width(1600).fit("max").url() : null,
   };
 }
 
