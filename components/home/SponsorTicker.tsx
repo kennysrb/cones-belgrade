@@ -19,31 +19,42 @@ const TIER_WEIGHT: Record<string, number> = {
 };
 
 function buildWeightedList(items: SponsorItem[]): SponsorItem[] {
-  // Sort by tier weight descending so highest-tier sponsors lead each "wave"
+  if (!items.length) return [];
+
+  // Sort highest-tier first so they get the lowest base offsets
   const sorted = [...items].sort(
     (a, b) => (TIER_WEIGHT[b.tier ?? "partner"] ?? 1) - (TIER_WEIGHT[a.tier ?? "partner"] ?? 1)
   );
+  const n = sorted.length;
 
-  // Build per-sponsor copy arrays
-  const copies = sorted.map((s) => {
+  // Assign each copy a fractional position in [0, 1):
+  //   baseOffset  = i/n        → spreads each sponsor evenly across the cycle
+  //   copyOffset  = copyIdx/w  → spreads that sponsor's copies evenly within [0,1)
+  //   pos         = (base + copy) mod 1
+  // This guarantees Platinum appears 4× evenly spread, Gold 3×, etc.
+  const positioned: Array<{ item: SponsorItem; pos: number }> = [];
+
+  sorted.forEach((s, i) => {
     const w = TIER_WEIGHT[s.tier ?? "partner"] ?? 1;
-    return Array.from({ length: w }, (_, i) => ({
-      ...s,
-      _id: i === 0 ? s._id : `${s._id}_${i}`,
-    }));
+    for (let copyIdx = 0; copyIdx < w; copyIdx++) {
+      positioned.push({
+        item: {
+          ...s,
+          _id: copyIdx === 0 ? s._id : `${s._id}__${copyIdx}`,
+        },
+        pos: ((i / n) + (copyIdx / w)) % 1,
+      });
+    }
   });
 
-  // Interleave column-by-column: one copy from each sponsor per "wave",
-  // so sponsors with more copies appear more often but stay spread out.
-  // e.g. [P1,P2,G1,S1,Pa1, P1_1,P2_1,G1_1, P1_2,P2_2,G1_2, P1_3,P2_3]
-  const maxWaves = Math.max(...copies.map((c) => c.length));
-  const result: SponsorItem[] = [];
-  for (let wave = 0; wave < maxWaves; wave++) {
-    for (const sponsorCopies of copies) {
-      if (wave < sponsorCopies.length) result.push(sponsorCopies[wave]);
-    }
-  }
-  return result;
+  positioned.sort((a, b) => {
+    const diff = a.pos - b.pos;
+    if (Math.abs(diff) > 1e-9) return diff;
+    // Tie-break: higher tier first
+    return (TIER_WEIGHT[b.item.tier ?? "partner"] ?? 1) - (TIER_WEIGHT[a.item.tier ?? "partner"] ?? 1);
+  });
+
+  return positioned.map((p) => p.item);
 }
 
 const LOCAL_FALLBACK: SponsorItem[] = [
