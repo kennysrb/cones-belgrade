@@ -9,7 +9,6 @@ import { urlFor } from "@/lib/sanity/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import PageHero from "@/components/ui/PageHero";
 import EventsTabs from "@/components/events/EventsTabs";
-import RsvpForm from "@/components/events/RsvpForm";
 import type { EventItem } from "@/components/events/EventCard";
 import type { PracticeRow } from "@/components/events/PracticeTable";
 
@@ -82,7 +81,6 @@ export default async function EventsPage({
         <div className="mt-12">
           <EventsTabs upcoming={upcoming.map(toItem)} past={past.map(toItem)} schedule={schedule} />
         </div>
-        <RsvpForm />
       </div>
     </>
   );

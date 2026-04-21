@@ -1,5 +1,5 @@
 {
-  "nav": { "home": "Home", "news": "News", "events": "Events", "gallery": "Gallery", "team": "Team", "join": "Join", "openMenu": "Open menu", "closeMenu": "Close menu" },
+  "nav": { "home": "Home", "news": "News", "events": "Events", "gallery": "Gallery", "team": "Team", "contact": "Contact", "join": "Join", "openMenu": "Open menu", "closeMenu": "Close menu" },
   "footer": {
     "tagline": "Hockey. Team. Belgrade.",
     "quickLinks": "Quick links",
@@ -97,6 +97,24 @@
     "number": "No.",
     "age": "Age",
     "empty": "Roster coming soon."
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "title": "Contact us",
+    "description": "Questions, partnership inquiries, or just want to say hi — we'd love to hear from you.",
+    "infoTitle": "Find us",
+    "address": "Pionir Ice Park, Čarli Čaplina 39, Belgrade",
+    "formTitle": "Send us a message",
+    "formSubtitle": "We reply within 24 hours.",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone number",
+    "message": "Message",
+    "submit": "Send message",
+    "sending": "Sending…",
+    "successTitle": "Message sent!",
+    "success": "We'll get back to you within 24 hours.",
+    "error": "Something went wrong. Please try again."
   },
   "notFound": { "title": "Page not found", "description": "The link may be outdated. Go back home.", "cta": "Back to home" },
   "error": { "title": "Something broke", "description": "Please try again or come back later.", "cta": "Try again" },

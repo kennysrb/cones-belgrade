@@ -1,5 +1,5 @@
 {
-  "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "gallery": "Galerija", "team": "Tim", "join": "Pridruži se", "openMenu": "Otvori meni", "closeMenu": "Zatvori meni" },
+  "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "gallery": "Galerija", "team": "Tim", "contact": "Kontakt", "join": "Pridruži se", "openMenu": "Otvori meni", "closeMenu": "Zatvori meni" },
   "footer": {
     "tagline": "Hokej. Tim. Beograd.",
     "quickLinks": "Brzi linkovi",
@@ -97,6 +97,24 @@
     "number": "Br.",
     "age": "Godina",
     "empty": "Spisak igrača uskoro."
+  },
+  "contact": {
+    "eyebrow": "Kontaktirajte nas",
+    "title": "Kontakt",
+    "description": "Pitanja, partnerske saradnje ili samo želite da pozdravite — radujemo se vašoj poruci.",
+    "infoTitle": "Pronađite nas",
+    "address": "Ledeni park Pionir, Čarli Čaplina 39, Beograd",
+    "formTitle": "Pošaljite nam poruku",
+    "formSubtitle": "Odgovaramo u roku od 24 sata.",
+    "name": "Ime i prezime",
+    "email": "Email",
+    "phone": "Broj telefona",
+    "message": "Poruka",
+    "submit": "Pošalji poruku",
+    "sending": "Slanje…",
+    "successTitle": "Poruka poslata!",
+    "success": "Javićemo se u roku od 24 sata.",
+    "error": "Nešto je pošlo po zlu. Pokušajte ponovo."
   },
   "notFound": { "title": "Stranica nije pronađena", "description": "Link je možda zastareo. Vrati se na početnu.", "cta": "Nazad na početnu" },
   "error": { "title": "Nešto nije u redu", "description": "Pokušaj ponovo ili se vrati kasnije.", "cta": "Pokušaj ponovo" },

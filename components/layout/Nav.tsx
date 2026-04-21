@@ -18,6 +18,7 @@ export default function Nav() {
     { href: "/events" as const, label: t("events") },
     { href: "/gallery" as const, label: t("gallery") },
     { href: "/team" as const, label: t("team") },
+    { href: "/contact" as const, label: t("contact") },
   ];
 
   return (
