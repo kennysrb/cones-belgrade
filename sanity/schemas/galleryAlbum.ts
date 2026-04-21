@@ -60,7 +60,7 @@ export default defineType({
           preview: {
             select: { media: "image", title: "title.sr" },
             prepare(v: Record<string, unknown>) {
-              return { title: v.title || "(untitled)", media: v.media };
+              return { title: (v.title as string) || "(untitled)", media: v.media };
             },
           },
         },
