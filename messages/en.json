@@ -1,5 +1,5 @@
 {
-  "nav": { "home": "Home", "news": "News", "events": "Events", "gallery": "Gallery", "join": "Join", "openMenu": "Open menu", "closeMenu": "Close menu" },
+  "nav": { "home": "Home", "news": "News", "events": "Events", "gallery": "Gallery", "team": "Team", "join": "Join", "openMenu": "Open menu", "closeMenu": "Close menu" },
   "footer": {
     "tagline": "Hockey. Team. Belgrade.",
     "quickLinks": "Quick links",
@@ -85,6 +85,17 @@
       "guests": "Guests — 800 RSD per session",
       "monthly": "Monthly pass — 3000 RSD"
     }
+  },
+  "team": {
+    "eyebrow": "The squad",
+    "title": "Meet the team",
+    "description": "Players who bleed Cones blue every time they step on the ice.",
+    "intro": "We are a crew of hockey addicts, weekend warriors, and lifelong teammates who built something special in Belgrade. From first-timers to seasoned skaters, every player brings their own flavour to the dressing room — and we wouldn't have it any other way.",
+    "positions": { "forward": "Forward", "defense": "Defense", "goalie": "Goalie" },
+    "stick": "Stick",
+    "number": "No.",
+    "age": "Age",
+    "empty": "Roster coming soon."
   },
   "notFound": { "title": "Page not found", "description": "The link may be outdated. Go back home.", "cta": "Back to home" },
   "error": { "title": "Something broke", "description": "Please try again or come back later.", "cta": "Try again" },

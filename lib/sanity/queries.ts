@@ -76,3 +76,9 @@ export const latestAlbumCoversQuery = groq`
     "photos": photos[]{ _key, image, title, description }
   }
 `;
+
+export const playersQuery = groq`
+  *[_type == "player"] | order(order asc){
+    _id, name, nickname, photo, number, age, position, stick
+  }
+`;

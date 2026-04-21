@@ -1,5 +1,5 @@
 {
-  "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "gallery": "Galerija", "join": "Pridruži se", "openMenu": "Otvori meni", "closeMenu": "Zatvori meni" },
+  "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "gallery": "Galerija", "team": "Tim", "join": "Pridruži se", "openMenu": "Otvori meni", "closeMenu": "Zatvori meni" },
   "footer": {
     "tagline": "Hokej. Tim. Beograd.",
     "quickLinks": "Brzi linkovi",
@@ -85,6 +85,17 @@
       "guests": "Gosti — 800 RSD po terminu",
       "monthly": "Mesečna karta — 3000 RSD"
     }
+  },
+  "team": {
+    "eyebrow": "Ekipa",
+    "title": "Upoznajte tim",
+    "description": "Igrači koji daju sve od sebe svaki put kad stanu na led.",
+    "intro": "Mi smo ekipa hokejaških fanatika, vikend ratnika i doživotnih saigrača koji su izgradili nešto posebno u Beogradu. Od početnika do iskusnih klizača, svaki igrač unosi svoju posebnost u svlačionicu — i to nam je jedino važno.",
+    "positions": { "forward": "Napadač", "defense": "Odbrambeni", "goalie": "Golman" },
+    "stick": "Palica",
+    "number": "Br.",
+    "age": "Godina",
+    "empty": "Spisak igrača uskoro."
   },
   "notFound": { "title": "Stranica nije pronađena", "description": "Link je možda zastareo. Vrati se na početnu.", "cta": "Nazad na početnu" },
   "error": { "title": "Nešto nije u redu", "description": "Pokušaj ponovo ili se vrati kasnije.", "cta": "Pokušaj ponovo" },
