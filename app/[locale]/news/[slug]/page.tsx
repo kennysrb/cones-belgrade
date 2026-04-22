@@ -82,7 +82,7 @@ export default async function ArticlePage({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             newsArticleJsonLd({
-              url: `${process.env.SITE_URL ?? "https://conesbelgrade.rs"}/${locale}/news/${slug}`,
+              url: `${process.env.SITE_URL ?? "https://conesbelgrade.com"}/${locale}/news/${slug}`,
               headline: title,
               description: excerpt ?? undefined,
               image: coverUrl ?? undefined,

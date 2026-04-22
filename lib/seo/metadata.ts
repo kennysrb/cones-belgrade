@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Locale } from "@/i18n/routing";
 import { routing } from "@/i18n/routing";
 
-export const SITE_URL = process.env.SITE_URL || "https://conesbelgrade.rs";
+export const SITE_URL = process.env.SITE_URL || "https://conesbelgrade.com";
 
 function localeSegment(locale: string): string {
   return locale === routing.defaultLocale ? "" : `/${locale}`;
