@@ -11,12 +11,12 @@ export default function CtaBand() {
     >
       <Reveal className="mx-auto max-w-container px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
+          <p className="font-heading text-xs uppercase tracking-[0.3em] text-cones-orange mb-3">{t("eyebrow")}</p>
           <h2 className="font-display text-5xl md:text-6xl text-surface-50">{t("title")}</h2>
           <p className="mt-3 text-surface-100 max-w-xl">{t("description")}</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-          <Button href="/events" variant="primary" size="lg" className="text-center justify-center">{t("primary")}</Button>
-          <Button href="/events" variant="outline" size="lg" className="text-center justify-center">{t("secondary")}</Button>
+          <Button href="/contact" variant="primary" size="lg" className="text-center justify-center">{t("primary")}</Button>
         </div>
       </Reveal>
     </section>

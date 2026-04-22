@@ -73,10 +73,11 @@ export default async function HomePage({
     safeFetch(() => sanityFetch<LatestAlbumDoc[]>({ query: latestAlbumCoversQuery, tags: ["galleryAlbum"] }), []),
   ]);
 
-  const stats: HeroStat[] = (settings?.stats ?? []).map((s) => ({
-    value: s.value,
-    label: pickLocale(s.label, locale),
-  }));
+  const stats: HeroStat[] = [
+    { value: "3+", label: locale === "sr" ? "Godine" : "Years" },
+    { value: "50+", label: locale === "sr" ? "Aktivnih igrača" : "Active players" },
+    { value: "10+", label: locale === "sr" ? "Turnira" : "Tournaments competed" },
+  ];
 
   const mascotUrl = settings?.mascotImage
     ? urlFor(settings.mascotImage).width(700).height(700).fit("max").url()

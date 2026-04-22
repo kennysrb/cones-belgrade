@@ -49,7 +49,7 @@ export default function Nav() {
 
           <div className="hidden md:flex items-center gap-4">
             <LocaleSwitcher />
-            <Button href="/events" size="sm" variant="primary">
+            <Button href="/contact" size="sm" variant="primary">
               {t("join")}
             </Button>
           </div>
@@ -97,7 +97,7 @@ export default function Nav() {
         </nav>
         <div className="flex items-center justify-between px-6 py-8 border-t border-surface-700/60">
           <LocaleSwitcher />
-          <Button href="/events" size="md" onClick={() => setOpen(false)}>{t("join")}</Button>
+          <Button href="/contact" size="md" onClick={() => setOpen(false)}>{t("join")}</Button>
         </div>
       </div>
     </>

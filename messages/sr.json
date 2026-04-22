@@ -1,5 +1,5 @@
 {
-  "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "gallery": "Galerija", "team": "Tim", "contact": "Kontakt", "join": "Pridruži se", "openMenu": "Otvori meni", "closeMenu": "Zatvori meni" },
+  "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "gallery": "Galerija", "team": "Tim", "contact": "Kontakt", "join": "Kontakt", "openMenu": "Otvori meni", "closeMenu": "Zatvori meni" },
   "footer": {
     "tagline1": "Hokej.", "tagline2": "Tim.", "tagline3": "Beograd.",
     "quickLinks": "Brzi linkovi",
@@ -13,9 +13,9 @@
     "titleLine1": "CONES",
     "titleLine2": "HOCKEY CLUB",
     "lead": "Hokej na ledu u srcu Beograda. Strast, timski duh i fer-plej od 2023. godine.",
-    "ctaPrimary": "Pridruži se timu",
+    "ctaPrimary": "Kontaktirajte nas",
     "ctaSecondary": "Saznaj više",
-    "stats": { "yearsLabel": "Godina istorije", "membersLabel": "Članova", "matchesLabel": "Odigranih utakmica" }
+    "stats": { "yearsLabel": "Godina", "membersLabel": "Aktivnih igrača", "matchesLabel": "Turnira" }
   },
   "about": {
     "eyebrow": "O klubu",
@@ -49,9 +49,10 @@
   "news": { "eyebrow": "Najnovije", "title": "Vesti iz kluba", "cta": "Sve vesti" },
   "sponsors": { "eyebrow": "Partneri", "title": "Oni veruju u nas" },
   "cta": {
-    "title": "Spreman za led?",
-    "description": "Pridruži se treninzima — početnici su dobrodošli, a oprema se može iznajmiti.",
-    "primary": "Zakaži probni trening",
+    "eyebrow": "Partnerstvo",
+    "title": "Veruju u nas. Verujete i vi?",
+    "description": "Postanite partner Cones Hockey Club-a i budite deo priče koja raste. Vaš brend, naš led — zajedno pravimo razliku.",
+    "primary": "Kontaktirajte nas",
     "secondary": "Pogledaj raspored"
   },
   "common": { "readMore": "Pročitaj više", "loading": "Učitavanje…", "previous": "Prethodno", "next": "Sledeće", "close": "Zatvori" },

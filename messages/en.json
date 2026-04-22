@@ -1,5 +1,5 @@
 {
-  "nav": { "home": "Home", "news": "News", "events": "Events", "gallery": "Gallery", "team": "Team", "contact": "Contact", "join": "Join", "openMenu": "Open menu", "closeMenu": "Close menu" },
+  "nav": { "home": "Home", "news": "News", "events": "Events", "gallery": "Gallery", "team": "Team", "contact": "Contact", "join": "Contact", "openMenu": "Open menu", "closeMenu": "Close menu" },
   "footer": {
     "tagline1": "Hockey.", "tagline2": "Team.", "tagline3": "Belgrade.",
     "quickLinks": "Quick links",
@@ -13,9 +13,9 @@
     "titleLine1": "CONES",
     "titleLine2": "HOCKEY CLUB",
     "lead": "Ice hockey at the heart of Belgrade. Passion, teamwork, and fair play since 2023.",
-    "ctaPrimary": "Join the team",
+    "ctaPrimary": "Contact us",
     "ctaSecondary": "Learn more",
-    "stats": { "yearsLabel": "Years of history", "membersLabel": "Members", "matchesLabel": "Matches played" }
+    "stats": { "yearsLabel": "Years", "membersLabel": "Active players", "matchesLabel": "Tournaments competed" }
   },
   "about": {
     "eyebrow": "About the club",
@@ -49,9 +49,10 @@
   "news": { "eyebrow": "Latest", "title": "Club news", "cta": "All news" },
   "sponsors": { "eyebrow": "Partners", "title": "They believe in us" },
   "cta": {
-    "title": "Ready for the ice?",
-    "description": "Join our practices — beginners welcome, gear can be rented on site.",
-    "primary": "Book a trial practice",
+    "eyebrow": "Partnership",
+    "title": "They believe in us. Do you?",
+    "description": "Become a partner of Cones Hockey Club and be part of a growing story. Your brand, our ice — together we make an impact.",
+    "primary": "Contact us",
     "secondary": "See schedule"
   },
   "common": { "readMore": "Read more", "loading": "Loading…", "previous": "Previous", "next": "Next", "close": "Close" },

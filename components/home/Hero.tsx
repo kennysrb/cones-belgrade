@@ -46,7 +46,7 @@ export default function Hero({
           </h1>
           <p className="max-w-xl text-lg text-surface-100 leading-relaxed">{t("lead")}</p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button href="/events" variant="primary" size="lg" className="justify-center">{t("ctaPrimary")}</Button>
+            <Button href="/contact" variant="primary" size="lg" className="justify-center">{t("ctaPrimary")}</Button>
             <Button href="/news" variant="outline" size="lg" className="justify-center">{t("ctaSecondary")}</Button>
           </div>
           {stats.length > 0 && (

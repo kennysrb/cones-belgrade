@@ -74,7 +74,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-surface-700/60 py-5 px-6 flex items-center justify-center text-sm text-surface-400">
+      <div className="border-t border-surface-700/60 py-5 px-6 flex items-center justify-center text-sm text-surface-200">
         <span className="flex items-center gap-1.5">
           Designed &amp; built by{" "}
           <a
