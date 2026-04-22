@@ -44,8 +44,11 @@ export default function Footer() {
           <p className="font-heading text-xs uppercase tracking-[0.25em] text-cones-blue mb-3">
             {tF("contact")}
           </p>
-          <p className="text-sm text-surface-200">{tF("address")}</p>
-          <p className="mt-2 text-sm text-surface-200">hello@cones.rs</p>
+          <ul className="space-y-1.5 text-sm text-surface-200">
+            <li>Mirka Milojkovića 27, Beograd</li>
+            <li><a href="mailto:conesbelgrade@gmail.com" className="hover:text-cones-blue transition-colors">conesbelgrade@gmail.com</a></li>
+          </ul>
+          <p className="mt-4 text-xs text-surface-400">PIB: 113772209 · MB: 28745303</p>
         </div>
         <div>
           <p className="font-heading text-xs uppercase tracking-[0.25em] text-cones-blue mb-3">
