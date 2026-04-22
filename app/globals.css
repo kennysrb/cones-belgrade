@@ -1,5 +1,109 @@
 @import "tailwindcss";
 
+/* ── Jersey M54 ───────────────────────────────────────────────── */
+@font-face {
+  font-family: "Jersey M54";
+  src: url("/fonts/geogrotesque/Jersey M54.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Geogrotesque local fonts ─────────────────────────────────── */
+@font-face {
+  font-family: "Geogrotesque";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-EXTRA-CONDENSEDBOLD.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geogrotesque";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-BOLD.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geogrotesque";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-BOLDITALIC.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geogrotesque";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-SEMIBOLD.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geogrotesque";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-SEMIBOLDITALIC.otf") format("opentype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geogrotesque";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-MEDIUM.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geogrotesque";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-MEDIUMITALIC.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geogrotesque";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-REGULAR.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geogrotesque";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-REGULARITALIC.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geogrotesque";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-LIGHT.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geogrotesque";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-LIGHTITALIC.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── Geogrotesque Condensed ───────────────────────────────────── */
+@font-face {
+  font-family: "Geogrotesque Condensed";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-CONDENSEDBOL.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geogrotesque Extra Condensed";
+  src: url("/fonts/geogrotesque/GEOGROTESQUE/GEOGROTESQUE-EXTRA-CONDENSEDBOLD.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   /* Brand colors */
   --color-cones-blue: #00ADF1;
@@ -21,13 +125,9 @@
   --color-surface-50: #E4E8F0;
 
   /* Font families */
-  --font-family-display: var(--font-display), Impact, sans-serif;
-  --font-family-heading: var(--font-heading), Inter, sans-serif;
-  --font-family-body: var(--font-body), system-ui, sans-serif;
-
-  /* Geist fonts from create-next-app */
-  --font-family-sans: var(--font-geist-sans);
-  --font-family-mono: var(--font-geist-mono);
+  --font-display: "Geogrotesque Condensed", "Geogrotesque", Impact, sans-serif;
+  --font-heading: "Geogrotesque", sans-serif;
+  --font-body: "Geogrotesque", system-ui, sans-serif;
 
   /* Sizing tokens */
   --width-container: 1280px;
@@ -76,7 +176,6 @@ html, body {
 .ticker-track {
   animation: ticker-scroll var(--ticker-duration, 40s) linear infinite;
 }
-
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
