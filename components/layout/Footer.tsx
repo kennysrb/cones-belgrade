@@ -73,8 +73,19 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-surface-700/60 py-4 text-center text-xs text-surface-300">
-        © {year} Cones Belgrade. {tF("rights")}
+      <div className="border-t border-surface-700/60 py-5 px-6 flex items-center justify-center text-sm text-surface-400">
+        <span className="flex items-center gap-1.5">
+          Designed &amp; built by{" "}
+          <a
+            href="https://www.webmasters-pro.com"
+            target="_blank"
+            rel="noreferrer"
+            className="font-heading tracking-wide text-surface-200 hover:text-cones-blue transition-colors uppercase"
+          >
+            Webmasters Pro
+          </a>
+          {" "}· © {year} Webmasters Pro. {tF("rights")}
+        </span>
       </div>
     </footer>
   );
