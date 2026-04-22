@@ -11,7 +11,7 @@
   "hero": {
     "eyebrow": "Najbolji hokejaški klub Beograda",
     "titleLine1": "CONES",
-    "titleLine2": "BELGRADE",
+    "titleLine2": "HOCKEY CLUB",
     "lead": "Hokej na ledu u srcu Beograda. Strast, timski duh i fer-plej od 2014. godine.",
     "ctaPrimary": "Pridruži se timu",
     "ctaSecondary": "Saznaj više",
@@ -20,7 +20,7 @@
   "about": {
     "eyebrow": "O klubu",
     "title": "Strast na ledu, zajednica van njega",
-    "description": "Osnovan 2014. godine, Cones Belgrade je klub koji stoji iza svakog igrača, bilo da je veteran ili prvi put obuo klizaljke.",
+    "description": "Osnovan 2014. godine, Cones Hockey Club je klub koji stoji iza svakog igrača, bilo da je veteran ili prvi put obuo klizaljke.",
     "pillars": {
       "passionTitle": "Strast", "passionText": "Svaki trening, svaka utakmica — bez kompromisa.",
       "unityTitle": "Tim", "unityText": "Igramo jedni za druge, pre svega ostalog.",
@@ -57,7 +57,7 @@
   "common": { "readMore": "Pročitaj više", "loading": "Učitavanje…", "previous": "Prethodno", "next": "Sledeće", "close": "Zatvori" },
   "newsPage": {
     "eyebrow": "Vesti",
-    "title": "Najnovije iz Cones Belgrade",
+    "title": "Najnovije iz Cones Hockey Club",
     "description": "Utakmice, turniri, novi dresovi i priče iz kluba.",
     "filters": { "all": "Sve", "tournament": "Turniri", "club": "Klub", "roster": "Ekipa", "match": "Utakmice", "community": "Zajednica" },
     "empty": "Trenutno nema vesti. Vratite se uskoro."

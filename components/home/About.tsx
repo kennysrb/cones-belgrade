@@ -18,7 +18,7 @@ export default function About({ teamPhotoUrl }: { teamPhotoUrl: string | null })
         <Reveal className="relative aspect-[3/2] rounded-xl overflow-hidden border border-surface-700">
           <Image
             src={teamPhotoUrl ?? "/images/team/team-photo.jpg"}
-            alt="Cones Belgrade team"
+            alt="Cones Hockey Club team"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-top"

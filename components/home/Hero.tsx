@@ -61,7 +61,7 @@ export default function Hero({
         <Reveal delay={0.15} className="relative aspect-square w-full max-w-md mx-auto animate-levitate">
           <Image
             src={mascotUrl ?? "/logo.png"}
-            alt="Cones Belgrade"
+            alt="Cones Hockey Club"
             fill
             priority
             className="object-contain"

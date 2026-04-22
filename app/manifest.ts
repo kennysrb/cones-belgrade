@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Cones Belgrade",
+    name: "Cones Hockey Club",
     short_name: "Cones",
-    description: "Belgrade hockey club — Cones Belgrade",
+    description: "Belgrade hockey club — Cones Hockey Club",
     start_url: "/",
     display: "standalone",
     background_color: "#0A0C10",

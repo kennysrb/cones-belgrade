@@ -18,14 +18,14 @@ export function ogLocale(locale: string): string {
 
 const DEFAULTS: Record<Locale, { title: string; description: string }> = {
   sr: {
-    title: "Cones Belgrade — Hokejaški klub Beograd",
+    title: "Cones Hockey Club — Hokejaški klub Beograd",
     description:
-      "Cones Belgrade je amaterski hokejaški klub iz Beograda. Treninzi, turniri, utakmice i zajednica od 2014. godine.",
+      "Cones Hockey Club je amaterski hokejaški klub iz Beograda. Treninzi, turniri, utakmice i zajednica od 2014. godine.",
   },
   en: {
-    title: "Cones Belgrade — Belgrade Hockey Club",
+    title: "Cones Hockey Club — Belgrade Hockey Club",
     description:
-      "Cones Belgrade is an amateur ice hockey club from Belgrade, Serbia. Practices, tournaments, matches, and community since 2014.",
+      "Cones Hockey Club is an amateur ice hockey club from Belgrade, Serbia. Practices, tournaments, matches, and community since 2014.",
   },
 };
 
@@ -48,17 +48,17 @@ export function rootMetadata(locale: Locale, path = "/"): Metadata {
   const p = path === "/" ? "" : path;
   return {
     metadataBase: new URL(SITE_URL),
-    title: { default: d.title, template: "%s · Cones Belgrade" },
+    title: { default: d.title, template: "%s · Cones Hockey Club" },
     description: d.description,
     alternates: alternatesForPath(path, locale),
     openGraph: {
       type: "website",
       locale: ogLocale(locale),
-      siteName: "Cones Belgrade",
+      siteName: "Cones Hockey Club",
       title: d.title,
       description: d.description,
       url: `${SITE_URL}${localeSegment(locale)}${p}`,
-      images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630, alt: "Cones Belgrade" }],
+      images: [{ url: `${SITE_URL}/og-image.png`, width: 1200, height: 630, alt: "Cones Hockey Club" }],
     },
     twitter: { card: "summary_large_image", title: d.title, description: d.description },
     icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },

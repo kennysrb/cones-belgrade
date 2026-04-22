@@ -36,7 +36,7 @@ export async function POST(request: Request) {
 
   try {
     await transporter.sendMail({
-      from: `"Cones Belgrade Website" <${process.env.GMAIL_USER}>`,
+      from: `"Cones Hockey Club Website" <${process.env.GMAIL_USER}>`,
       to: "conesbelgrade@gmail.com",
       replyTo: email,
       subject: `Contact form: ${name}`,

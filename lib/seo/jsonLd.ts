@@ -5,7 +5,7 @@ export function sportsTeamJsonLd(locale: Locale) {
   return {
     "@context": "https://schema.org",
     "@type": "SportsTeam",
-    name: "Cones Belgrade",
+    name: "Cones Hockey Club",
     sport: "Ice hockey",
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
@@ -56,7 +56,7 @@ export function newsArticleJsonLd({
     mainEntityOfPage: url,
     publisher: {
       "@type": "Organization",
-      name: "Cones Belgrade",
+      name: "Cones Hockey Club",
       logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
     },
   };
@@ -92,12 +92,12 @@ export function newsListJsonLd({ url, locale }: { url: string; locale: string })
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: locale === "sr" ? "Vesti — Cones Belgrade" : "News — Cones Belgrade",
+    name: locale === "sr" ? "Vesti — Cones Hockey Club" : "News — Cones Hockey Club",
     url,
     inLanguage: locale === "sr" ? "sr-Latn" : "en",
     publisher: {
       "@type": "Organization",
-      name: "Cones Belgrade",
+      name: "Cones Hockey Club",
       logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
     },
   };
@@ -107,11 +107,11 @@ export function eventsPageJsonLd({ url, locale }: { url: string; locale: string 
   return {
     "@context": "https://schema.org",
     "@type": "EventSeries",
-    name: locale === "sr" ? "Kalendar kluba — Cones Belgrade" : "Club Calendar — Cones Belgrade",
+    name: locale === "sr" ? "Kalendar kluba — Cones Hockey Club" : "Club Calendar — Cones Hockey Club",
     url,
     organizer: {
       "@type": "SportsTeam",
-      name: "Cones Belgrade",
+      name: "Cones Hockey Club",
       url: SITE_URL,
     },
     location: {

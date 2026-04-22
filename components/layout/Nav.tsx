@@ -25,11 +25,8 @@ export default function Nav() {
     <>
       <header className="sticky top-0 z-50 border-b border-surface-700/60 bg-cones-black/80 backdrop-blur-md" style={{ height: "72px" }}>
         <div className="mx-auto flex h-full max-w-container items-center justify-between px-6">
-          <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-            <Image src="/logo.png" alt="Cones Belgrade" width={40} height={40} className="h-10 w-10 object-contain" />
-            <span className="font-display text-2xl tracking-wide text-surface-50">
-              CONES <span className="text-cones-orange">BELGRADE</span>
-            </span>
+          <Link href="/" className="flex items-center" onClick={() => setOpen(false)}>
+            <Image src="/logo-header.png" alt="Cones Hockey Club" width={180} height={48} className="h-10 w-auto object-contain" />
           </Link>
 
           <nav aria-label="Primary" className="hidden md:flex items-center gap-8">

@@ -4,8 +4,8 @@ import { SITE_URL } from "@/lib/seo/metadata";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Cones Belgrade",
-    template: "%s · Cones Belgrade",
+    default: "Cones Hockey Club",
+    template: "%s · Cones Hockey Club",
   },
   robots: {
     index: true,
