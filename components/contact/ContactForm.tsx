@@ -19,7 +19,7 @@ function Field({
 }) {
   const id = `cf-${name}`;
   const base =
-    "w-full bg-surface-800/60 border border-surface-600 rounded-lg px-4 text-surface-50 placeholder:text-surface-500 focus:outline-none focus:border-cones-blue focus:ring-2 focus:ring-cones-blue/20 transition-all";
+    "w-full bg-surface-600 border border-surface-400 rounded-lg px-4 text-surface-50 placeholder:text-surface-300 focus:outline-none focus:border-cones-blue focus:ring-2 focus:ring-cones-blue/20 transition-all";
 
   return (
     <div className="flex flex-col gap-2">

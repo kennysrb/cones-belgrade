@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { SOCIAL_LINKS } from "@/lib/constants/social";
@@ -11,12 +12,12 @@ export default function Footer() {
     <footer className="mt-24 border-t border-surface-700/60 bg-surface-900">
       <div className="mx-auto max-w-container px-6 py-16 grid gap-10 md:grid-cols-4">
         <div>
-          <p className="font-display text-3xl text-surface-50">
-            CONES <span className="text-cones-orange">BELGRADE</span>
-          </p>
-          <p className="mt-3 text-surface-200 text-sm leading-relaxed">
-            {tF("tagline")}
-          </p>
+          <Image src="/logo-header.png" width={170} height={48} alt="Cones Hockey Club" className="h-10 object-contain" style={{ width: "170px" }} />
+          <div className="flex justify-center gap-3 w-[170px] font-display text-base font-normal">
+            <span className="text-cones-blue">{tF("tagline1")}</span>
+            <span className="text-surface-50">{tF("tagline2")}</span>
+            <span className="text-cones-orange">{tF("tagline3")}</span>
+          </div>
         </div>
         <div>
           <p className="font-heading text-xs uppercase tracking-[0.25em] text-cones-blue mb-3">

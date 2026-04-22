@@ -54,11 +54,18 @@ export default async function GalleryPage({
   }));
 
   return (
-    <main className="py-24 border-t border-surface-700/60">
-      <div className="mx-auto max-w-container px-6">
-        <div className="mb-12">
+    <main>
+      <div className="relative border-b border-surface-700/60 overflow-hidden">
+        <div className="absolute inset-0" style={{ zIndex: 0 }}>
+          <img src="/images/hero-bg.jpg" alt="" className="w-full h-full object-cover object-[center_20%]" style={{ position: "absolute", inset: 0 }} />
+          <div className="absolute inset-0 bg-cones-black/90" />
+          <div className="absolute inset-0 opacity-60" style={{ background: "radial-gradient(ellipse at top, rgba(0,173,241,0.2) 0%, transparent 60%)" }} />
+        </div>
+        <div className="relative mx-auto max-w-container px-6 py-20 md:py-28" style={{ zIndex: 1 }}>
           <SectionHeading eyebrow={t("eyebrow")} title={t("title")} />
         </div>
+      </div>
+      <div className="mx-auto max-w-container px-6 py-16">
         <GalleryTabs
           albums={gridAlbums}
           locale={locale}

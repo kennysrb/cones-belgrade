@@ -1,7 +1,7 @@
 {
   "nav": { "home": "Početna", "news": "Vesti", "events": "Događaji", "gallery": "Galerija", "team": "Tim", "contact": "Kontakt", "join": "Pridruži se", "openMenu": "Otvori meni", "closeMenu": "Zatvori meni" },
   "footer": {
-    "tagline": "Hokej. Tim. Beograd.",
+    "tagline1": "Hokej.", "tagline2": "Tim.", "tagline3": "Beograd.",
     "quickLinks": "Brzi linkovi",
     "contact": "Kontakt",
     "follow": "Prati nas",
@@ -12,7 +12,7 @@
     "eyebrow": "Najbolji hokejaški klub Beograda",
     "titleLine1": "CONES",
     "titleLine2": "HOCKEY CLUB",
-    "lead": "Hokej na ledu u srcu Beograda. Strast, timski duh i fer-plej od 2014. godine.",
+    "lead": "Hokej na ledu u srcu Beograda. Strast, timski duh i fer-plej od 2023. godine.",
     "ctaPrimary": "Pridruži se timu",
     "ctaSecondary": "Saznaj više",
     "stats": { "yearsLabel": "Godina istorije", "membersLabel": "Članova", "matchesLabel": "Odigranih utakmica" }
@@ -20,7 +20,7 @@
   "about": {
     "eyebrow": "O klubu",
     "title": "Strast na ledu, zajednica van njega",
-    "description": "Osnovan 2014. godine, Cones Hockey Club je klub koji stoji iza svakog igrača, bilo da je veteran ili prvi put obuo klizaljke.",
+    "description": "Osnovan 2023. godine, Cones Hockey Club je klub koji stoji iza svakog igrača, bilo da je veteran ili prvi put obuo klizaljke.",
     "pillars": {
       "passionTitle": "Strast", "passionText": "Svaki trening, svaka utakmica — bez kompromisa.",
       "unityTitle": "Tim", "unityText": "Igramo jedni za druge, pre svega ostalog.",

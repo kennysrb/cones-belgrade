@@ -9,7 +9,7 @@ export function sportsTeamJsonLd(locale: Locale) {
     sport: "Ice hockey",
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
-    foundingDate: "2014",
+    foundingDate: "2023",
     location: {
       "@type": "Place",
       name:

@@ -20,12 +20,12 @@ const DEFAULTS: Record<Locale, { title: string; description: string }> = {
   sr: {
     title: "Cones Hockey Club — Hokejaški klub Beograd",
     description:
-      "Cones Hockey Club je amaterski hokejaški klub iz Beograda. Treninzi, turniri, utakmice i zajednica od 2014. godine.",
+      "Cones Hockey Club je amaterski hokejaški klub iz Beograda. Treninzi, turniri, utakmice i zajednica od 2023. godine.",
   },
   en: {
     title: "Cones Hockey Club — Belgrade Hockey Club",
     description:
-      "Cones Hockey Club is an amateur ice hockey club from Belgrade, Serbia. Practices, tournaments, matches, and community since 2014.",
+      "Cones Hockey Club is an amateur ice hockey club from Belgrade, Serbia. Practices, tournaments, matches, and community since 2023.",
   },
 };
 

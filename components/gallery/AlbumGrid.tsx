@@ -40,8 +40,8 @@ export default function AlbumGrid({ albums, locale, sortManualLabel, sortDateLab
             onClick={() => setSort(mode)}
             className={`px-4 py-2 font-heading text-xs uppercase tracking-widest rounded-md border transition-colors cursor-pointer ${
               sort === mode
-                ? "border-cones-blue text-cones-blue"
-                : "border-surface-600 text-surface-400 hover:border-surface-400 hover:text-surface-200"
+                ? "border-cones-blue bg-cones-blue text-surface-50 font-bold"
+                : "border-surface-400 text-surface-200 hover:border-surface-200 hover:text-surface-50"
             }`}
           >
             {mode === "manual" ? sortManualLabel : sortDateLabel}

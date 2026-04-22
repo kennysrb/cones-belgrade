@@ -69,11 +69,18 @@ function YTThumb({ videoId, className }: { videoId: string; className?: string }
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+      src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
       alt=""
       className={className}
+      onLoad={(e) => {
+        const img = e.target as HTMLImageElement;
+        // YouTube returns a 120px wide gray placeholder when maxresdefault doesn't exist
+        if (img.naturalWidth <= 120) {
+          img.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        }
+      }}
       onError={(e) => {
-        (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+        (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
       }}
     />
   );
@@ -81,7 +88,7 @@ function YTThumb({ videoId, className }: { videoId: string; className?: string }
 
 function FeaturedVideo({ video, onPlay }: { video: Video; onPlay: (v: Video) => void }) {
   return (
-    <div className="mb-8">
+    <div className="mb-8 max-w-3xl mx-auto">
       <button
         type="button"
         onClick={() => onPlay(video)}
@@ -160,8 +167,8 @@ export default function GalleryTabs({ albums, locale, sortManualLabel, sortDateL
             onClick={() => setTab(key)}
             className={`px-4 py-2 font-heading text-xs uppercase tracking-widest rounded-md border transition-colors cursor-pointer ${
               tab === key
-                ? "border-surface-50 bg-surface-50 text-surface-900"
-                : "border-surface-600 text-surface-400 hover:border-surface-400 hover:text-surface-200"
+                ? "border-cones-blue bg-cones-blue text-surface-50 font-bold"
+                : "border-surface-400 text-surface-200 hover:border-surface-200 hover:text-surface-50"
             }`}
           >
             {label}
@@ -169,22 +176,9 @@ export default function GalleryTabs({ albums, locale, sortManualLabel, sortDateL
         ))}
       </div>
 
-      {/* Videos section */}
-      {showVideos && (
-        <div className="mb-16">
-          {showBothSections && <SectionLabel>{t("sectionVideos")}</SectionLabel>}
-          <FeaturedVideo video={featured} onPlay={setActiveVideo} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {rest.map((v) => (
-              <VideoCard key={v.id} video={v} onPlay={setActiveVideo} />
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* Albums section */}
       {showPhotos && (
-        <div>
+        <div className="mb-16">
           {showBothSections && <SectionLabel>{t("sectionPhotos")}</SectionLabel>}
           <AlbumGrid
             albums={albums}
@@ -193,6 +187,19 @@ export default function GalleryTabs({ albums, locale, sortManualLabel, sortDateL
             sortDateLabel={sortDateLabel}
             emptyLabel={emptyLabel}
           />
+        </div>
+      )}
+
+      {/* Videos section */}
+      {showVideos && (
+        <div>
+          {showBothSections && <SectionLabel>{t("sectionVideos")}</SectionLabel>}
+          <FeaturedVideo video={featured} onPlay={setActiveVideo} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {rest.map((v) => (
+              <VideoCard key={v.id} video={v} onPlay={setActiveVideo} />
+            ))}
+          </div>
         </div>
       )}
 

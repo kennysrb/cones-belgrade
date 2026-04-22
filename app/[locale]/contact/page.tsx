@@ -28,8 +28,10 @@ export default async function ContactPage({
     <div className="min-h-screen">
       {/* Hero — bold split */}
       <div className="relative border-b border-surface-700/60 overflow-hidden">
+        <img src="/images/hero-bg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover object-[center_20%]" />
+        <div className="absolute inset-0 bg-cones-black/85" />
         <div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0 opacity-40"
           style={{
             background:
               "radial-gradient(ellipse at 70% 50%, rgba(0,173,241,0.18) 0%, transparent 65%), radial-gradient(ellipse at 20% 80%, rgba(255,107,0,0.1) 0%, transparent 55%)",
@@ -105,7 +107,7 @@ export default async function ContactPage({
           </div>
 
           {/* Right — form */}
-          <div className="rounded-2xl border border-surface-700/60 bg-surface-900/60 p-8 md:p-12 backdrop-blur-sm">
+          <div className="rounded-2xl border border-surface-500 bg-surface-700 p-8 md:p-12">
             <h2 className="font-display text-4xl uppercase text-surface-50 mb-2">{t("formTitle")}</h2>
             <p className="text-surface-400 text-sm mb-10">{t("formSubtitle")}</p>
             <ContactForm />

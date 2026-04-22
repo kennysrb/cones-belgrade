@@ -1,7 +1,7 @@
 {
   "nav": { "home": "Home", "news": "News", "events": "Events", "gallery": "Gallery", "team": "Team", "contact": "Contact", "join": "Join", "openMenu": "Open menu", "closeMenu": "Close menu" },
   "footer": {
-    "tagline": "Hockey. Team. Belgrade.",
+    "tagline1": "Hockey.", "tagline2": "Team.", "tagline3": "Belgrade.",
     "quickLinks": "Quick links",
     "contact": "Contact",
     "follow": "Follow us",
@@ -12,7 +12,7 @@
     "eyebrow": "Belgrade's finest hockey club",
     "titleLine1": "CONES",
     "titleLine2": "HOCKEY CLUB",
-    "lead": "Ice hockey at the heart of Belgrade. Passion, teamwork, and fair play since 2014.",
+    "lead": "Ice hockey at the heart of Belgrade. Passion, teamwork, and fair play since 2023.",
     "ctaPrimary": "Join the team",
     "ctaSecondary": "Learn more",
     "stats": { "yearsLabel": "Years of history", "membersLabel": "Members", "matchesLabel": "Matches played" }
@@ -20,7 +20,7 @@
   "about": {
     "eyebrow": "About the club",
     "title": "Passion on the ice, community off it",
-    "description": "Founded in 2014, Cones Hockey Club is a club that stands behind every player — whether a veteran or lacing up skates for the first time.",
+    "description": "Founded in 2023, Cones Hockey Club is a club that stands behind every player — whether a veteran or lacing up skates for the first time.",
     "pillars": {
       "passionTitle": "Passion", "passionText": "Every practice, every game — no compromises.",
       "unityTitle": "Team", "unityText": "We play for each other, above all else.",
