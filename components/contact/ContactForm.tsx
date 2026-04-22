@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
+import { sendContactEmail } from "@/actions/send-email";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -50,28 +51,22 @@ function Field({
 export default function ContactForm() {
   const t = useTranslations("contact");
   const [status, setStatus] = useState<Status>("idle");
+  const [isPending, startTransition] = useTransition();
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("sending");
     const fd = new FormData(e.currentTarget);
-    const payload = {
-      name: String(fd.get("name") ?? ""),
-      email: String(fd.get("email") ?? ""),
-      phone: String(fd.get("phone") ?? "") || undefined,
-      message: String(fd.get("message") ?? ""),
-    };
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+    const form = e.currentTarget;
+    startTransition(async () => {
+      setStatus("sending");
+      const result = await sendContactEmail(fd);
+      if (result.success) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
     });
-    if (res.ok) {
-      setStatus("success");
-      (e.target as HTMLFormElement).reset();
-    } else {
-      setStatus("error");
-    }
   }
 
   if (status === "success") {
@@ -98,7 +93,7 @@ export default function ContactForm() {
       <div className="flex items-center gap-5 pt-2">
         <button
           type="submit"
-          disabled={status === "sending"}
+          disabled={status === "sending" || isPending}
           className="px-8 py-3 bg-cones-blue text-cones-black font-heading text-sm uppercase tracking-[0.2em] rounded-lg hover:bg-cones-blue/90 transition-all disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
         >
           {status === "sending" ? t("sending") : t("submit")}
