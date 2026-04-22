@@ -59,7 +59,7 @@ export default async function TeamPage({
       <PageHero eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
 
       {/* Intro strip */}
-      <section className="border-t border-surface-700/60 py-20">
+      <section className="border-t border-surface-700/60 pt-14 pb-2">
         <div className="mx-auto max-w-container px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <SectionHeading

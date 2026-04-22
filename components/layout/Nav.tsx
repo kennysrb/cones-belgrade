@@ -26,7 +26,7 @@ export default function Nav() {
       <header className="sticky top-0 z-50 border-b border-surface-700/60 bg-cones-black/80 backdrop-blur-md" style={{ height: "72px" }}>
         <div className="mx-auto flex h-full max-w-container items-center justify-between px-6">
           <Link href="/" className="flex items-center" onClick={() => setOpen(false)}>
-            <Image src="/logo-header.png" alt="Cones Hockey Club" width={180} height={48} className="hidden md:block h-10 w-auto object-contain" />
+            <Image src="/logo-header.png" alt="Cones Hockey Club" width={240} height={64} className="hidden md:block h-12 w-auto object-contain" />
             <Image src="/logo-footer.png" alt="Cones Hockey Club" width={180} height={48} className="md:hidden h-10 w-auto object-contain" />
           </Link>
 
