@@ -16,7 +16,10 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return rootMetadata(locale);
+  return {
+    ...rootMetadata(locale),
+    verification: { google: "z6fRzheslrbOkjzHmaQIO2cogu3-uMONOEhJfjMHtCE" },
+  };
 }
 
 export function generateStaticParams() {
