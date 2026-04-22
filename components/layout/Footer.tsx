@@ -12,7 +12,7 @@ export default function Footer() {
     <footer className="mt-24 border-t border-surface-700/60 bg-surface-900">
       <div className="mx-auto max-w-container px-6 py-16 grid gap-10 md:grid-cols-4">
         <div>
-          <Image src="/logo-header.png" width={170} height={48} alt="Cones Hockey Club" className="h-10 object-contain" style={{ width: "170px" }} />
+          <Image src="/logo-footer.png" width={170} height={48} alt="Cones Hockey Club" className="h-10 object-contain" style={{ width: "170px" }} />
           <div className="flex justify-center gap-3 w-[170px] font-display text-base font-normal">
             <span className="text-cones-blue">{tF("tagline1")}</span>
             <span className="text-surface-50">{tF("tagline2")}</span>
