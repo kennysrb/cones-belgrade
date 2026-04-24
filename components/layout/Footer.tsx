@@ -74,7 +74,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-surface-700/60 py-5 px-6 flex items-center justify-center text-sm text-surface-200">
+      <div className="border-t border-surface-700/60 py-5 px-6 flex flex-col sm:flex-row items-center justify-center gap-1 text-sm text-surface-200 text-center">
         <span className="flex items-center gap-1.5">
           Designed &amp; built by{" "}
           <a
@@ -85,8 +85,9 @@ export default function Footer() {
           >
             Webmasters Pro
           </a>
-          {" "}· © {year} Webmasters Pro. {tF("rights")}
         </span>
+        <span className="hidden sm:inline">·</span>
+        <span>© {year} Webmasters Pro. {tF("rights")}</span>
       </div>
     </footer>
   );
