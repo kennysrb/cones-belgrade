@@ -13,3 +13,16 @@ export function formatTime(iso: string, locale: Locale): string {
     hour: "2-digit", minute: "2-digit",
   }).format(new Date(iso));
 }
+
+export function formatDateShort(iso: string, locale: Locale): string {
+  return new Intl.DateTimeFormat(LOCALE_MAP[locale], {
+    day: "2-digit", month: "short",
+  }).format(new Date(iso));
+}
+
+export function isSameDay(a: string, b: string): boolean {
+  const da = new Date(a), db = new Date(b);
+  return da.getFullYear() === db.getFullYear() &&
+    da.getMonth() === db.getMonth() &&
+    da.getDate() === db.getDate();
+}

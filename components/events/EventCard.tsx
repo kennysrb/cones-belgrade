@@ -7,7 +7,7 @@ import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import ImageModal from "@/components/ui/ImageModal";
 import { pickLocale } from "@/lib/sanity/types";
-import { formatTime } from "@/lib/utils/formatDate";
+import { formatTime, formatDateShort, isSameDay } from "@/lib/utils/formatDate";
 import { HOCKEY_IMAGES } from "@/lib/constants/images";
 import type { Locale } from "@/i18n/routing";
 
@@ -72,8 +72,9 @@ export default function EventCard({
               <div className="flex items-center gap-3">
                 {item.kind && <Badge tone="blue">{item.kind}</Badge>}
                 <span className="text-xs text-surface-300">
-                  {formatTime(item.startAt, locale)}
-                  {item.endAt ? ` – ${formatTime(item.endAt, locale)}` : ""}
+                  {item.endAt && !isSameDay(item.startAt, item.endAt)
+                    ? `${formatDateShort(item.startAt, locale)} – ${formatDateShort(item.endAt, locale)}`
+                    : `${formatTime(item.startAt, locale)}${item.endAt ? ` – ${formatTime(item.endAt, locale)}` : ""}`}
                 </span>
               </div>
               <h3 className="mt-2 font-heading text-2xl text-surface-50">{pickLocale(item.title, locale)}</h3>

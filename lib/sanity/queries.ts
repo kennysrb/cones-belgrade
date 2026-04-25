@@ -30,13 +30,13 @@ export const allNewsSlugsQuery = groq`
 `;
 
 export const upcomingEventsQuery = groq`
-  *[_type == "event" && startAt >= now()] | order(startAt asc){
+  *[_type == "event" && coalesce(endAt, startAt) >= now()] | order(startAt asc){
     _id, title, startAt, endAt, kind, venue, city, description, image, scheduleImage, rsvpUrl, isFeatured
   }
 `;
 
 export const pastEventsQuery = groq`
-  *[_type == "event" && startAt < now()] | order(startAt desc)[0...12]{
+  *[_type == "event" && coalesce(endAt, startAt) < now()] | order(startAt desc)[0...12]{
     _id, title, startAt, kind, venue, city, image, scheduleImage
   }
 `;
