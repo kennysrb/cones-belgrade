@@ -117,7 +117,7 @@ export default async function HomePage({
     url: s.url,
     tier: s.tier,
     logoUrl: s.logo?.asset
-      ? urlFor(s.logo).width(240).height(120).fit("max").url()
+      ? urlFor(s.logo).ignoreImageParams().height(128).fit("max").url()
       : null,
   }));
 

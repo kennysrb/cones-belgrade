@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Ticker from "@/components/motion/Ticker";
 
@@ -76,7 +75,7 @@ export default function SponsorTicker({ sponsors }: { sponsors: SponsorItem[] })
       <div className="mx-auto max-w-container px-6 mb-10">
         <SectionHeading eyebrow={t("eyebrow")} title={t("title")} align="center" />
       </div>
-      <Ticker duration={55} className="mask-fade-x">
+      <Ticker duration={90} className="mask-fade-x">
         {items.map((s) => (
           <a
             key={s._id}
@@ -86,12 +85,11 @@ export default function SponsorTicker({ sponsors }: { sponsors: SponsorItem[] })
             className="flex items-center gap-3 px-6 md:px-14 transition-transform duration-300 hover:scale-110"
           >
             {s.logoUrl ? (
-              <Image
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
                 src={s.logoUrl}
                 alt={s.name}
-                width={72}
-                height={72}
-                className="h-20 w-20 md:h-16 md:w-16 object-contain opacity-80 hover:opacity-100 transition-opacity"
+                className="h-10 md:h-16 w-auto flex-shrink-0 opacity-80 hover:opacity-100 transition-opacity"
               />
             ) : null}
             <span className="hidden md:inline font-display text-3xl text-surface-200 hover:text-surface-50 transition-colors whitespace-nowrap">
