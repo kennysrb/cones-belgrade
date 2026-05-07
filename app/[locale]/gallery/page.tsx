@@ -10,6 +10,9 @@ import type { Locale } from "@/i18n/routing";
 import { rootMetadata } from "@/lib/seo/metadata";
 import SectionHeading from "@/components/ui/SectionHeading";
 import GalleryTabs from "@/components/gallery/GalleryTabs";
+import { fetchPlaylistVideos } from "@/lib/youtube";
+
+const PLAYLIST_ID = "PL2YJu29JQeW9iqRJMMMM1ttkMAsTZGbJe";
 
 export async function generateMetadata({
   params,
@@ -42,6 +45,8 @@ export default async function GalleryPage({
     albums = [];
   }
 
+  const videos = await fetchPlaylistVideos(PLAYLIST_ID);
+
   const gridAlbums = albums.map((a) => ({
     _id: a._id,
     slug: a.slug,
@@ -72,6 +77,7 @@ export default async function GalleryPage({
           sortManualLabel={t("sortManual")}
           sortDateLabel={t("sortDate")}
           emptyLabel={t("empty")}
+          videos={videos}
         />
       </div>
     </main>

@@ -20,30 +20,6 @@ interface Video {
   date: string;
 }
 
-const VIDEOS: Video[] = [
-  { id: "U8zNbx97tp0", title: "Cones VS Nogice 22.02.2025.", date: "2025" },
-  { id: "MBij5HA7Lks", title: "Subotica Winter Classic 2025", date: "2025" },
-  { id: "OBEW1bFwk5I", title: "Cones vs Old Boys SK", date: "2025" },
-  { id: "bSh72Cvu0nA", title: "Winter Classic 2025", date: "2025" },
-  { id: "FldKxtwOh8c", title: "Cones vs Kol and Vazhe 12", date: "2025" },
-  { id: "yu6rZOWZO-Y", title: "Cones vs Kol and Vazhe 10", date: "2025" },
-  { id: "Ra_4O-lOHAg", title: "Cones vs Kol and Vazhe 11", date: "2025" },
-  { id: "Po5pKLTR64o", title: "Cones vs Kol and Vazhe 8", date: "2025" },
-  { id: "3TDbJud2Mtg", title: "Cones vs Kol and Vazhe 9", date: "2025" },
-  { id: "XvnxMPh6kwE", title: "Cones vs Kol and Vazhe 7", date: "2025" },
-  { id: "JXRes2ucY1U", title: "Cones vs Kol and Vazhe 6", date: "2025" },
-  { id: "UTH_jDlnoZk", title: "Cones vs Kol and Vazhe 5", date: "2025" },
-  { id: "ezVVmVbLfis", title: "Cones vs Kol and Vazhe 4", date: "2025" },
-  { id: "2SApo3Fekuo", title: "Cones vs Kol and Vazhe 3", date: "2025" },
-  { id: "pNQTVuK1TRo", title: "Cones vs Kol and Vazhe 2", date: "2025" },
-  { id: "v9x_4NttENw", title: "Cones vs Kol and Vazhe 1", date: "2025" },
-  { id: "mgjZS0IYt9o", title: "Cones hockey family 2023.", date: "2023" },
-  { id: "Lc_nY7VrD_A", title: "Cones ice hockey family Bugarska jul 2023", date: "2023" },
-  { id: "Afh5pNL7viI", title: "Cones Belgrade - Srećan rođendan golmane naš :)", date: "2023" },
-  { id: "wQirI4Ehk9E", title: "Cones Belgrade hockey family", date: "2023" },
-  { id: "b9M6XPaySGA", title: "Cones Belgrade Čunjevi plemenski savet od 23h", date: "2022" },
-];
-
 type Tab = "all" | "photos" | "videos";
 
 interface GalleryTabsProps {
@@ -52,6 +28,7 @@ interface GalleryTabsProps {
   sortManualLabel: string;
   sortDateLabel: string;
   emptyLabel: string;
+  videos: Video[];
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -138,7 +115,7 @@ function VideoCard({ video, onPlay }: { video: Video; onPlay: (v: Video) => void
   );
 }
 
-export default function GalleryTabs({ albums, locale, sortManualLabel, sortDateLabel, emptyLabel }: GalleryTabsProps) {
+export default function GalleryTabs({ albums, locale, sortManualLabel, sortDateLabel, emptyLabel, videos }: GalleryTabsProps) {
   const t = useTranslations("galleryPage");
   const [tab, setTab] = useState<Tab>("all");
   const [activeVideo, setActiveVideo] = useState<Video | null>(null);
@@ -147,8 +124,8 @@ export default function GalleryTabs({ albums, locale, sortManualLabel, sortDateL
   const showPhotos = tab === "all" || tab === "photos";
   const showBothSections = tab === "all";
 
-  const featured = VIDEOS[0];
-  const rest = VIDEOS.slice(1);
+  const featured = videos[0];
+  const rest = videos.slice(1);
 
   const tabs: { key: Tab; label: string }[] = [
     { key: "all", label: t("tabAll") },
@@ -194,9 +171,9 @@ export default function GalleryTabs({ albums, locale, sortManualLabel, sortDateL
       {showVideos && (
         <div>
           {showBothSections && <SectionLabel>{t("sectionVideos")}</SectionLabel>}
-          <FeaturedVideo video={featured} onPlay={setActiveVideo} />
+          {featured && <FeaturedVideo video={featured} onPlay={setActiveVideo} />}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {rest.map((v) => (
+            {rest.map((v: Video) => (
               <VideoCard key={v.id} video={v} onPlay={setActiveVideo} />
             ))}
           </div>
