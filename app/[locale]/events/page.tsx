@@ -4,13 +4,12 @@ import type { Locale } from "@/i18n/routing";
 import { rootMetadata, SITE_URL } from "@/lib/seo/metadata";
 import { eventsPageJsonLd } from "@/lib/seo/jsonLd";
 import { sanityFetch } from "@/lib/sanity/fetch";
-import { upcomingEventsQuery, pastEventsQuery, practiceScheduleQuery } from "@/lib/sanity/queries";
+import { upcomingEventsQuery, pastEventsQuery } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import PageHero from "@/components/ui/PageHero";
 import EventsTabs from "@/components/events/EventsTabs";
 import type { EventItem } from "@/components/events/EventCard";
-import type { PracticeRow } from "@/components/events/PracticeTable";
 
 export async function generateMetadata({
   params,
@@ -62,10 +61,9 @@ export default async function EventsPage({
   setRequestLocale(locale);
   const t = await getTranslations("events");
 
-  const [upcoming, past, schedule] = await Promise.all([
+  const [upcoming, past] = await Promise.all([
     sanityFetch<EventDoc[]>({ query: upcomingEventsQuery, tags: ["event"] }).catch(() => [] as EventDoc[]),
     sanityFetch<EventDoc[]>({ query: pastEventsQuery, tags: ["event"] }).catch(() => [] as EventDoc[]),
-    sanityFetch<PracticeRow[]>({ query: practiceScheduleQuery, tags: ["practice"] }).catch(() => [] as PracticeRow[]),
   ]);
 
   const pageUrl = `${SITE_URL}${locale === "sr" ? "" : `/${locale}`}/events`;
@@ -79,7 +77,7 @@ export default async function EventsPage({
       <div className="mx-auto max-w-container px-6 py-20">
         <SectionHeading eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
         <div className="mt-12">
-          <EventsTabs upcoming={upcoming.map(toItem)} past={past.map(toItem)} schedule={schedule} />
+          <EventsTabs upcoming={upcoming.map(toItem)} past={past.map(toItem)} />
         </div>
       </div>
     </>
