@@ -13,9 +13,6 @@ export async function sendContactEmail(
   const from = process.env.EMAIL_FROM ?? 'onboarding@resend.dev';
   const to = process.env.EMAIL_TO ?? 'conesbelgrade@gmail.com';
 
-  // TODO: remove mock once RESEND_API_KEY is set
-  return { success: true };
-
   try {
     await resend.emails.send({
       from,
